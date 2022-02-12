@@ -1,5 +1,5 @@
 import React from "react";
-import PlaceCard from "../../../shared/place-card/place-card";
+import PlaceCard from "../place-card/place-card";
 
 
 type PlacesListProps = {

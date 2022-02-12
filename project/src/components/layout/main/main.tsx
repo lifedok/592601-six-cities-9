@@ -1,7 +1,7 @@
 import Tabs from "./tabs/tabs";
 import SortingForm from "./sorting-form/sorting-form";
 import PlacesList from "./places-list/places-list";
-import EmptyContainer from "./empty-container/empty-container";
+import PlacesEmpty from "../../places-empty/places-empty";
 
 type MainViewProps = {
   placesCard: number;
@@ -9,19 +9,21 @@ type MainViewProps = {
 
 export default function Main({placesCard}: MainViewProps): JSX.Element {
 
-  const isEmpty = false;
+  const isCardPlace = true;
+  // TODO: use switch by class
+  const isCardPlaceStyle = isCardPlace ? 'page__main page__main--index' : 'page__main page__main--index page__main--index-empty';
   return (
-    <main className="page__main page__main--index">
+    <main className={isCardPlaceStyle}>
       <h1 className="visually-hidden">Cities</h1>
 
       <Tabs/>
 
+
       <div className="cities">
 
         {
-          isEmpty
-            ? <EmptyContainer/>
-            :
+          isCardPlace
+            ?
             <div className="cities__places-container container">
               <section className="cities__places places">
                 <h2 className="visually-hidden">Places</h2>
@@ -39,6 +41,8 @@ export default function Main({placesCard}: MainViewProps): JSX.Element {
                 <section className="cities__map map"></section>
               </div>
             </div>
+            :
+            <PlacesEmpty/>
         }
       </div>
     </main>
