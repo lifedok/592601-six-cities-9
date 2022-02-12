@@ -38,7 +38,7 @@ export default function LocationsList(): JSX.Element {
         list().map((item, index) => {
           return (
             <LocationItem key={'i'+index} city={item.city} isActive={item.isActive}/>
-          )
+          );
         })
       }
     </ul>

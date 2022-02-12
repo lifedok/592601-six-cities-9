@@ -150,7 +150,8 @@ export default function PropertyPage(): JSX.Element {
                           src="img/avatar-max.jpg"
                           width="54"
                           height="54"
-                          alt="avatar-max"/>
+                          alt="avatar-max"
+                        />
                       </div>
                       <span className="reviews__user-name">
                         Max
@@ -189,8 +190,13 @@ export default function PropertyPage(): JSX.Element {
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
                   <a href="#">
-                    <img className="place-card__image" src="img/room.jpg" width="260" height="200"
-                         alt="room"/>
+                    <img
+                      className="place-card__image"
+                      src="img/room.jpg"
+                      width="260"
+                      height="200"
+                      alt="room"
+                    />
                   </a>
                 </div>
                 <div className="place-card__info">
@@ -229,7 +235,8 @@ export default function PropertyPage(): JSX.Element {
                       src="img/apartment-02.jpg"
                       width="260"
                       height="200"
-                      alt="apartment-02"/>
+                      alt="apartment-02"
+                    />
                   </a>
                 </div>
                 <div className="place-card__info">
@@ -264,8 +271,13 @@ export default function PropertyPage(): JSX.Element {
                 </div>
                 <div className="near-places__image-wrapper place-card__image-wrapper">
                   <a href="#">
-                    <img className="place-card__image" src="img/apartment-03.jpg" width="260"
-                         height="200" alt="apartment-03"/>
+                    <img
+                      className="place-card__image"
+                      src="img/apartment-03.jpg"
+                      width="260"
+                      height="200"
+                      alt="apartment-03"
+                    />
                   </a>
                 </div>
                 <div className="place-card__info">

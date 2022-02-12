@@ -11,7 +11,8 @@ export default function LoginPage(): JSX.Element {
                   src="img/logo.svg"
                   alt="6 cities logo"
                   width="81"
-                  height="41"/>
+                  height="41"
+                />
               </a>
             </div>
           </div>
@@ -34,14 +35,15 @@ export default function LoginPage(): JSX.Element {
                   type="password"
                   name="password"
                   placeholder="Password"
-                  required/>
+                  required
+                />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <a className="locations__item-link" href={'link'}>
                 <span>Amsterdam</span>
               </a>
             </div>

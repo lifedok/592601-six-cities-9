@@ -11,6 +11,7 @@ export default function PlacesList({count}: PlacesListProps): JSX.Element {
   const images: string[] = ['apartment-01', 'apartment-02', 'apartment-03', 'room'];
   const arrayCards = new Array(count).fill(null).map(() => (
     {
+      id: Math.floor(Math.random() * 12),
       image: images[Math.floor(Math.random() * images.length)],
     }
   ));
@@ -18,7 +19,7 @@ export default function PlacesList({count}: PlacesListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {
-        arrayCards.map((card, index) => <PlaceCard key={'i'+index} image={card.image}/>)
+        arrayCards.map((card) => <PlaceCard key={card.id} image={card.image}/>)
       }
     </div>
   );
