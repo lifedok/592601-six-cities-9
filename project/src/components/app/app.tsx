@@ -1,5 +1,7 @@
-function App(): JSX.Element {
-  return <p>Hello, world!</p>;
-}
+import React from "react";
+import Layout from "../layout/layout";
 
-export default App;
+
+export default function App(): JSX.Element {
+  return <Layout/>;
+}
