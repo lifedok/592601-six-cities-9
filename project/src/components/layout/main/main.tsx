@@ -1,7 +1,7 @@
-import Tabs from "./tabs/tabs";
-import SortingForm from "./sorting-form/sorting-form";
-import PlacesList from "./places-list/places-list";
-import PlacesEmpty from "../../places-empty/places-empty";
+import Tabs from './tabs/tabs';
+import SortingForm from './sorting-form/sorting-form';
+import PlacesList from './places-list/places-list';
+import PlacesEmpty from '../../places-empty/places-empty';
 
 type MainViewProps = {
   placesCard: number;

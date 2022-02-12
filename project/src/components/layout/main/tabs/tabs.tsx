@@ -1,5 +1,5 @@
-import LocationsList from "./locations-list/locations-list";
-import React from "react";
+import React from 'react';
+import LocationsList from './locations-list/locations-list';
 
 
 export default function Tabs(): JSX.Element {

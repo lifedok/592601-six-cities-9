@@ -1,5 +1,3 @@
-
-
 type PlaceCardProps = {
   image: string;
 }
@@ -13,11 +11,12 @@ export default function PlaceCard({image}: PlaceCardProps): JSX.Element {
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
         <a href="#">
-          <img className="place-card__image"
-               src={`img/${image}.jpg`}
-               width="260"
-               height="200"
-               alt="Place image"/>
+          <img
+            className="place-card__image"
+            src={`img/${image}.jpg`}
+            width="260"
+            height="200"
+            alt="Place image"/>
         </a>
       </div>
       <div className="place-card__info">
@@ -45,5 +44,5 @@ export default function PlaceCard({image}: PlaceCardProps): JSX.Element {
         <p className="place-card__type">Apartment</p>
       </div>
     </article>
-  )
+  );
 }

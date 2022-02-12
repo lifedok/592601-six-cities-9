@@ -1,5 +1,5 @@
-import Header from "../../layout/header/header";
-import ReviewsForm from "./reviews-form/reviews-form";
+import Header from '../../layout/header/header';
+import ReviewsForm from './reviews-form/reviews-form';
 
 
 export default function PropertyPage(): JSX.Element {
@@ -18,22 +18,22 @@ export default function PropertyPage(): JSX.Element {
           <div className="property__gallery-container container">
             <div className="property__gallery">
               <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="Photo studio"/>
+                <img className="property__image" src="img/room.jpg" alt="room"/>
               </div>
               <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
+                <img className="property__image" src="img/apartment-01.jpg" alt="apartment 01"/>
               </div>
               <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio"/>
+                <img className="property__image" src="img/apartment-02.jpg" alt="apartment 02"/>
               </div>
               <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio"/>
+                <img className="property__image" src="img/apartment-03.jpg" alt="apartment 03"/>
               </div>
               <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="Photo studio"/>
+                <img className="property__image" src="img/studio-01.jpg" alt="apartment 01"/>
               </div>
               <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio"/>
+                <img className="property__image" src="img/apartment-01.jpg" alt="apartment 01"/>
               </div>
             </div>
           </div>
@@ -55,7 +55,7 @@ export default function PropertyPage(): JSX.Element {
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: "80%"}}/>
+                  <span style={{width: '80%'}}/>
                   <span className="visually-hidden">Rating</span>
                 </div>
                 <span className="property__rating-value rating__value">4.8</span>
@@ -114,8 +114,12 @@ export default function PropertyPage(): JSX.Element {
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg"
-                         width="74" height="74" alt="Host avatar"/>
+                    <img
+                      className="property__avatar user__avatar"
+                      src="img/avatar-angelina.jpg"
+                      width="74"
+                      height="74"
+                      alt="avatar-angelina"/>
                   </div>
                   <span className="property__user-name">
                     Angelina
@@ -141,8 +145,12 @@ export default function PropertyPage(): JSX.Element {
                   <li className="reviews__item">
                     <div className="reviews__user user">
                       <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img className="reviews__avatar user__avatar" src="img/avatar-max.jpg"
-                             width="54" height="54" alt="Reviews avatar"/>
+                        <img
+                          className="reviews__avatar user__avatar"
+                          src="img/avatar-max.jpg"
+                          width="54"
+                          height="54"
+                          alt="avatar-max"/>
                       </div>
                       <span className="reviews__user-name">
                         Max
@@ -151,7 +159,7 @@ export default function PropertyPage(): JSX.Element {
                     <div className="reviews__info">
                       <div className="reviews__rating rating">
                         <div className="reviews__stars rating__stars">
-                          <span style={{width: "80%"}}/>
+                          <span style={{width: '80%'}}/>
                           <span className="visually-hidden">Rating</span>
                         </div>
                       </div>
@@ -182,7 +190,7 @@ export default function PropertyPage(): JSX.Element {
                 <div className="near-places__image-wrapper place-card__image-wrapper">
                   <a href="#">
                     <img className="place-card__image" src="img/room.jpg" width="260" height="200"
-                         alt="Place image"/>
+                         alt="room"/>
                   </a>
                 </div>
                 <div className="place-card__info">
@@ -191,8 +199,9 @@ export default function PropertyPage(): JSX.Element {
                       <b className="place-card__price-value">&euro;80</b>
                       <span className="place-card__price-text">&#47;&nbsp;night</span>
                     </div>
-                    <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                            type="button">
+                    <button
+                      className="place-card__bookmark-button place-card__bookmark-button--active button"
+                      type="button">
                       <svg className="place-card__bookmark-icon" width="18" height="19">
                         <use xlinkHref="#icon-bookmark"/>
                       </svg>
@@ -201,7 +210,7 @@ export default function PropertyPage(): JSX.Element {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: "80%"}}/>
+                      <span style={{width: '80%'}}/>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -215,8 +224,12 @@ export default function PropertyPage(): JSX.Element {
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
                   <a href="#">
-                    <img className="place-card__image" src="img/apartment-02.jpg" width="260"
-                         height="200" alt="Place image"/>
+                    <img
+                      className="place-card__image"
+                      src="img/apartment-02.jpg"
+                      width="260"
+                      height="200"
+                      alt="apartment-02"/>
                   </a>
                 </div>
                 <div className="place-card__info">
@@ -234,7 +247,7 @@ export default function PropertyPage(): JSX.Element {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: "80%"}}/>
+                      <span style={{width: '80%'}}/>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>
@@ -252,7 +265,7 @@ export default function PropertyPage(): JSX.Element {
                 <div className="near-places__image-wrapper place-card__image-wrapper">
                   <a href="#">
                     <img className="place-card__image" src="img/apartment-03.jpg" width="260"
-                         height="200" alt="Place image"/>
+                         height="200" alt="apartment-03"/>
                   </a>
                 </div>
                 <div className="place-card__info">
@@ -270,7 +283,7 @@ export default function PropertyPage(): JSX.Element {
                   </div>
                   <div className="place-card__rating rating">
                     <div className="place-card__stars rating__stars">
-                      <span style={{width: "100%"}}/>
+                      <span style={{width: '100%'}}/>
                       <span className="visually-hidden">Rating</span>
                     </div>
                   </div>

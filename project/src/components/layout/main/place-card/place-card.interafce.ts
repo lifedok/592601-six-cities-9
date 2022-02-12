@@ -1,3 +1,3 @@
 export type CardInterface = {
-  name?: string
+  name?: string;
 }
