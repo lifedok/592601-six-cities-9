@@ -3,8 +3,11 @@ import SortingForm from "./sorting-form/sorting-form";
 import PlacesList from "./places-list/places-list";
 import EmptyContainer from "./empty-container/empty-container";
 
+type MainViewProps = {
+  placesCard: number;
+}
 
-export default function Main(): JSX.Element {
+export default function Main({placesCard}: MainViewProps): JSX.Element {
 
   const isEmpty = false;
   return (
@@ -28,9 +31,10 @@ export default function Main(): JSX.Element {
                 <SortingForm/>
 
 
-                <PlacesList/>
+                <PlacesList count={placesCard}/>
 
               </section>
+
               <div className="cities__right-section">
                 <section className="cities__map map"></section>
               </div>
