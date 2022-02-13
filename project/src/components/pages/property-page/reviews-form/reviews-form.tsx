@@ -62,10 +62,7 @@ export default function ReviewsForm(): JSX.Element {
           id="1-star"
           type="radio"
         />
-        <label
-          htmlFor="1-star"
-          className="reviews__rating-label form__rating-label"
-          title="terribly">
+        <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
           <svg className="form__star-image" width="37" height="33">
             <use xlinkHref="#icon-star"/>
           </svg>
