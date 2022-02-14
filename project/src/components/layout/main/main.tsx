@@ -11,7 +11,7 @@ export default function Main({placesCard}: MainViewProps): JSX.Element {
 
   const isCardPlace = true;
   return (
-    <main className={isCardPlace ? 'page__main page__main--index' : 'page__main page__main--index page__main--index-empty'}>
+    <main className={`page__main page__main--index ${!isCardPlace && 'page__main--index-empty'}`}>
       <h1 className="visually-hidden">Cities</h1>
 
       <Tabs/>
