@@ -10,7 +10,7 @@ export default function PlaceCard({image}: PlaceCardProps): JSX.Element {
         <span>Premium</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href={'image-wrapper'}>
+        <a href='image-wrapper'>
           <img
             className="place-card__image"
             src={`img/${image}.jpg`}

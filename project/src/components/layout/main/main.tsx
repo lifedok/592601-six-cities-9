@@ -10,14 +10,11 @@ type MainViewProps = {
 export default function Main({placesCard}: MainViewProps): JSX.Element {
 
   const isCardPlace = true;
-  // TODO: use switch by class
-  const isCardPlaceStyle = isCardPlace ? 'page__main page__main--index' : 'page__main page__main--index page__main--index-empty';
   return (
-    <main className={isCardPlaceStyle}>
+    <main className={isCardPlace ? 'page__main page__main--index' : 'page__main page__main--index page__main--index-empty'}>
       <h1 className="visually-hidden">Cities</h1>
 
       <Tabs/>
-
 
       <div className="cities">
 
@@ -29,16 +26,14 @@ export default function Main({placesCard}: MainViewProps): JSX.Element {
                 <h2 className="visually-hidden">Places</h2>
                 <b className="places__found">312 places to stay in Amsterdam</b>
 
-
                 <SortingForm/>
-
 
                 <PlacesList count={placesCard}/>
 
               </section>
 
               <div className="cities__right-section">
-                <section className="cities__map map"></section>
+                <section className="cities__map map"/>
               </div>
             </div>
             :
