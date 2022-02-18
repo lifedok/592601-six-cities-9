@@ -1,4 +1,4 @@
-import Header from '../../layout/header/header';
+import Header from '../../components/layout/header/header';
 
 
 export default function FavoritesEmptyPage(): JSX.Element {
