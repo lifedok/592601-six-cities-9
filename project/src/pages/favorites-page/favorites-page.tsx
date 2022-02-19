@@ -15,7 +15,6 @@ export default function FavoritesPage(): JSX.Element {
 
           {
             isListFavorites ? <FavoritesList/> : <FavoritesEmpty/>
-
           }
 
         </div>
