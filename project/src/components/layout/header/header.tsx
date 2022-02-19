@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { ERoute } from "../../../types/enums/route.enum";
+import { Link } from 'react-router-dom';
+import { ERoute } from '../../../types/enums/route.enum';
 
 type HeaderProps = {
   isLogged?: boolean;

@@ -1,13 +1,13 @@
 import { Link, useParams } from 'react-router-dom';
 import Header from '../../components/layout/header/header';
 import ReviewsForm from './reviews-form/reviews-form';
-import { ERoute } from "../../types/enums/route.enum";
+import { ERoute } from '../../types/enums/route.enum';
 
 
 export default function PropertyPage(): JSX.Element {
 
   const isLogged = true;
-  let params = useParams();
+  const params = useParams();
   return (
     <div className="page">
 

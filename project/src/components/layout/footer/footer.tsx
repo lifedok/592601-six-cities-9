@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import { ERoute } from "../../../types/enums/route.enum";
+import { Link } from 'react-router-dom';
+import { ERoute } from '../../../types/enums/route.enum';
 
 export default function Footer(): JSX.Element {
   return (

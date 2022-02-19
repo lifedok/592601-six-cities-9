@@ -1,6 +1,6 @@
 import { LocationItemInterface } from './location-item.interface';
-import { Link } from "react-router-dom";
-import { ERoute } from "../../../../../types/enums/route.enum";
+import { Link } from 'react-router-dom';
+import { ERoute } from '../../../../../types/enums/route.enum';
 
 
 export default function LocationItem(item: LocationItemInterface): JSX.Element {

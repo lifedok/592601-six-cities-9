@@ -2,11 +2,11 @@ import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import MainPage from '../../pages/main-page/main-page';
 import { NotFound } from '../../pages/not-found/not-found';
-import { AuthorizationStatus, ERoute } from "../../types/enums/route.enum";
-import LoginPage from "../../pages/login-page/login-page";
-import FavoritesPage from "../../pages/favorites-page/favorites-page";
-import PrivateRoute from "../private-route/private.route";
-import PropertyPage from "../../pages/property-page/property-page";
+import { AuthorizationStatus, ERoute } from '../../types/enums/route.enum';
+import LoginPage from '../../pages/login-page/login-page';
+import FavoritesPage from '../../pages/favorites-page/favorites-page';
+import PrivateRoute from '../private-route/private.route';
+import PropertyPage from '../../pages/property-page/property-page';
 
 
 export default function App(): JSX.Element {
@@ -23,7 +23,8 @@ export default function App(): JSX.Element {
           element={
             <PrivateRoute authorizationStatus={isLogged}>
               <FavoritesPage/>
-            </PrivateRoute>}
+            </PrivateRoute>
+          }
         />
 
         <Route path="*" element={<NotFound/>}/>

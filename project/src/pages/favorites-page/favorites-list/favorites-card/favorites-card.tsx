@@ -1,4 +1,4 @@
-import { FavoritesCardViewProps } from "../../favorites.interface";
+import { FavoritesCardViewProps } from '../../favorites.interface';
 
 
 export function FavoritesCard(props: FavoritesCardViewProps) {
@@ -31,8 +31,7 @@ export function FavoritesCard(props: FavoritesCardViewProps) {
             <b className="place-card__price-value">&euro;{price}</b>
             <span className="place-card__price-text">&#47;&nbsp;{priceText}</span>
           </div>
-          <button className="place-card__bookmark-button place-card__bookmark-button--active button"
-                  type="button">
+          <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"/>
             </svg>
@@ -41,7 +40,7 @@ export function FavoritesCard(props: FavoritesCardViewProps) {
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating + '%'}`}}/>
+            <span style={{width: `${rating.toString()}%`}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>
