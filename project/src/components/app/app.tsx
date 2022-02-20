@@ -18,6 +18,8 @@ export default function App(): JSX.Element {
         <Route path={ERoute.MAIN} element={<MainPage/>}/>
         <Route path={ERoute.LOGIN} element={<LoginPage/>}/>
         <Route path={`${ERoute.ROOM}/:id`} element={<PropertyPage/>}/>
+        <Route path={`${ERoute.TABS}/:city`} element={<MainPage/>}/>
+
         <Route
           path={ERoute.FAVORITES}
           element={

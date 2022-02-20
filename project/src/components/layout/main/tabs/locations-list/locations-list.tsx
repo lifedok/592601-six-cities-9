@@ -15,7 +15,6 @@ const list = (): LocationItemInterface[] => (
     },
     {
       city: 'Amsterdam',
-      isActive: true,
     },
     {
       city: 'Hamburg',
@@ -32,7 +31,7 @@ export default function LocationsList(): JSX.Element {
   return (
     <ul className="locations__list tabs__list">
       {
-        list().map((item) => <LocationItem key={item.city} city={item.city} isActive={item.isActive}/>)
+        list().map((item) => <LocationItem key={item.city} {...item}/>)
       }
     </ul>
   );
