@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { ERoute } from '../../../types/enums/route.enum';
+
 type HeaderProps = {
   isLogged?: boolean;
 }
@@ -8,7 +11,7 @@ export default function Header({isLogged = true}: HeaderProps): JSX.Element {
       <div className="container">
         <div className="header__wrapper">
           <div className="header__left">
-            <a className="header__logo-link header__logo-link--active" href={'active'}>
+            <Link className="header__logo-link header__logo-link--active" to={ERoute.MAIN}>
               <img
                 className="header__logo"
                 src="img/logo.svg"
@@ -16,7 +19,7 @@ export default function Header({isLogged = true}: HeaderProps): JSX.Element {
                 width="81"
                 height="41"
               />
-            </a>
+            </Link>
           </div>
           <nav className="header__nav">
             <ul className="header__nav-list">
@@ -25,22 +28,22 @@ export default function Header({isLogged = true}: HeaderProps): JSX.Element {
                   (
                     <>
                       <li className="header__nav-item user">
-                        <a className="header__nav-link header__nav-link--profile" href={'profile'}>
+                        <a className="header__nav-link header__nav-link--profile" href='profile'>
                           <div className="header__avatar-wrapper user__avatar-wrapper"/>
-                          <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                          <span className="header__user-name user__name">Olivers.conner@gmail.com</span>
                         </a>
                       </li>
                       <li className="header__nav-item">
-                        <a className="header__nav-link" href={'link'}>
+                        <Link className="header__nav-link" to={ERoute.LOGIN}>
                           <span className="header__signout">Sign out</span>
-                        </a>
+                        </Link>
                       </li>
                     </>
                   )
                   :
                   (
                     <li className="header__nav-item user">
-                      <a className="header__nav-link header__nav-link--profile" href={'profile'}>
+                      <a className="header__nav-link header__nav-link--profile" href='profile'>
                         <div className="header__avatar-wrapper user__avatar-wrapper">
                         </div>
                         <span className="header__login">Sign in</span>

@@ -11,7 +11,7 @@ export default function PlacesList({count}: PlacesListProps): JSX.Element {
   const images: string[] = ['apartment-01', 'apartment-02', 'apartment-03', 'room'];
   const arrayCards = new Array(count).fill(null).map(() => (
     {
-      id: Math.floor(Math.random() * 12),
+      id: Math.floor(Math.random() * 1200),
       image: images[Math.floor(Math.random() * images.length)],
     }
   ));

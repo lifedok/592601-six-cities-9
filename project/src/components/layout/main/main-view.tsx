@@ -7,7 +7,7 @@ type MainViewProps = {
   placesCard: number;
 }
 
-export default function Main({placesCard}: MainViewProps): JSX.Element {
+export default function MainView({placesCard}: MainViewProps): JSX.Element {
 
   const isCardPlace = true;
   return (

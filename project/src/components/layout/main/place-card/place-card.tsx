@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+import { ERoute } from '../../../../types/enums/route.enum';
+
 type PlaceCardProps = {
   image: string;
 }
@@ -10,7 +13,7 @@ export default function PlaceCard({image}: PlaceCardProps): JSX.Element {
         <span>Premium</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href='image-wrapper'>
+        <Link to={`${ERoute.ROOM}/12`}>
           <img
             className="place-card__image"
             src={`img/${image}.jpg`}
@@ -18,7 +21,7 @@ export default function PlaceCard({image}: PlaceCardProps): JSX.Element {
             height="200"
             alt="place-card"
           />
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -40,7 +43,7 @@ export default function PlaceCard({image}: PlaceCardProps): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href={'place-card'}>Beautiful &amp; luxurious apartment at great location</a>
+          <Link to='place-card'>Beautiful &amp; luxurious apartment at great location</Link>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>

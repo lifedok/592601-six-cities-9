@@ -1,17 +1,19 @@
-import Header from '../../layout/header/header';
+import { Link, useParams } from 'react-router-dom';
+import Header from '../../components/layout/header/header';
 import ReviewsForm from './reviews-form/reviews-form';
+import { ERoute } from '../../types/enums/route.enum';
 
 
 export default function PropertyPage(): JSX.Element {
 
   const isLogged = true;
+  const params = useParams();
   return (
     <div className="page">
 
       {
         <Header isLogged={isLogged}/>
       }
-
 
       <main className="page__main page__main--property">
         <section className="property">
@@ -44,7 +46,7 @@ export default function PropertyPage(): JSX.Element {
               </div>
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  Beautiful &amp; luxurious studio at great location
+                  Beautiful &amp; luxurious studio at great location {params.id}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
@@ -190,7 +192,7 @@ export default function PropertyPage(): JSX.Element {
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="apartment">
+                  <Link to={ERoute.MAIN}>
                     <img
                       className="place-card__image"
                       src="img/room.jpg"
@@ -198,7 +200,7 @@ export default function PropertyPage(): JSX.Element {
                       height="200"
                       alt="room"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
@@ -228,7 +230,7 @@ export default function PropertyPage(): JSX.Element {
 
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="card">
+                  <Link to={ERoute.MAIN}>
                     <img
                       className="place-card__image"
                       src="img/apartment-02.jpg"
@@ -236,7 +238,7 @@ export default function PropertyPage(): JSX.Element {
                       height="200"
                       alt="apartment-02"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
@@ -269,7 +271,7 @@ export default function PropertyPage(): JSX.Element {
                   <span>Premium</span>
                 </div>
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="apartment">
+                  <Link to={ERoute.MAIN}>
                     <img
                       className="place-card__image"
                       src="img/apartment-03.jpg"
@@ -277,7 +279,7 @@ export default function PropertyPage(): JSX.Element {
                       height="200"
                       alt="apartment-03"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
