@@ -1,5 +1,6 @@
 import React from 'react';
 import PlaceCard from '../place-card/place-card';
+import { getOffers } from "../../../mocks/offers-data";
 
 
 type PlacesListProps = {
@@ -19,7 +20,7 @@ export default function PlacesList({count}: PlacesListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {
-        arrayCards.map((card) => <PlaceCard key={card.id} image={card.image}/>)
+        getOffers().map((card) => <PlaceCard key={card.id} {...card}/>)
       }
     </div>
   );
