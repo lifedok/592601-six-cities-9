@@ -1,10 +1,11 @@
-import { FavoritesCardProps } from './favorites.interface';
+import { IFavoriteCardList } from "../pages/favorites-page/favorites.interface";
 
-const favoritesList: FavoritesCardProps[] = [
+const favoritesList: IFavoriteCardList[] = [
   {
     location: 'Amsterdam',
     cards: [
       {
+        id: '20',
         previewImage: 'img/apartment-small-03.jpg',
         price: 180,
         priceText: 'night',
@@ -14,6 +15,7 @@ const favoritesList: FavoritesCardProps[] = [
         isMark: true,
       },
       {
+        id: '10',
         previewImage: 'img/room-small.jpg',
         price: 80,
         priceText: 'night',
@@ -27,6 +29,7 @@ const favoritesList: FavoritesCardProps[] = [
     location: 'Cologne',
     cards: [
       {
+        id: '0',
         previewImage: 'img/apartment-small-04.jpg',
         price: 180,
         priceText: 'night',
@@ -38,6 +41,6 @@ const favoritesList: FavoritesCardProps[] = [
   },
 ];
 
-export function getFavorites(): FavoritesCardProps[] {
+export function getFavorites(): IFavoriteCardList[] {
   return favoritesList;
 }

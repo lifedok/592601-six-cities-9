@@ -1,7 +1,7 @@
-import { FavoritesCardViewProps } from '../../favorites.interface';
+import { IFavoriteCard } from "../../favorites.interface";
 
 
-export function FavoritesCard(props: FavoritesCardViewProps) {
+export function FavoritesCard(props: IFavoriteCard) {
 
   const {isMark, description, previewImage, price, priceText, rating, type} = props;
   return (

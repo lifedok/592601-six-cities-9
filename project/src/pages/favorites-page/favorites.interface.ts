@@ -1,15 +1,9 @@
-export interface FavoritesCardProps {
+import { IOffer } from "../../types/interfaces/offer.interface";
+
+export interface IFavoriteCardList {
   location: string,
-  cards: FavoritesCardViewProps[]
+  cards: IFavoriteCard[]
 }
 
-export interface FavoritesCardViewProps {
-  previewImage: string,
-  price: number,
-  priceText: string,
-  rating: number,
-  description: string,
-  type: string,
-  isMark?: boolean,
-}
+export interface IFavoriteCard extends IOffer {}
 
