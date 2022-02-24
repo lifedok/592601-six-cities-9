@@ -22,7 +22,7 @@ export default function PlaceCard(props: IOffer): JSX.Element {
             src={previewImage}
             width="260"
             height="200"
-            alt="place-card"
+            alt={previewImage}
           />
         </Link>
       </div>
@@ -46,7 +46,7 @@ export default function PlaceCard(props: IOffer): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href='place-card'>{name}</a>
+          <Link to={`${ERoute.ROOM}/${props.id}`}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
