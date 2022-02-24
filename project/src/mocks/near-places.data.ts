@@ -8,7 +8,7 @@ const nearPlaces: INearPlacesList = {
       price: 132,
       priceText: 'night',
       rating: 86,
-      name: 'Beautiful &amp; luxurious apartment at great location',
+      name: 'Beautiful & luxurious apartment at great location',
       type: 'Apartment',
     },
     {

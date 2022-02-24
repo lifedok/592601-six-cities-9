@@ -7,7 +7,7 @@ const offerList: IOffer[] = [
     price: 120,
     priceText: 'night',
     rating: 80,
-    name: 'Beautiful &amp; luxurious apartment at great location',
+    name: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
     isMark: true,
   },
