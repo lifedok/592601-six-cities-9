@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ERoute } from '../../../types/enums/route.enum';
-import { IOffer } from "../../../types/interfaces/offer.interface";
+import { IOffer } from '../../../types/interfaces/offer.interface';
 
 export default function PlaceCard(props: IOffer): JSX.Element {
 

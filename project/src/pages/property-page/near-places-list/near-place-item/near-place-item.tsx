@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom";
-import { ERoute } from "../../../../types/enums/route.enum";
-import { INearPlaceItem } from "../../../../types/interfaces/near-places.interface";
+import { Link } from 'react-router-dom';
+import { ERoute } from '../../../../types/enums/route.enum';
+import { INearPlaceItem } from '../../../../types/interfaces/near-places.interface';
 
 export function NearPlaceItem(props: INearPlaceItem) {
 
   const {isMark, name, previewImage, price, priceText, rating, type} = props;
-
   return (
     <article className="near-places__card place-card">
 

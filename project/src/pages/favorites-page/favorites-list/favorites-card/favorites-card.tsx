@@ -1,4 +1,4 @@
-import { IFavoriteCard } from "../../../../types/interfaces/favorites.interface";
+import { IFavoriteCard } from '../../../../types/interfaces/favorites.interface';
 
 
 export function FavoritesCard(props: IFavoriteCard) {

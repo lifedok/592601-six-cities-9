@@ -1,5 +1,5 @@
-import { getNearPlaces } from "../../../mocks/near-places.data";
-import { NearPlaceItem } from "./near-place-item/near-place-item";
+import { getNearPlaces } from '../../../mocks/near-places.data';
+import { NearPlaceItem } from './near-place-item/near-place-item';
 
 export function NearPlacesList() {
 

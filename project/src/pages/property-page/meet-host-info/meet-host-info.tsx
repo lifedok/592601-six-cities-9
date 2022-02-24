@@ -1,4 +1,4 @@
-import { IMeetHostInfo } from "../../../types/interfaces/meet-host-info.interface";
+import { IMeetHostInfo } from '../../../types/interfaces/meet-host-info.interface';
 
 export function MeetHostInfo(props: IMeetHostInfo) {
 
@@ -24,7 +24,7 @@ export function MeetHostInfo(props: IMeetHostInfo) {
         !!descriptions &&
         <div className="property__description">
           {
-            descriptions.map(description => <p className="property__text" key={description}>{description}</p>)
+            descriptions.map((description) => (<p className="property__text" key={description}>{description}</p>))
           }
         </div>
       }

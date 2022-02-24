@@ -1,4 +1,4 @@
-import { INearPlacesList } from "../types/interfaces/near-places.interface";
+import { INearPlacesList } from '../types/interfaces/near-places.interface';
 
 const nearPlaces: INearPlacesList = {
   nearPlaces: [
@@ -30,7 +30,7 @@ const nearPlaces: INearPlacesList = {
       type: 'Apartment',
       isMark: true,
     },
-  ]
+  ],
 };
 
 export function getNearPlaces(): INearPlacesList {

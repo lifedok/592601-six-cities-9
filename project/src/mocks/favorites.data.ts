@@ -1,4 +1,4 @@
-import { IFavoriteCardList } from "../types/interfaces/favorites.interface";
+import { IFavoriteCardList } from '../types/interfaces/favorites.interface';
 
 const favoritesList: IFavoriteCardList[] = [
   {

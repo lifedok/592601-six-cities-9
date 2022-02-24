@@ -1,4 +1,4 @@
-import { IReview } from "../types/interfaces/reviews.interface";
+import { IReview } from '../types/interfaces/reviews.interface';
 
 const reviewList: IReview[] = [
   {

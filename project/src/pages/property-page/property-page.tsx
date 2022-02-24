@@ -1,17 +1,15 @@
 import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/layout/header/header';
-import { getOffers } from "../../mocks/offers.data";
-import { NearPlacesList } from "./near-places-list/near-places-list";
-import { useEffect } from "react";
-import { Reviews } from "./reviews/reviews";
-import { getReviewList } from "../../mocks/reviews.data";
-import { MeetHostInfo } from "./meet-host-info/meet-host-info";
-import { Facilities } from "./facilities/facilities";
-import { getMeetHostInfo } from "../../mocks/meet-host-info.data";
+import { getOffers } from '../../mocks/offers.data';
+import { NearPlacesList } from './near-places-list/near-places-list';
+import { useEffect } from 'react';
+import { Reviews } from './reviews/reviews';
+import { getReviewList } from '../../mocks/reviews.data';
+import { MeetHostInfo } from './meet-host-info/meet-host-info';
+import { Facilities } from './facilities/facilities';
+import { getMeetHostInfo } from '../../mocks/meet-host-info.data';
 
-const getRating = (rating: number) => {
-  return (rating / 100 * 5).toFixed(1);
-};
+const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
 
 export default function PropertyPage(): JSX.Element {
   const isLogged = true;
@@ -19,7 +17,7 @@ export default function PropertyPage(): JSX.Element {
   const meetHostInfo = getMeetHostInfo();
 
   const params = useParams();
-  const selectedOffer = getOffers().filter(offer => offer.id == params.id)[0];
+  const selectedOffer = getOffers().filter((offer) => (offer.id.toString() === params.id))[0];
   const {isMark, name, price, priceText, rating, type} = selectedOffer;
 
   const { pathname } = useLocation();

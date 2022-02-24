@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export default function ReviewsForm(): JSX.Element {
 
@@ -13,8 +13,8 @@ export default function ReviewsForm(): JSX.Element {
     rating: '',
     review: '',
   });
-  const onChangeForm = (evt: any) => {
-    const {name, value} = evt.target;
+  const onChangeForm = (evt: React.FormEvent<EventTarget>) => {
+    const {name, value} = evt.target as HTMLInputElement;
     setFormData({...formData, [name]: value});
   };
 

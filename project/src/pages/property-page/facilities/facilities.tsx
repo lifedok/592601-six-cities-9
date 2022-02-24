@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 
 function Facility({children}: { children: React.ReactNode }) {
   return (
     <li className="property__inside-item">
       {children}
     </li>
-  )
+  );
 }
 
 export function Facilities() {
@@ -16,7 +16,7 @@ export function Facilities() {
       <h2 className="property__inside-title">What&apos;s inside</h2>
       <ul className="property__inside-list">
         {
-          facilityArray.map(element => <Facility key={element}>{element}</Facility>)
+          facilityArray.map((element) => (<Facility key={element}>{element}</Facility>))
         }
       </ul>
     </div>
