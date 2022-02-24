@@ -1,4 +1,4 @@
-import { IFavoriteCardList } from "../pages/favorites-page/favorites.interface";
+import { IFavoriteCardList } from "../types/interfaces/favorites.interface";
 
 const favoritesList: IFavoriteCardList[] = [
   {
@@ -10,7 +10,7 @@ const favoritesList: IFavoriteCardList[] = [
         price: 180,
         priceText: 'night',
         rating: 100,
-        description: 'Nice, cozy, warm big bed apartment',
+        name: 'Nice, cozy, warm big bed apartment',
         type: 'Apartment',
         isMark: true,
       },
@@ -20,7 +20,7 @@ const favoritesList: IFavoriteCardList[] = [
         price: 80,
         priceText: 'night',
         rating: 80,
-        description: 'Wood and stone place',
+        name: 'Wood and stone place',
         type: 'Private room',
       },
     ],
@@ -34,7 +34,7 @@ const favoritesList: IFavoriteCardList[] = [
         price: 180,
         priceText: 'night',
         rating: 100,
-        description: 'White castle',
+        name: 'White castle',
         type: 'Apartment',
       },
     ],

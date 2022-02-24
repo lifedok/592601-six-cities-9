@@ -1,6 +1,6 @@
 import React from 'react';
 import PlaceCard from '../place-card/place-card';
-import { getOffers } from "../../../mocks/offers-data";
+import { getOffers } from "../../../mocks/offers.data";
 
 
 type PlacesListProps = {

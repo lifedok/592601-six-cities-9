@@ -1,9 +1,9 @@
-import { IFavoriteCard } from "../../favorites.interface";
+import { IFavoriteCard } from "../../../../types/interfaces/favorites.interface";
 
 
 export function FavoritesCard(props: IFavoriteCard) {
 
-  const {isMark, description, previewImage, price, priceText, rating, type} = props;
+  const {isMark, name, previewImage, price, priceText, rating, type} = props;
   return (
     <article className="favorites__card place-card">
 
@@ -45,7 +45,7 @@ export function FavoritesCard(props: IFavoriteCard) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="place">{description}</a>
+          <a href="place">{name}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -1,4 +1,4 @@
-import { IOffer } from "../../types/interfaces/offer.interface";
+import { IOffer } from "./offer.interface";
 
 export interface IFavoriteCardList {
   location: string,

@@ -1,10 +1,10 @@
 export interface IOffer {
   id: number | string,
+  name: string,
   previewImage: string,
   price: number,
   priceText: string,
   rating: number,
-  description: string,
   type: string,
   isMark?: boolean,
 }

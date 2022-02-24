@@ -1,6 +1,6 @@
 import { FavoritesCard } from './favorites-card/favorites-card';
-import { getFavorites } from '../../../mocks/favorites-data';
-import { IFavoriteCardList } from "../favorites.interface";
+import { getFavorites } from '../../../mocks/favorites.data';
+import { IFavoriteCardList } from "../../../types/interfaces/favorites.interface";
 
 export function FavoritesList() {
 

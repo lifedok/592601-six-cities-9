@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom';
-import { ERoute } from '../../../types/enums/route.enum';
-import { IOffer } from "../../../types/interfaces/offer.interface";
+import { Link } from "react-router-dom";
+import { ERoute } from "../../../../types/enums/route.enum";
+import { INearPlaceItem } from "../../../../types/interfaces/near-places.interface";
 
-export default function PlaceCard(props: IOffer): JSX.Element {
+export function NearPlaceItem(props: INearPlaceItem) {
 
   const {isMark, name, previewImage, price, priceText, rating, type} = props;
+
   return (
-    <article className="cities__place-card place-card">
+    <article className="near-places__card place-card">
 
       {
         isMark &&
@@ -15,14 +16,14 @@ export default function PlaceCard(props: IOffer): JSX.Element {
         </div>
       }
 
-      <div className="cities__image-wrapper place-card__image-wrapper">
+      <div className="near-places__image-wrapper place-card__image-wrapper">
         <Link to={`${ERoute.ROOM}/${props.id}`}>
           <img
             className="place-card__image"
-            src={previewImage}
+            src={`${previewImage}`}
             width="260"
             height="200"
-            alt="place-card"
+            alt={`${previewImage}`}
           />
         </Link>
       </div>
@@ -46,7 +47,7 @@ export default function PlaceCard(props: IOffer): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href='place-card'>{name}</a>
+          <Link to={`${ERoute.ROOM}/${props.id}`}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
