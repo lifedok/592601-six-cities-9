@@ -2,7 +2,6 @@ import { IMeetHostInfo } from '../../../types/interfaces/meet-host-info.interfac
 
 export function MeetHostInfo(props: IMeetHostInfo) {
 
-  const {userName, userAvatar, userStatus, descriptions} = props;
   return (
     <div className="property__host">
       <h2 className="property__host-title">Meet the host</h2>
@@ -10,21 +9,21 @@ export function MeetHostInfo(props: IMeetHostInfo) {
         <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
           <img
             className="property__avatar user__avatar"
-            src={userAvatar}
+            src={props.userAvatar}
             width="74"
             height="74"
-            alt={userAvatar}
+            alt={props.userAvatar}
           />
         </div>
-        <span className="property__user-name">{userName}</span>
-        <span className="property__user-status">{userStatus}</span>
+        <span className="property__user-name">{props.userName}</span>
+        <span className="property__user-status">{props.userStatus}</span>
       </div>
 
       {
-        !!descriptions &&
+        !!props.descriptions &&
         <div className="property__description">
           {
-            descriptions.map((description) => (<p className="property__text" key={description}>{description}</p>))
+            props.descriptions.map((description) => (<p className="property__text" key={description}>{description}</p>))
           }
         </div>
       }

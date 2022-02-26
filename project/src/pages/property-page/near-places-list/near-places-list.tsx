@@ -8,7 +8,6 @@ export function NearPlacesList() {
       <section className="near-places places">
         <h2 className="near-places__title">Other places in the neighbourhood</h2>
 
-
         <div className="near-places__list places__list">
           {
             getNearPlaces().nearPlaces.map((place) => <NearPlaceItem key={place.id} {...place}/>)
