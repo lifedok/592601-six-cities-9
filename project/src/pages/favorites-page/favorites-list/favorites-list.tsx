@@ -1,6 +1,6 @@
 import { FavoritesCard } from './favorites-card/favorites-card';
-import { getFavorites } from '../favorites-data';
-import { FavoritesCardProps } from '../favorites.interface';
+import { getFavorites } from '../../../mocks/favorites.data';
+import { IFavoriteCardList } from '../../../types/interfaces/favorites.interface';
 
 export function FavoritesList() {
 
@@ -13,7 +13,7 @@ export function FavoritesList() {
       <ul className="favorites__list">
 
         {
-          favoritesList.map((item: FavoritesCardProps) => (
+          favoritesList.map((item: IFavoriteCardList) => (
             <li key={item.location + randomIndex} className="favorites__locations-items">
               <div className='favorites__locations locations locations--current'>
                 <div className="locations__item">

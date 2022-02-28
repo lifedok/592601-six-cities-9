@@ -31,7 +31,7 @@ export default function LocationsList(): JSX.Element {
   return (
     <ul className="locations__list tabs__list">
       {
-        list().map((item) => <LocationItem key={item.city} {...item}/>)
+        list().map((item) => <LocationItem key={item.city} city={item.city}/>)
       }
     </ul>
   );

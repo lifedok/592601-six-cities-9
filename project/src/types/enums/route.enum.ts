@@ -3,7 +3,7 @@ export const ERoute = {
   LOGIN: '/login',
   FAVORITES: '/favorites',
   ROOM: '/offer',
-  TABS: '/tabs',
+  LOCATION: '/location',
 };
 
 export enum AuthorizationStatus {
