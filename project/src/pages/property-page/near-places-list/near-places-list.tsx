@@ -1,4 +1,4 @@
-import { getNearPlaces } from '../../../mocks/near-places.data';
+import { nearPlacesMockData } from '../../../mocks/near-places.data';
 import { NearPlaceItem } from './near-place-item/near-place-item';
 
 export function NearPlacesList() {
@@ -10,7 +10,7 @@ export function NearPlacesList() {
 
         <div className="near-places__list places__list">
           {
-            getNearPlaces().nearPlaces.map((place) => <NearPlaceItem key={place.id} {...place}/>)
+            nearPlacesMockData.nearPlaces.map((place) => <NearPlaceItem key={place.id} {...place}/>)
           }
         </div>
       </section>

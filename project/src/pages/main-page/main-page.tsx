@@ -4,13 +4,12 @@ import Tabs from '../../components/layout/tabs/tabs';
 import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
-import { getOffers } from '../../mocks/offers.data';
+import { offersMockData } from '../../mocks/offers.data';
 
 
 export default function MainPage(): JSX.Element {
 
   const isCardPlace = true;
-  const offerList = getOffers();
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -32,7 +31,7 @@ export default function MainPage(): JSX.Element {
 
                   <SortingForm/>
 
-                  <PlacesList list={offerList}/>
+                  <PlacesList list={offersMockData}/>
 
                 </section>
 
