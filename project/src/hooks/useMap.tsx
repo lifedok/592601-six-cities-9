@@ -1,8 +1,8 @@
 import { useEffect, useState, MutableRefObject } from 'react';
 import { Map, TileLayer } from 'leaflet';
-import { ICity } from "../types/interfaces/map.interface";
+import { ILocation } from "../types/interfaces/map.interface";
 
-export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: ICity): Map | null {
+export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, city: ILocation): Map | null {
 
   const [map, setMap] = useState<Map | null>(null);
 

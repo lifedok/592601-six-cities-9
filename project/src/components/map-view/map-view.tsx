@@ -1,13 +1,14 @@
 import { useEffect, useRef } from "react";
 import leaflet from "leaflet";
-import { ICity, IPoint } from "../../types/interfaces/map.interface";
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from "../../mocks/map.data";
 import useMap from "../../hooks/useMap";
+import { IOffer } from "../../types/interfaces/offer.interface";
+import { ILocation } from "../../types/interfaces/map.interface";
 
 type TMapView = {
-  city: ICity,
-  points: IPoint[],
-  selectedPoint: IPoint | undefined;
+  city: ILocation,
+  offers: IOffer[],
+  hoveredOffer: IOffer | undefined;
 }
 
 const defaultCustomIcon = leaflet.icon({
@@ -23,7 +24,7 @@ const currentCustomIcon = leaflet.icon({
 });
 
 export default function MapView(props: TMapView): JSX.Element {
-  const {city, points, selectedPoint} = props;
+  const {city, offers, hoveredOffer} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city);
 
@@ -31,20 +32,22 @@ export default function MapView(props: TMapView): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      points.forEach((point) => {
+      offers.forEach((offer: IOffer) => {
         const marker = leaflet.marker({
-          lat: point.lat,
-          lng: point.lng
+          lat: offer.location.lat,
+          lng: offer.location.lng
         });
 
         marker
-          .setIcon(selectedPoint !== undefined && point.title === selectedPoint.title ? currentCustomIcon : defaultCustomIcon)
+          .setIcon(hoveredOffer !== undefined && offer.id+offer.name === hoveredOffer.id+hoveredOffer.name ? currentCustomIcon : defaultCustomIcon)
           .addTo(map);
       });
     }
-  }, [map, points, selectedPoint]);
+  }, [map, offers, hoveredOffer]);
 
   return (
-    <section ref={mapRef} style={{overflow: 'hidden'}} className="cities__map map"/>
+    <section style={{overflow: 'hidden'}} className="cities__map map">
+      <div style={{height: '500px'}} ref={mapRef} />
+    </section>
   );
 }

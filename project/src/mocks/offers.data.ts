@@ -11,8 +11,8 @@ export const offersMockData: IOffer[] = [
     type: 'Apartment',
     isMark: true,
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.85309666406198,
+      lat: 52.3909553943508,
+      lng: 4.85309666406198,
       zoom: 10
     }
   },
@@ -25,8 +25,8 @@ export const offersMockData: IOffer[] = [
     name: 'Wood and stone place',
     type: 'Private room',
     location: {
-      latitude: 52.369553943508,
-      longitude: 4.85309666406198,
+      lat: 52.369553943508,
+      lng: 4.85309666406198,
       zoom: 10
     }
   },
@@ -39,8 +39,8 @@ export const offersMockData: IOffer[] = [
     name: 'Canal View Prinsengracht',
     type: 'Apartment',
     location: {
-      latitude: 52.3909553943508,
-      longitude: 4.929309666406198,
+      lat: 52.3909553943508,
+      lng: 4.929309666406198,
       zoom: 10
     }
   },
@@ -54,8 +54,8 @@ export const offersMockData: IOffer[] = [
     type: 'Apartment',
     isMark: true,
     location: {
-      latitude: 52.3809553943508,
-      longitude: 4.939309666406198,
+      lat: 52.3809553943508,
+      lng: 4.939309666406198,
       zoom: 10
     }
   },
@@ -68,8 +68,8 @@ export const offersMockData: IOffer[] = [
     name: 'Wood and stone place',
     type: 'Private room',
     location: {
-      latitude: 52.369553943508,
-      longitude: 4.85309666406198,
+      lat: 52.369553943508,
+      lng: 4.85309666406198,
       zoom: 10
     }
   },

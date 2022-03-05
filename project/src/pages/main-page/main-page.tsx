@@ -5,25 +5,21 @@ import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
 import { offersMockData } from '../../mocks/offers.data';
-import { CITY, POINTS } from "../../mocks/map.data";
+import { CITY } from "../../mocks/map.data";
 import MapView from "../../components/map-view/map-view";
-import { IPoint } from "../../types/interfaces/map.interface";
 import { useParams } from "react-router";
+import { IOffer } from "../../types/interfaces/offer.interface";
 
 
 export default function MainPage(): JSX.Element {
-  const [selectedPoint, setSelectedPoint] = useState<IPoint | undefined>(undefined);
+  const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
 
   const onPlaceCardHover = (placeCardName: string) => {
-    const currentPoint = offersMockData.find((point) => {
-
-      console.log('placeCardName', placeCardName);
-      return point.name === placeCardName
-    });
+    const currentPoint = offersMockData.find((point) => (point.id+point.name).toString() === placeCardName);
 
     console.log('currentPoint', currentPoint);
 
-    // setSelectedPoint(currentPoint);
+    setSelectedPoint(currentPoint);
   };
 
   const {city} = useParams();
@@ -54,7 +50,7 @@ export default function MainPage(): JSX.Element {
                 </section>
 
                 <div className="cities__right-section">
-                  <MapView city={CITY} points={POINTS} selectedPoint={selectedPoint}/>
+                  <MapView city={CITY} offers={offersMockData} hoveredOffer={selectedPoint}/>
                 </div>
               </div>
               :

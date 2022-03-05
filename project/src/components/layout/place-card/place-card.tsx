@@ -11,13 +11,15 @@ type PlaceCardProps = {
 export default function PlaceCard(props: PlaceCardProps): JSX.Element {
   const {id, isMark, name, previewImage, price, priceText, rating, type} = props.offer;
 
-  const placeCardHoverHandler = (event: React.MouseEvent<HTMLElement>) => {
+  const placeCardHoverHandler = (event: React.MouseEvent<HTMLElement>, id: number | string) => {
     event.preventDefault();
-    props.onPlaceCardHover(event.currentTarget.innerText);
+    console.log('event', event);
+    // props.onPlaceCardHover(event.currentTarget.innerText);
+    props.onPlaceCardHover(id.toString());
   };
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={placeCardHoverHandler}>
+    <article className="cities__place-card place-card" onMouseEnter={(ev) => placeCardHoverHandler(ev, id+name)}>
 
       {
         isMark &&
