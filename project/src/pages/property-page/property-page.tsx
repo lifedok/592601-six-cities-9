@@ -8,6 +8,7 @@ import { MeetHostInfo } from './meet-host-info/meet-host-info';
 import { Facilities } from './facilities/facilities';
 import { getMeetHostInfo } from '../../mocks/meet-host-info.data';
 import { offersMockData } from '../../mocks/offers.data';
+import { nearPlacesMockData } from '../../mocks/near-places.data';
 
 const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
 
@@ -111,7 +112,7 @@ export default function PropertyPage(): JSX.Element {
           <section className="property__map map"/>
         </section>
 
-        <NearPlacesList/>
+        <NearPlacesList nearData={nearPlacesMockData}/>
 
       </main>
     </div>

@@ -5,7 +5,7 @@ import React from "react";
 
 type PlaceCardProps = {
   offer: IOffer;
-  onPlaceCardHover: (placeCardName: string) => void;
+  onPlaceCardHover?: (placeCardName: string) => void;
 };
 
 export default function PlaceCard(props: PlaceCardProps): JSX.Element {
@@ -15,7 +15,9 @@ export default function PlaceCard(props: PlaceCardProps): JSX.Element {
     event.preventDefault();
     console.log('event', event);
     // props.onPlaceCardHover(event.currentTarget.innerText);
-    props.onPlaceCardHover(id.toString());
+    if(!!props.onPlaceCardHover ) {
+      props.onPlaceCardHover(id.toString());
+    }
   };
 
   return (

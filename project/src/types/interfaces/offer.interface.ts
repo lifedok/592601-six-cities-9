@@ -9,5 +9,5 @@ export interface IOffer {
   rating: number,
   type: string,
   isMark?: boolean,
-  location: ILocation
+  location?: ILocation
 }

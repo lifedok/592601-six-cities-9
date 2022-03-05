@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import leaflet from "leaflet";
+import leaflet, { Marker } from "leaflet";
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from "../../mocks/map.data";
 import useMap from "../../hooks/useMap";
 import { IOffer } from "../../types/interfaces/offer.interface";
@@ -33,9 +33,9 @@ export default function MapView(props: TMapView): JSX.Element {
   useEffect(() => {
     if (map) {
       offers.forEach((offer: IOffer) => {
-        const marker = leaflet.marker({
-          lat: offer.location.lat,
-          lng: offer.location.lng
+        const marker = new Marker({
+          lat: offer?.location?.lat || 0,
+          lng: offer?.location?.lng || 0
         });
 
         marker
@@ -47,7 +47,7 @@ export default function MapView(props: TMapView): JSX.Element {
 
   return (
     <section style={{overflow: 'hidden'}} className="cities__map map">
-      <div style={{height: '500px'}} ref={mapRef} />
+      {/*<div style={{height: '500px'}} ref={mapRef} />*/}
     </section>
   );
 }
