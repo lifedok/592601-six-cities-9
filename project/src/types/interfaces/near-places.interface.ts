@@ -4,6 +4,4 @@ export interface INearPlacesList {
   nearPlaces: INearPlaceItem[]
 }
 
-export interface INearPlaceItem extends IOffer {
-  new?: string
-}
+export interface INearPlaceItem extends Omit<IOffer, 'location'> {}

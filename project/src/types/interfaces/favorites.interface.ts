@@ -5,7 +5,5 @@ export interface IFavoriteCardList {
   cards: IFavoriteCard[]
 }
 
-export interface IFavoriteCard extends IOffer {
-  new?: string
-}
+export interface IFavoriteCard extends Omit<IOffer, 'location'> {}
 

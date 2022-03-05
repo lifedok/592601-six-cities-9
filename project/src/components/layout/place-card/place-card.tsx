@@ -1,12 +1,23 @@
 import { Link } from 'react-router-dom';
 import { ERoute } from '../../../types/enums/route.enum';
 import { IOffer } from '../../../types/interfaces/offer.interface';
+import React from "react";
 
-export default function PlaceCard(props: IOffer): JSX.Element {
+type PlaceCardProps = {
+  offer: IOffer;
+  onPlaceCardHover: (placeCardName: string) => void;
+};
 
-  const {isMark, name, previewImage, price, priceText, rating, type} = props;
+export default function PlaceCard(props: PlaceCardProps): JSX.Element {
+  const {id, isMark, name, previewImage, price, priceText, rating, type} = props.offer;
+
+  const placeCardHoverHandler = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    props.onPlaceCardHover(event.currentTarget.innerText);
+  };
+
   return (
-    <article className="cities__place-card place-card">
+    <article className="cities__place-card place-card" onMouseEnter={placeCardHoverHandler}>
 
       {
         isMark &&
@@ -16,7 +27,7 @@ export default function PlaceCard(props: IOffer): JSX.Element {
       }
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${ERoute.ROOM}/${props.id}`}>
+        <Link to={`${ERoute.ROOM}/${id}`}>
           <img
             className="place-card__image"
             src={previewImage}
@@ -46,7 +57,7 @@ export default function PlaceCard(props: IOffer): JSX.Element {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${ERoute.ROOM}/${props.id}`}>{name}</Link>
+          <Link to={`${ERoute.ROOM}/${id}`}>{name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -7,4 +7,9 @@ export interface IOffer {
   rating: number,
   type: string,
   isMark?: boolean,
+  location: {
+    latitude: number
+    longitude: number
+    zoom: number
+  }
 }
