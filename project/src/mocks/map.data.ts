@@ -1,9 +1,9 @@
-import { ILocation } from "../types/interfaces/map.interface";
+import { ILocation } from '../types/interfaces/map.interface';
 
 export const CITY: ILocation = {
   title: 'Амстердам',
-  lat: 40.835292,
-  lng: -73.916236,
+  lat: 52.3909553943508,
+  lng: 4.85309666406198,
   zoom: 10,
 };
 
