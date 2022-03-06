@@ -31,4 +31,4 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, cit
   }, [mapRef, map, city]);
 
   return map;
-};
+}

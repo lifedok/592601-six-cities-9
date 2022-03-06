@@ -5,5 +5,5 @@ export interface IFavoriteCardList {
   cards: IFavoriteCard[]
 }
 
-export interface IFavoriteCard extends Omit<IOffer, 'location'> {}
+export type IFavoriteCard = Omit<IOffer, 'location'>;
 

@@ -13,8 +13,8 @@ export const offersMockData: IOffer[] = [
     location: {
       lat: 52.3909553943508,
       lng: 4.85309666406198,
-      zoom: 10
-    }
+      zoom: 10,
+    },
   },
   {
     id: 4,
@@ -27,8 +27,8 @@ export const offersMockData: IOffer[] = [
     location: {
       lat: 52.369553943508,
       lng: 4.85309666406198,
-      zoom: 10
-    }
+      zoom: 10,
+    },
   },
   {
     id: 5,
@@ -41,8 +41,8 @@ export const offersMockData: IOffer[] = [
     location: {
       lat: 52.3909553943508,
       lng: 4.929309666406198,
-      zoom: 10
-    }
+      zoom: 10,
+    },
   },
   {
     id: 6,
@@ -56,8 +56,8 @@ export const offersMockData: IOffer[] = [
     location: {
       lat: 52.3809553943508,
       lng: 4.939309666406198,
-      zoom: 10
-    }
+      zoom: 10,
+    },
   },
   {
     id: 7,
@@ -70,7 +70,7 @@ export const offersMockData: IOffer[] = [
     location: {
       lat: 52.369553943508,
       lng: 4.85309666406198,
-      zoom: 10
-    }
+      zoom: 10,
+    },
   },
 ];

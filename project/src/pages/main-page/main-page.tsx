@@ -5,10 +5,10 @@ import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
 import { offersMockData } from '../../mocks/offers.data';
-import { CITY } from "../../mocks/map.data";
-import MapView from "../../components/map-view/map-view";
-import { useParams } from "react-router";
-import { IOffer } from "../../types/interfaces/offer.interface";
+import { CITY } from '../../mocks/map.data';
+import MapView from '../../components/map-view/map-view';
+import { useParams } from 'react-router';
+import { IOffer } from '../../types/interfaces/offer.interface';
 
 
 export default function MainPage(): JSX.Element {
@@ -16,8 +16,6 @@ export default function MainPage(): JSX.Element {
 
   const onPlaceCardHover = (placeCardName: string) => {
     const currentPoint = offersMockData.find((point) => (point.id+point.name).toString() === placeCardName);
-
-    console.log('currentPoint', currentPoint);
 
     setSelectedPoint(currentPoint);
   };

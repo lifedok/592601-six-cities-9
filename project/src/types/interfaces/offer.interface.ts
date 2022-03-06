@@ -1,4 +1,4 @@
-import { ILocation } from "./map.interface";
+import { ILocation } from './map.interface';
 
 export interface IOffer {
   id: number | string,
