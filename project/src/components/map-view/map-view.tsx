@@ -33,8 +33,8 @@ export default function MapView(props: TMapView): JSX.Element {
     if (map) {
       offers.forEach((offer: IOffer) => {
         const marker = new Marker({
-          lat: offer?.location?.lat || 0,
-          lng: offer?.location?.lng || 0,
+          lat: offer.location?.lat || 0,
+          lng: offer.location?.lng || 0,
         });
 
         marker

@@ -1,22 +1,19 @@
 import { Link } from 'react-router-dom';
 import { ERoute } from '../../../types/enums/route.enum';
 import { IOffer } from '../../../types/interfaces/offer.interface';
-import React from 'react';
 
 type PlaceCardProps = {
   offer: IOffer;
   onPlaceCardHover?: (placeCardName: string) => void;
 };
 
-export default function PlaceCard(props: PlaceCardProps): JSX.Element {
-  const {id, isMark, name, previewImage, price, priceText, rating, type} = props.offer;
+export default function PlaceCard({offer, onPlaceCardHover}: PlaceCardProps): JSX.Element {
+  const {id, isMark, name, previewImage, price, priceText, rating, type} = offer;
 
   const placeCardHoverHandler = (event: React.MouseEvent<HTMLElement>, key: number | string) => {
     event.preventDefault();
 
-    if(props.onPlaceCardHover) {
-      props.onPlaceCardHover(key.toString());
-    }
+    onPlaceCardHover && onPlaceCardHover(key.toString());
   };
 
   return (
