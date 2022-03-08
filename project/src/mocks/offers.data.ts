@@ -10,6 +10,11 @@ export const offersMockData: IOffer[] = [
     name: 'Beautiful & luxurious apartment at great location',
     type: 'Apartment',
     isMark: true,
+    location: {
+      lat: 52.3909553943508,
+      lng: 4.85309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 4,
@@ -19,6 +24,11 @@ export const offersMockData: IOffer[] = [
     rating: 86,
     name: 'Wood and stone place',
     type: 'Private room',
+    location: {
+      lat: 52.369553943508,
+      lng: 4.85309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 5,
@@ -28,6 +38,11 @@ export const offersMockData: IOffer[] = [
     rating: 88,
     name: 'Canal View Prinsengracht',
     type: 'Apartment',
+    location: {
+      lat: 52.3909553943508,
+      lng: 4.929309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 6,
@@ -38,6 +53,11 @@ export const offersMockData: IOffer[] = [
     name: 'Nice, cozy, warm big bed apartment',
     type: 'Apartment',
     isMark: true,
+    location: {
+      lat: 52.3809553943508,
+      lng: 4.939309666406198,
+      zoom: 10,
+    },
   },
   {
     id: 7,
@@ -47,5 +67,10 @@ export const offersMockData: IOffer[] = [
     rating: 80,
     name: 'Wood and stone place',
     type: 'Private room',
+    location: {
+      lat: 52.369553943508,
+      lng: 4.85309666406198,
+      zoom: 10,
+    },
   },
 ];

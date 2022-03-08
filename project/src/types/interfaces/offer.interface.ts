@@ -1,3 +1,5 @@
+import { ILocation } from './map.interface';
+
 export interface IOffer {
   id: number | string,
   name: string,
@@ -7,4 +9,5 @@ export interface IOffer {
   rating: number,
   type: string,
   isMark?: boolean,
+  location?: ILocation
 }

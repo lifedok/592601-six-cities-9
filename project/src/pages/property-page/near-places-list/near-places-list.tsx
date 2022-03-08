@@ -1,7 +1,7 @@
-import { nearPlacesMockData } from '../../../mocks/near-places.data';
-import { NearPlaceItem } from './near-place-item/near-place-item';
+import PlaceCard from '../../../components/layout/place-card/place-card';
+import { IOffer } from '../../../types/interfaces/offer.interface';
 
-export function NearPlacesList() {
+export function NearPlacesList(props: {nearData: IOffer[]}) {
 
   return (
     <div className="container">
@@ -10,7 +10,7 @@ export function NearPlacesList() {
 
         <div className="near-places__list places__list">
           {
-            nearPlacesMockData.nearPlaces.map((place) => <NearPlaceItem key={place.id} {...place}/>)
+            props.nearData.map((place) => <PlaceCard key={place.id} offer={place}/>)
           }
         </div>
       </section>
