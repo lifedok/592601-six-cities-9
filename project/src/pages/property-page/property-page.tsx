@@ -1,7 +1,7 @@
 import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/layout/header/header';
 import { NearPlacesList } from './near-places-list/near-places-list';
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Reviews } from './reviews/reviews';
 import { getReviewList } from '../../mocks/reviews.data';
 import { MeetHostInfo } from './meet-host-info/meet-host-info';
@@ -9,6 +9,9 @@ import { Facilities } from './facilities/facilities';
 import { getMeetHostInfo } from '../../mocks/meet-host-info.data';
 import { offersMockData } from '../../mocks/offers.data';
 import { nearPlacesMockData } from '../../mocks/near-places.data';
+import { CITY } from "../../mocks/map.data";
+import MapView from "../../components/map-view/map-view";
+import { IOffer } from "../../types/interfaces/offer.interface";
 
 const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
 
@@ -25,6 +28,13 @@ export default function PropertyPage(): JSX.Element {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
+  const onPlaceCardHover = (placeCardName: string) => {
+    const currentPoint = offersMockData.find((point) => (point.id+point.name).toString() === placeCardName);
+
+    setSelectedPoint(currentPoint);
+  };
 
   return (
     <div className="page">
@@ -105,11 +115,13 @@ export default function PropertyPage(): JSX.Element {
 
               <MeetHostInfo {...meetHostInfo}/>
 
-              <Reviews isLogged={isLogged} reviewList={reviewList}/>
+              <Reviews isLogged={isLogged} reviewList={reviewList} onPlaceCardHover={onPlaceCardHover}/>
 
             </div>
           </div>
-          <section className="property__map map"/>
+          <section className="property__map map">
+            <MapView city={CITY} offers={offersMockData} hoveredOffer={selectedPoint}/>
+          </section>
         </section>
 
         <NearPlacesList nearData={nearPlacesMockData}/>

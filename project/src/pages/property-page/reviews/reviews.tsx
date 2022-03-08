@@ -4,24 +4,31 @@ import { IReview } from '../../../types/interfaces/reviews.interface';
 
 export interface ReviewsProps {
   isLogged: boolean,
-  reviewList: IReview[]
+  reviewList: IReview[],
+  onPlaceCardHover: (placeCardName: string) => void;
 }
 
-export function Reviews(props: ReviewsProps): JSX.Element {
+export function Reviews({isLogged, reviewList, onPlaceCardHover}: ReviewsProps): JSX.Element {
+
+  const placeCardHoverHandler = (event: React.MouseEvent<HTMLElement>, key: number | string) => {
+    event.preventDefault();
+
+    onPlaceCardHover && onPlaceCardHover(key.toString());
+  };
 
   return (
     <section className="property__reviews reviews">
       {
-        !!props.reviewList.length &&
+        !!reviewList.length &&
         <>
           <h2 className="reviews__title">Reviews &middot;
-            <span className="reviews__amount">{props.reviewList.length}</span>
+            <span className="reviews__amount">{reviewList.length}</span>
           </h2>
           <ul className="reviews__list">
 
             {
-              props.reviewList.map((review) => (
-                <li className="reviews__item" key={review.id}>
+              reviewList.map((review) => (
+                <li className="reviews__item" key={review.id} onMouseEnter={(ev) => placeCardHoverHandler(ev, review.userName)}>
                   <div className="reviews__user user">
                     <div className="reviews__avatar-wrapper user__avatar-wrapper">
                       <img
@@ -51,7 +58,7 @@ export function Reviews(props: ReviewsProps): JSX.Element {
         </>
       }
       {
-        props.isLogged && <ReviewsForm/>
+        isLogged && <ReviewsForm/>
       }
     </section>
   );
