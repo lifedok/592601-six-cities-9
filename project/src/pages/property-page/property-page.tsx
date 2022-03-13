@@ -9,9 +9,9 @@ import { Facilities } from './facilities/facilities';
 import { getMeetHostInfo } from '../../mocks/meet-host-info.data';
 import { offersMockData } from '../../mocks/offers.data';
 import { nearPlacesMockData } from '../../mocks/near-places.data';
-import { CITY } from "../../mocks/map.data";
 import MapView from "../../components/map-view/map-view";
 import { IOffer } from "../../types/interfaces/offer.interface";
+import { placeList } from '../../mocks/places.data';
 
 const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
 
@@ -31,14 +31,10 @@ export default function PropertyPage(): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
   const onPlaceCardHover = (placeCardName: string) => {
-    console.log('TEST ==> PropertyPage => placeCardName', placeCardName);
     const currentPoint = offersMockData.find((point) => (point.id+point.name).toString() === placeCardName);
-
     setSelectedPoint(currentPoint);
   };
 
-
-  console.log('TEST ==> PropertyPage => offersMockData', offersMockData);
   return (
     <div className="page">
 
@@ -123,7 +119,7 @@ export default function PropertyPage(): JSX.Element {
             </div>
           </div>
           <section className="property__map map">
-            <MapView city={CITY} offers={offersMockData} hoveredOffer={selectedPoint}/>
+            <MapView city={placeList[3]} offers={offersMockData} hoveredOffer={selectedPoint}/>
           </section>
         </section>
 

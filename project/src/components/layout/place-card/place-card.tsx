@@ -12,7 +12,6 @@ export default function PlaceCard({offer, onPlaceCardHover}: PlaceCardProps): JS
 
   const placeCardHoverHandler = (event: React.MouseEvent<HTMLElement>, key: number | string) => {
     event.preventDefault();
-    console.log('TEST ==> PlaceCard => placeCardHoverHandler', onPlaceCardHover && onPlaceCardHover(key.toString()));
 
     onPlaceCardHover && onPlaceCardHover(key.toString());
   };

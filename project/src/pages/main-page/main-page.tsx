@@ -5,26 +5,28 @@ import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
 import { offersMockData } from '../../mocks/offers.data';
-import { CITY } from '../../mocks/map.data';
 import MapView from '../../components/map-view/map-view';
 import { useParams } from 'react-router';
-import { IOffer } from '../../types/interfaces/offer.interface';
+import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
+import { placeList } from "../../mocks/places.data";
 
 
 export default function MainPage(): JSX.Element {
   const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
+  const [selectedCity, setSelectedCity] = useState<IPlace>(placeList[3]);
 
   const onPlaceCardHover = (placeCardName: string) => {
-    // console.log('TEST ==> MainPage => placeCardName', placeCardName);
     const currentPoint = offersMockData.find((point) => (point.id+point.name).toString() === placeCardName);
-
     setSelectedPoint(currentPoint);
+  };
+
+  const onSelectedTabItem = (city: string) => {
+    const place = placeList.filter((place) => place.name === city)[0];
+    setSelectedCity(place);
   };
 
   const {city} = useParams();
   const isCardPlace = true;
-
-  // console.log('TEST ==> MainPage => offersMockData', offersMockData);
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -32,7 +34,7 @@ export default function MainPage(): JSX.Element {
       <main className={`page__main page__main--index ${!isCardPlace && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
 
-        <Tabs/>
+        <Tabs placeList={placeList} onSelectedTabItem={onSelectedTabItem}/>
 
         <div className="cities">
 
@@ -52,7 +54,7 @@ export default function MainPage(): JSX.Element {
 
                 <div className="cities__right-section">
                   <section className="property__map map">
-                    <MapView city={CITY} offers={offersMockData} hoveredOffer={selectedPoint}/>
+                    <MapView city={selectedCity} offers={offersMockData} hoveredOffer={selectedPoint}/>
                   </section>
                 </div>
               </div>
