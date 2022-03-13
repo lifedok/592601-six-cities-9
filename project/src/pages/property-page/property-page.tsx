@@ -9,8 +9,8 @@ import { Facilities } from './facilities/facilities';
 import { getMeetHostInfo } from '../../mocks/meet-host-info.data';
 import { offersMockData } from '../../mocks/offers.data';
 import { nearPlacesMockData } from '../../mocks/near-places.data';
-import MapView from "../../components/map-view/map-view";
-import { IOffer } from "../../types/interfaces/offer.interface";
+import MapView from '../../components/map-view/map-view';
+import { IOffer } from '../../types/interfaces/offer.interface';
 import { placeList } from '../../mocks/places.data';
 
 const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);

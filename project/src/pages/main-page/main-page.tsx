@@ -8,7 +8,7 @@ import { offersMockData } from '../../mocks/offers.data';
 import MapView from '../../components/map-view/map-view';
 import { useParams } from 'react-router';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
-import { placeList } from "../../mocks/places.data";
+import { placeList } from '../../mocks/places.data';
 
 
 export default function MainPage(): JSX.Element {
@@ -21,7 +21,7 @@ export default function MainPage(): JSX.Element {
   };
 
   const onSelectedTabItem = (city: string) => {
-    const place = placeList.filter((place) => place.name === city)[0];
+    const place = placeList.filter((item) => item.name === city)[0];
     setSelectedCity(place);
   };
 

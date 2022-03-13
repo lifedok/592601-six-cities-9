@@ -1,4 +1,4 @@
-import { ILocation } from "./location.interface";
+import { ILocation } from './location.interface';
 
 export type IPlace = {
   name: string,
@@ -6,7 +6,7 @@ export type IPlace = {
 };
 
 export interface IOffer {
-  // city: IPlace,
+  city?: IPlace,
   id: number | string,
   name: string,
   previewImage: string,
