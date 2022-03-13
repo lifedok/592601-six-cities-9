@@ -1,7 +1,12 @@
 import PlaceCard from '../../../components/layout/place-card/place-card';
 import { IOffer } from '../../../types/interfaces/offer.interface';
 
-export function NearPlacesList(props: {nearData: IOffer[]}) {
+type NearPlacesListProps = {
+  nearData: IOffer[];
+  onPlaceCardHover: (placeCardName: string) => void;
+}
+
+export function NearPlacesList(props: NearPlacesListProps) {
 
   return (
     <div className="container">
@@ -10,7 +15,7 @@ export function NearPlacesList(props: {nearData: IOffer[]}) {
 
         <div className="near-places__list places__list">
           {
-            props.nearData.map((place) => <PlaceCard key={place.id} offer={place}/>)
+            props.nearData.map((place) => <PlaceCard key={place.id} offer={place} onPlaceCardHover={props.onPlaceCardHover}/>)
           }
         </div>
       </section>

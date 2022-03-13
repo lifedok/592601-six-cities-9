@@ -15,6 +15,7 @@ export default function MainPage(): JSX.Element {
   const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
 
   const onPlaceCardHover = (placeCardName: string) => {
+    // console.log('TEST ==> MainPage => placeCardName', placeCardName);
     const currentPoint = offersMockData.find((point) => (point.id+point.name).toString() === placeCardName);
 
     setSelectedPoint(currentPoint);
@@ -22,6 +23,8 @@ export default function MainPage(): JSX.Element {
 
   const {city} = useParams();
   const isCardPlace = true;
+
+  // console.log('TEST ==> MainPage => offersMockData', offersMockData);
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -48,7 +51,9 @@ export default function MainPage(): JSX.Element {
                 </section>
 
                 <div className="cities__right-section">
-                  <MapView city={CITY} offers={offersMockData} hoveredOffer={selectedPoint}/>
+                  <section className="property__map map">
+                    <MapView city={CITY} offers={offersMockData} hoveredOffer={selectedPoint}/>
+                  </section>
                 </div>
               </div>
               :

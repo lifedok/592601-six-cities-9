@@ -38,15 +38,13 @@ export default function MapView(props: TMapView): JSX.Element {
         });
 
         marker
-          .setIcon(hoveredOffer !== undefined && offer.id+offer.name === hoveredOffer.id+hoveredOffer.name ? currentCustomIcon : defaultCustomIcon)
+          .setIcon(hoveredOffer !== undefined && offer.id + offer.name === hoveredOffer.id + hoveredOffer.name ? currentCustomIcon : defaultCustomIcon)
           .addTo(map);
       });
     }
   }, [map, offers, hoveredOffer]);
 
   return (
-    <section style={{overflow: 'hidden'}} className="cities__map map">
-      <div style={{height: '100%'}} ref={mapRef} />
-    </section>
+    <div style={{height: '100%'}} ref={mapRef}/>
   );
 }

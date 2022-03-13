@@ -31,11 +31,14 @@ export default function PropertyPage(): JSX.Element {
 
   const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
   const onPlaceCardHover = (placeCardName: string) => {
+    console.log('TEST ==> PropertyPage => placeCardName', placeCardName);
     const currentPoint = offersMockData.find((point) => (point.id+point.name).toString() === placeCardName);
 
     setSelectedPoint(currentPoint);
   };
 
+
+  console.log('TEST ==> PropertyPage => offersMockData', offersMockData);
   return (
     <div className="page">
 
@@ -124,7 +127,7 @@ export default function PropertyPage(): JSX.Element {
           </section>
         </section>
 
-        <NearPlacesList nearData={nearPlacesMockData}/>
+        <NearPlacesList nearData={nearPlacesMockData} onPlaceCardHover={onPlaceCardHover}/>
 
       </main>
     </div>
