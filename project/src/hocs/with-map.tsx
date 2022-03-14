@@ -1,6 +1,6 @@
-import MapView from "../components/map-view/map-view";
-import { IOffer, IPlace } from "../types/interfaces/offer.interface";
-import { ComponentType, useState } from "react";
+import MapView from '../components/map-view/map-view';
+import { IOffer, IPlace } from '../types/interfaces/offer.interface';
+import { ComponentType, useState } from 'react';
 
 type HOCProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => void;
@@ -31,7 +31,7 @@ export default function withMap<T>(Component: ComponentType<T>, offers: IOffer[]
           />
         )}
       />
-    )
+    );
   }
   return WithMap;
 }

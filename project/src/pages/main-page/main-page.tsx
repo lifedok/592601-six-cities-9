@@ -6,11 +6,15 @@ import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
 import { offersMockData } from '../../mocks/offers.data';
 import { useParams } from 'react-router';
-import { IPlace } from '../../types/interfaces/offer.interface';
+import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import { placeList } from '../../mocks/places.data';
 
+type MainPageProps = {
+  renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
+  onPlaceCardHover: (selectedOffer: string) => void
+}
 
-export default function MainPage({renderMap, onPlaceCardHover}: {renderMap: any, onPlaceCardHover: any}): JSX.Element {
+export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): JSX.Element {
   const [selectedCity, setSelectedCity] = useState<IPlace>(placeList[3]);
 
   const onSelectedTabItem = (city: string) => {

@@ -10,10 +10,16 @@ import { getMeetHostInfo } from '../../mocks/meet-host-info.data';
 import { offersMockData } from '../../mocks/offers.data';
 import { nearPlacesMockData } from '../../mocks/near-places.data';
 import { placeList } from '../../mocks/places.data';
+import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 
 const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
 
-export default function PropertyPage({renderMap, onPlaceCardHover}: {renderMap: any, onPlaceCardHover: any}): JSX.Element {
+type PropertyPageProps = {
+  renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
+  onPlaceCardHover: (selectedOffer: string) => void
+}
+
+export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
   const isLogged = true;
   const reviewList = getReviewList();
   const meetHostInfo = getMeetHostInfo();
@@ -111,7 +117,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: {renderMap: 
             </div>
           </div>
           <section className="property__map map">
-            {renderMap(placeList[3])}
+            {renderMap(placeList[3], offersMockData)}
           </section>
         </section>
 

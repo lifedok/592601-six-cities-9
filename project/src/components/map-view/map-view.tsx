@@ -30,7 +30,6 @@ export default function MapView(props: TMapView): JSX.Element {
 
   useEffect(() => {
     if (map) {
-      console.log({offers});
       offers.forEach((offer: IOffer) => {
         const marker = new Marker({
           lat: offer.location?.lat || 0,
