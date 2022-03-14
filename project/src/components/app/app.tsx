@@ -7,7 +7,11 @@ import LoginPage from '../../pages/login-page/login-page';
 import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import PrivateRoute from '../private-route/private.route';
 import PropertyPage from '../../pages/property-page/property-page';
+import withMap from "../../hocs/with-map";
+import { offersMockData } from "../../mocks/offers.data";
 
+const PropertyPageWrapped = withMap(PropertyPage, offersMockData);
+const MainPageWrapped = withMap(MainPage, offersMockData);
 
 export default function App(): JSX.Element {
 
@@ -15,10 +19,10 @@ export default function App(): JSX.Element {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={ERoute.MAIN} element={<MainPage/>}/>
+        <Route path={ERoute.MAIN} element={<MainPageWrapped/>}/>
         <Route path={ERoute.LOGIN} element={<LoginPage/>}/>
-        <Route path={`${ERoute.ROOM}/:id`} element={<PropertyPage/>}/>
-        <Route path={`${ERoute.LOCATION}/:city`} element={<MainPage/>}/>
+        <Route path={`${ERoute.ROOM}/:id`} element={<PropertyPageWrapped />}/>
+        <Route path={`${ERoute.LOCATION}/:city`} element={<MainPageWrapped/>}/>
 
         <Route
           path={ERoute.FAVORITES}

@@ -30,6 +30,7 @@ export default function MapView(props: TMapView): JSX.Element {
 
   useEffect(() => {
     if (map) {
+      console.log({offers});
       offers.forEach((offer: IOffer) => {
         const marker = new Marker({
           lat: offer.location?.lat || 0,
@@ -41,7 +42,7 @@ export default function MapView(props: TMapView): JSX.Element {
           .addTo(map);
       });
     }
-  }, [map, offers, hoveredOffer, city]);
+  }, [map, offers, hoveredOffer, city.location]);
 
   return (
     <div style={{height: '100%'}} ref={mapRef}/>

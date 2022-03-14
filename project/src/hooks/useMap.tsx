@@ -27,8 +27,10 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, cit
       instance.addLayer(layer);
 
       setMap(instance);
+    } else {
+      map && map.setView({lat: city.lat, lng: city.lng}, 10);
     }
-  }, [mapRef, map, city]);
+  }, [mapRef, map, city.lat, city.lng]);
 
   return map;
 }
