@@ -6,7 +6,7 @@ type NearPlacesListProps = {
   onPlaceCardHover: (placeCardName: string) => void;
 }
 
-export function NearPlacesList(props: NearPlacesListProps) {
+export function NearPlacesList({nearData, onPlaceCardHover}: NearPlacesListProps) {
 
   return (
     <div className="container">
@@ -15,7 +15,7 @@ export function NearPlacesList(props: NearPlacesListProps) {
 
         <div className="near-places__list places__list">
           {
-            props.nearData.map((place) => <PlaceCard key={place.id} offer={place} onPlaceCardHover={props.onPlaceCardHover}/>)
+            nearData.map((place) => <PlaceCard key={place.id} offer={place} onPlaceCardHover={onPlaceCardHover}/>)
           }
         </div>
       </section>

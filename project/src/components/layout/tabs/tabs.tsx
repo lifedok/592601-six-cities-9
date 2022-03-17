@@ -24,7 +24,7 @@ export default function Tabs({placeList, onSelectedTabItem}: TabsProps): JSX.Ele
           {
             placeList.map((place) => {
               const isActiveCity = param.city ? place.name === param.city : place.name === 'Amsterdam';
-              const isActiveClass = isActiveCity && 'tabs__item--active';
+              const isActiveClass = isActiveCity ? 'tabs__item--active' : '';
               return (
                 <li className="locations__item" onClick={(ev) => selectedTabItem(ev)} key={place.name}>
                   <Link className={`locations__item-link tabs__item ${isActiveClass}`} to={`${ERoute.LOCATION}/${place.name}`}>

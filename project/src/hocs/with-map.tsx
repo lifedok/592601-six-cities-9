@@ -2,6 +2,8 @@ import MapView from '../components/map-view/map-view';
 import { IOffer, IPlace } from '../types/interfaces/offer.interface';
 import { ComponentType, useState } from 'react';
 
+type ComponentProps<T> = Omit<T, keyof HOCProps>;
+
 type HOCProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => void;
   onPlaceCardHover: (selectedOffer: IOffer) => void
@@ -9,9 +11,7 @@ type HOCProps = {
 
 export default function withMap<T>(Component: ComponentType<T>, offers: IOffer[]): ComponentType<Omit<T, keyof HOCProps>> {
 
-  type ComponentProps = Omit<T, keyof HOCProps>;
-
-  function WithMap(props: ComponentProps): JSX.Element {
+  function WithMap(props: ComponentProps<T>): JSX.Element {
     const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
 
     const onPlaceCardHover = (placeCardName: string) => {
