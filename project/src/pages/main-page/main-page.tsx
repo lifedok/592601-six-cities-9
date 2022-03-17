@@ -5,19 +5,21 @@ import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
 import { offersMockData } from '../../mocks/offers.data';
-import { CITY } from '../../mocks/map.data';
-import MapView from '../../components/map-view/map-view';
 import { useParams } from 'react-router';
-import { IOffer } from '../../types/interfaces/offer.interface';
+import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
+import { placeList } from '../../mocks/places.data';
 
+type MainPageProps = {
+  renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
+  onPlaceCardHover: (selectedOffer: string) => void
+}
 
-export default function MainPage(): JSX.Element {
-  const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
+export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): JSX.Element {
+  const [selectedCity, setSelectedCity] = useState<IPlace>(placeList[3]);
 
-  const onPlaceCardHover = (placeCardName: string) => {
-    const currentPoint = offersMockData.find((point) => (point.id+point.name).toString() === placeCardName);
-
-    setSelectedPoint(currentPoint);
+  const onSelectedTabItem = (city: string) => {
+    const place = placeList.filter((item) => item.name === city)[0];
+    setSelectedCity(place);
   };
 
   const {city} = useParams();
@@ -29,7 +31,7 @@ export default function MainPage(): JSX.Element {
       <main className={`page__main page__main--index ${!isCardPlace && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
 
-        <Tabs/>
+        <Tabs placeList={placeList} onSelectedTabItem={onSelectedTabItem}/>
 
         <div className="cities">
 
@@ -48,7 +50,9 @@ export default function MainPage(): JSX.Element {
                 </section>
 
                 <div className="cities__right-section">
-                  <MapView city={CITY} offers={offersMockData} hoveredOffer={selectedPoint}/>
+                  <section className="property__map map">
+                    {renderMap(selectedCity, offersMockData)}
+                  </section>
                 </div>
               </div>
               :

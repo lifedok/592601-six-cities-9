@@ -1,7 +1,7 @@
 import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/layout/header/header';
 import { NearPlacesList } from './near-places-list/near-places-list';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Reviews } from './reviews/reviews';
 import { getReviewList } from '../../mocks/reviews.data';
 import { MeetHostInfo } from './meet-host-info/meet-host-info';
@@ -9,10 +9,17 @@ import { Facilities } from './facilities/facilities';
 import { getMeetHostInfo } from '../../mocks/meet-host-info.data';
 import { offersMockData } from '../../mocks/offers.data';
 import { nearPlacesMockData } from '../../mocks/near-places.data';
+import { placeList } from '../../mocks/places.data';
+import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 
 const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
 
-export default function PropertyPage(): JSX.Element {
+type PropertyPageProps = {
+  renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
+  onPlaceCardHover: (selectedOffer: string) => void
+}
+
+export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
   const isLogged = true;
   const reviewList = getReviewList();
   const meetHostInfo = getMeetHostInfo();
@@ -105,14 +112,16 @@ export default function PropertyPage(): JSX.Element {
 
               <MeetHostInfo {...meetHostInfo}/>
 
-              <Reviews isLogged={isLogged} reviewList={reviewList}/>
+              <Reviews isLogged={isLogged} reviewList={reviewList} onPlaceCardHover={onPlaceCardHover}/>
 
             </div>
           </div>
-          <section className="property__map map"/>
+          <section className="property__map map">
+            {renderMap(placeList[3], offersMockData)}
+          </section>
         </section>
 
-        <NearPlacesList nearData={nearPlacesMockData}/>
+        <NearPlacesList nearData={nearPlacesMockData} onPlaceCardHover={onPlaceCardHover}/>
 
       </main>
     </div>
