@@ -5,4 +5,7 @@ export const changeLocationCity = createAction<{changedCity: string}>('tab/chang
 export const changeLocationByLocationCity = createAction<{selectedLocationCity: string}>('tab/changeLocationByLocationCity');
 export const changeOffersByLocationCity = createAction<{selectedLocationCity: string}>('tab/changeOffersByLocationCity');
 
-export const sortingOffers = createAction<{sortType: string, offers: IOfferByCity[]}>('sort/sortingOffers');
+export const sortingOffersByDefault = createAction<{offers: IOfferByCity[]}>('sort/sortingOffersByDefault');
+export const sortingOffersByLowToHigh = createAction<{offers: IOfferByCity[]}>('sort/sortingOffersByLowToHigh');
+export const sortingOffersByHighToLow = createAction<{offers: IOfferByCity[]}>('sort/sortingOffersByHighToLow');
+export const sortingOffersByTopRatedFirst = createAction<{offers: IOfferByCity[]}>('sort/sortingOffersByTopRatedFirst');

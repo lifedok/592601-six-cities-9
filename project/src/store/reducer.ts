@@ -2,11 +2,14 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeLocationByLocationCity,
   changeLocationCity,
-  changeOffersByLocationCity, sortingOffers,
+  changeOffersByLocationCity, sortingOffersByDefault,
+  sortingOffersByHighToLow,
+  sortingOffersByLowToHigh,
+  sortingOffersByTopRatedFirst,
 } from './action';
 import { offersByLocationCityMockData } from '../mocks/offers-by-location-city-mock.data';
 import { getCityList } from '../helpers/hepler';
-import { SortingOffer } from "./sorting-offers";
+
 
 const initialState = {
   locationCity: offersByLocationCityMockData[3].city,
@@ -29,12 +32,30 @@ const reducer = createReducer(initialState, (builder) => {
       const offerByLocationCity = offersByLocationCityMockData.filter((item) => item.city.name === selectedLocationCity)[0];
       state.offers = offerByLocationCity.offersByLocationCity;
     })
-    .addCase(sortingOffers, (state, action) => {
-      const {sortType, offers} = action.payload;
-      const updateSortingOffers = SortingOffer(sortType, offers);
-      console.log('updateSortingOffers', updateSortingOffers);
-      state.offers = updateSortingOffers
-  });
+    .addCase(sortingOffersByDefault, (state, action) => {
+      // const offers = action.payload.offers;
+      // const updateSortingOffers = offers;
+      // console.log('sortingOffers', updateSortingOffers);
+      state.offers = [...action.payload.offers];
+    })
+    .addCase(sortingOffersByLowToHigh, (state, action) => {
+      const {offers} = action.payload;
+      // Uncaught TypeError: Cannot assign to read only property '0' of object '[object Array]'
+      const updateSortingOffers = offers.sort((a, b) => a.price - b.price);
+      console.log('sortingOffersByLowToHigh', updateSortingOffers);
+      state.offers = [...updateSortingOffers];
+    })
+    .addCase(sortingOffersByHighToLow, (state, action) => {
+      const {offers} = action.payload;
+      const updateSortingOffers = offers.sort((a, b) => b.price - a.price);
+      console.log('sortingOffersByHighToLow', updateSortingOffers);
+      state.offers = [...updateSortingOffers];
+    })
+    .addCase(sortingOffersByTopRatedFirst, (state, action) => {
+      const updateSortingOffers = action.payload.offers.sort((a, b) => a.rating - b.rating);
+      console.log('sortingOffersByTopRatedFirst', updateSortingOffers);
+      state.offers = [...updateSortingOffers];
+    });
 });
 
 export { reducer };
