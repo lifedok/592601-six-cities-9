@@ -6,10 +6,10 @@ import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
 import { useNavigate } from 'react-router';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
-import { changeLocationByLocationCity, changeLocationCity, changeOffersByLocationCity } from "../../store/action";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { ERoute } from "../../types/enums/route.enum";
-import { getCityList } from "../../helpers/hepler";
+import { changeLocationByLocationCity, changeLocationCity, changeOffersByLocationCity } from '../../store/action';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { ERoute } from '../../types/enums/route.enum';
+import { getCityList } from '../../helpers/hepler';
 
 type MainPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;

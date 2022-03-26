@@ -8,7 +8,7 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import PrivateRoute from '../private-route/private.route';
 import PropertyPage from '../../pages/property-page/property-page';
 import withMap from '../../hocs/with-map';
-import { useAppSelector } from "../../hooks";
+import { useAppSelector } from '../../hooks';
 
 export default function App(): JSX.Element {
   const {offers} = useAppSelector((state) => state);

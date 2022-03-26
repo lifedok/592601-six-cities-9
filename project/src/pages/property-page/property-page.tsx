@@ -9,8 +9,8 @@ import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
 import { nearPlacesMockData } from '../../mocks/near-places-mock.data';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import { reviewListData } from '../../mocks/reviews-mock.data';
-import { useAppSelector } from "../../hooks";
-import { getRating } from "../../helpers/hepler";
+import { useAppSelector } from '../../hooks';
+import { getRating } from '../../helpers/hepler';
 
 type PropertyPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;

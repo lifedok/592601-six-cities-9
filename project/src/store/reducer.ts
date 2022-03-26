@@ -1,7 +1,7 @@
 import { createReducer } from '@reduxjs/toolkit';
 import { changeLocationByLocationCity, changeLocationCity, changeOffersByLocationCity } from './action';
 import { offersByLocationCityMockData } from '../mocks/offers-by-location-city-mock.data';
-import { getCityList } from "../helpers/hepler";
+import { getCityList } from '../helpers/hepler';
 
 const initialState = {
   locationCity: offersByLocationCityMockData[3].city,
@@ -16,7 +16,7 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeLocationByLocationCity, (state, action) => {
       const {selectedLocationCity} = action.payload;
-      const locationByCity = getCityList.filter(item => item.name === selectedLocationCity)[0];
+      const locationByCity = getCityList.filter((item) => item.name === selectedLocationCity)[0];
       state.locationCity.location = locationByCity.location;
     })
     .addCase(changeOffersByLocationCity, (state, action) => {

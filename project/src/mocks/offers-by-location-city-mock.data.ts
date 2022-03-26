@@ -1,5 +1,5 @@
-import { ILocation } from "../types/interfaces/location.interface";
-import { IPlace } from "../types/interfaces/offer.interface";
+import { ILocation } from '../types/interfaces/location.interface';
+import { IPlace } from '../types/interfaces/offer.interface';
 
 export interface IOffersByLocationCity {
   city: IPlace,
@@ -87,7 +87,7 @@ export const offersByLocationCityMockData: IOffersByLocationCity[] = [
           zoom: 10,
         },
       },
-    ]
+    ],
   },
   {
     city: {
@@ -128,7 +128,7 @@ export const offersByLocationCityMockData: IOffersByLocationCity[] = [
           zoom: 10,
         },
       },
-    ]
+    ],
   },
   {
     city: {
@@ -212,7 +212,7 @@ export const offersByLocationCityMockData: IOffersByLocationCity[] = [
           zoom: 10,
         },
       },
-    ]
+    ],
   },
   {
     city: {
@@ -296,7 +296,7 @@ export const offersByLocationCityMockData: IOffersByLocationCity[] = [
           zoom: 10,
         },
       },
-    ]
+    ],
   },
   {
     city: {
@@ -380,7 +380,7 @@ export const offersByLocationCityMockData: IOffersByLocationCity[] = [
           zoom: 10,
         },
       },
-    ]
+    ],
   },
   {
     city: {
@@ -492,6 +492,6 @@ export const offersByLocationCityMockData: IOffersByLocationCity[] = [
           zoom: 10,
         },
       },
-    ]
+    ],
   },
 ];
