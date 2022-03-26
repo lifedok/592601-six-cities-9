@@ -1,23 +1,21 @@
 import React, { useState } from "react";
-
-export const ESorting = {
-  POPULAR: 'Popular',
-  LOW_TO_HIGH: 'Price: low to high',
-  HIGH_TO_LOW: 'Price: high to low',
-  TOP_RATED_FIRST: 'Top rated first',
-};
+import { ESorting } from "../../../types/consts/sort-option-list";
+import { sortingOffers } from "../../../store/action";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 
 export default function SortingForm(): JSX.Element {
   const [isOpen, setOpen] = useState(false);
-  const [isSelectOption, setSelectOption] = useState(Object.keys(ESorting)[0]);
-
+  const [isSelectSort, setSelectSort] = useState(ESorting.POPULAR);
+  const {offers} = useAppSelector((state) => state);
+  const dispatch = useAppDispatch();
 
   const selectedOptionItem = (event: React.MouseEvent<HTMLElement>) => {
-
     event.preventDefault();
     const selectedOption = event.currentTarget.innerText;
+    setSelectSort(selectedOption);
+
     setOpen(false);
-    setSelectOption(selectedOption);
+    dispatch(sortingOffers({sortType: selectedOption, offers: offers}));
   };
 
   return (
@@ -38,7 +36,7 @@ export default function SortingForm(): JSX.Element {
             return (
               <li
                 onClick={(ev) => selectedOptionItem(ev)}
-                className={`places__option ${value === isSelectOption ? 'places__option--active' : ''}`}
+                className={`places__option ${value === isSelectSort ? 'places__option--active' : ''}`}
                 tabIndex={0}
                 key={option}
               >

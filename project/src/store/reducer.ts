@@ -1,7 +1,12 @@
 import { createReducer } from '@reduxjs/toolkit';
-import { changeLocationByLocationCity, changeLocationCity, changeOffersByLocationCity } from './action';
+import {
+  changeLocationByLocationCity,
+  changeLocationCity,
+  changeOffersByLocationCity, sortingOffers,
+} from './action';
 import { offersByLocationCityMockData } from '../mocks/offers-by-location-city-mock.data';
 import { getCityList } from '../helpers/hepler';
+import { SortingOffer } from "./sorting-offers";
 
 const initialState = {
   locationCity: offersByLocationCityMockData[3].city,
@@ -23,7 +28,13 @@ const reducer = createReducer(initialState, (builder) => {
       const {selectedLocationCity} = action.payload;
       const offerByLocationCity = offersByLocationCityMockData.filter((item) => item.city.name === selectedLocationCity)[0];
       state.offers = offerByLocationCity.offersByLocationCity;
-    });
+    })
+    .addCase(sortingOffers, (state, action) => {
+      const {sortType, offers} = action.payload;
+      const updateSortingOffers = SortingOffer(sortType, offers);
+      console.log('updateSortingOffers', updateSortingOffers);
+      state.offers = updateSortingOffers
+  });
 });
 
 export { reducer };
