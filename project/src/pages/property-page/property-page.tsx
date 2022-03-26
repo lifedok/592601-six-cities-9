@@ -6,13 +6,11 @@ import { Reviews } from './reviews/reviews';
 import { MeetHostInfo } from './meet-host-info/meet-host-info';
 import { Facilities } from './facilities/facilities';
 import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
-import { offersMockData } from '../../mocks/offers-mock.data';
 import { nearPlacesMockData } from '../../mocks/near-places-mock.data';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import { reviewListData } from '../../mocks/reviews-mock.data';
 import { useAppSelector } from "../../hooks";
-
-const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
+import { getRating } from "../../helpers/hepler";
 
 type PropertyPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
@@ -25,7 +23,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
 
   const isLogged = true;
   const params = useParams();
-  const selectedOffer = offersMockData.filter((offer) => (offer.id.toString() === params.id))[0];
+  const selectedOffer = offers.filter((offer) => (offer.id.toString() === params.id))[0];
   const {isMark, name, price, priceText, rating, type} = selectedOffer;
 
   const { pathname } = useLocation();
