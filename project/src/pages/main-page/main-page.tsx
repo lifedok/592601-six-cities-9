@@ -4,10 +4,13 @@ import Tabs from '../../components/layout/tabs/tabs';
 import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
-import { offersMockData } from '../../mocks/offers.data';
-import { useParams } from 'react-router';
+import { offersMockData } from '../../mocks/offers-mock.data';
+import { useNavigate, useParams } from 'react-router';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
-import { placeList } from '../../mocks/places.data';
+import { placeListData } from '../../mocks/places-mock.data';
+import { changeLocationCity, changeOffersByLocationCity } from "../../store/action";
+import { useAppDispatch } from "../../hooks";
+import { ERoute } from "../../types/enums/route.enum";
 
 type MainPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
@@ -15,11 +18,18 @@ type MainPageProps = {
 }
 
 export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): JSX.Element {
-  const [selectedCity, setSelectedCity] = useState<IPlace>(placeList[3]);
+  const [selectedCity, setSelectedCity] = useState<IPlace>(placeListData[3]);
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSelectedTabItem = (city: string) => {
-    const place = placeList.filter((item) => item.name === city)[0];
+    const place = placeListData.filter((item) => item.name === city)[0];
     setSelectedCity(place);
+
+    dispatch(changeLocationCity({changedCity: city}));
+    dispatch(changeOffersByLocationCity({selectedLocationCity: city}));
+    navigate(`${ERoute.LOCATION}/${city}`);
   };
 
   const {city} = useParams();
@@ -31,7 +41,7 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
       <main className={`page__main page__main--index ${!isCardPlace && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
 
-        <Tabs placeList={placeList} onSelectedTabItem={onSelectedTabItem}/>
+        <Tabs placeList={placeListData} onSelectedTabItem={onSelectedTabItem}/>
 
         <div className="cities">
 

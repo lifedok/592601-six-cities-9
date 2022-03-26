@@ -1,6 +1,6 @@
 import { IMeetHostInfo } from '../types/interfaces/meet-host-info.interface';
 
-const meetHostInfo: IMeetHostInfo = {
+export const meetHostInfoMockData: IMeetHostInfo = {
   id: 3,
   userName: 'Angelina',
   userAvatar: 'img/avatar-angelina.jpg',
@@ -10,7 +10,3 @@ const meetHostInfo: IMeetHostInfo = {
     'An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.',
   ],
 };
-
-export function getMeetHostInfo(): IMeetHostInfo {
-  return meetHostInfo;
-}

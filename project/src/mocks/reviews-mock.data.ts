@@ -1,6 +1,6 @@
 import { IReview } from '../types/interfaces/reviews.interface';
 
-const reviewList: IReview[] = [
+export const reviewListData: IReview[] = [
   {
     id: 3,
     userName: 'Max',
@@ -10,7 +10,3 @@ const reviewList: IReview[] = [
     date: 'April 2019',
   },
 ];
-
-export function getReviewList(): IReview[] {
-  return reviewList;
-}

@@ -8,7 +8,7 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import PrivateRoute from '../private-route/private.route';
 import PropertyPage from '../../pages/property-page/property-page';
 import withMap from '../../hocs/with-map';
-import { offersMockData } from '../../mocks/offers.data';
+import { offersMockData } from '../../mocks/offers-mock.data';
 
 const PropertyPageWrapped = withMap(PropertyPage, offersMockData);
 const MainPageWrapped = withMap(MainPage, offersMockData);

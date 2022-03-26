@@ -1,6 +1,6 @@
 import { IPlace } from '../types/interfaces/offer.interface';
 
-export const placeList: IPlace[] = [
+export const placeListData: IPlace[] = [
   {
     name: 'Paris',
     location: {
