@@ -8,7 +8,7 @@ import { Facilities } from './facilities/facilities';
 import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
 import { offersMockData } from '../../mocks/offers-mock.data';
 import { nearPlacesMockData } from '../../mocks/near-places-mock.data';
-import { placeListData } from '../../mocks/places-mock.data';
+import { locationCityListMockData } from '../../mocks/location-city-list-mock.data';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import { reviewListData } from '../../mocks/reviews-mock.data';
 
@@ -115,7 +115,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
             </div>
           </div>
           <section className="property__map map">
-            {renderMap(placeListData[3], offersMockData)}
+            {renderMap(locationCityListMockData[3], offersMockData)}
           </section>
         </section>
 

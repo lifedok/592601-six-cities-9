@@ -1,6 +1,6 @@
 import { IPlace } from '../types/interfaces/offer.interface';
 
-export const placeListData: IPlace[] = [
+export const locationCityListMockData: IPlace[] = [
   {
     name: 'Paris',
     location: {
@@ -28,16 +28,16 @@ export const placeListData: IPlace[] = [
   {
     name: 'Amsterdam',
     location: {
-      lat: 52.3909553943508,
-      lng: 4.85309666406198,
+      lat: 52.37372536363127,
+      lng: 4.8976271783362835,
       zoom: 10,
     },
   },
   {
     name: 'Hamburg',
     location: {
-      lat: 53.540795459746995,
-      lng: 9.980619712245568,
+      lat: 53.55094657531107,
+      lng: 9.988176098926454,
       zoom: 10,
     },
   },
