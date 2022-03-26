@@ -8,9 +8,9 @@ import { Facilities } from './facilities/facilities';
 import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
 import { offersMockData } from '../../mocks/offers-mock.data';
 import { nearPlacesMockData } from '../../mocks/near-places-mock.data';
-import { locationCityListMockData } from '../../mocks/location-city-list-mock.data';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import { reviewListData } from '../../mocks/reviews-mock.data';
+import { useAppSelector } from "../../hooks";
 
 const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
 
@@ -20,8 +20,10 @@ type PropertyPageProps = {
 }
 
 export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
-  const isLogged = true;
+  const {locationCity, offers} = useAppSelector((state) => state);
 
+
+  const isLogged = true;
   const params = useParams();
   const selectedOffer = offersMockData.filter((offer) => (offer.id.toString() === params.id))[0];
   const {isMark, name, price, priceText, rating, type} = selectedOffer;
@@ -115,7 +117,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
             </div>
           </div>
           <section className="property__map map">
-            {renderMap(locationCityListMockData[3], offersMockData)}
+            {renderMap(locationCity, offers)}
           </section>
         </section>
 

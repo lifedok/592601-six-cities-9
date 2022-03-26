@@ -245,7 +245,7 @@ export const offersByLocationCityMockData: IOffersByLocationCity[] = [
         price: 80,
         priceText: 'night',
         rating: 86,
-        name: 'Amsterdam Wood and stone place',
+        name: 'Amsterdam Great Wood and stone place',
         type: 'Private room',
         location: {
           lat: 52.369553943508,

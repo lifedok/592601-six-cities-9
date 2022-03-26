@@ -4,13 +4,12 @@ import Tabs from '../../components/layout/tabs/tabs';
 import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
-import { locationCityListMockData } from '../../mocks/location-city-list-mock.data';
 import { changeLocationByLocationCity, changeLocationCity, changeOffersByLocationCity } from "../../store/action";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { ERoute } from "../../types/enums/route.enum";
-import { offersByLocationCityMockData } from "../../mocks/offers-by-location-city-mock.data";
+import { getCityList } from "../../helpers/hepler";
 
 type MainPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
@@ -30,7 +29,6 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
   };
 
   const isCardPlace = true;
-  const tabsListCity = offersByLocationCityMockData.map(item => item.city);
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -38,7 +36,7 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
       <main className={`page__main page__main--index ${!isCardPlace && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
 
-        <Tabs placeList={tabsListCity} onSelectedTabItem={onSelectedTabItem}/>
+        <Tabs placeList={getCityList} onSelectedTabItem={onSelectedTabItem}/>
 
         <div className="cities">
 
