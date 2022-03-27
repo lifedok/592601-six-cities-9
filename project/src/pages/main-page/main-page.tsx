@@ -7,9 +7,10 @@ import PlacesEmpty from '../../components/places-empty/places-empty';
 import { useNavigate } from 'react-router';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import { changeLocationByLocationCity, changeLocationCity, changeOffersByLocationCity } from '../../store/action';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAppDispatch } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
-import { getCityList } from '../../helpers/hepler';
+import { getCityList, useGetLocationCity, useGetOffers } from '../../store/selector';
+import { offersByLocationCityMockData } from '../../mocks/offers-by-location-city-mock.data';
 
 type MainPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
@@ -17,9 +18,11 @@ type MainPageProps = {
 }
 
 export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): JSX.Element {
+  const offers = useGetOffers();
+  const locationCity = useGetLocationCity();
+
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const {locationCity, offers} = useAppSelector((state) => state);
 
   const onSelectedTabItem = (city: string) => {
     dispatch(changeLocationCity({changedCity: city}));
@@ -36,7 +39,7 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
       <main className={`page__main page__main--index ${!isCardPlace && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
 
-        <Tabs placeList={getCityList} onSelectedTabItem={onSelectedTabItem}/>
+        <Tabs placeList={getCityList(offersByLocationCityMockData)} onSelectedTabItem={onSelectedTabItem}/>
 
         <div className="cities">
 

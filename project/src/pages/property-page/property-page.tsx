@@ -9,8 +9,8 @@ import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
 import { nearPlacesMockData } from '../../mocks/near-places-mock.data';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import { reviewListData } from '../../mocks/reviews-mock.data';
-import { useAppSelector } from '../../hooks';
 import { getRating } from '../../helpers/hepler';
+import { useGetLocationCity, useGetOffers } from '../../store/selector';
 
 type PropertyPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
@@ -18,8 +18,8 @@ type PropertyPageProps = {
 }
 
 export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
-  const {locationCity, offers} = useAppSelector((state) => state);
-
+  const offers = useGetOffers();
+  const locationCity = useGetLocationCity();
 
   const isLogged = true;
   const params = useParams();

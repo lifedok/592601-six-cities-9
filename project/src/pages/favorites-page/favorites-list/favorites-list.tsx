@@ -1,8 +1,13 @@
 import { FavoritesCard } from './favorites-card/favorites-card';
-import { favoritesListMockData } from '../../../mocks/favorites.data';
 import { IFavoriteCardList } from '../../../types/interfaces/favorites.interface';
+import React from 'react';
 
-export function FavoritesList() {
+
+type FavoritesListProps = {
+  list: IFavoriteCardList[];
+}
+
+export function FavoritesList({list}: FavoritesListProps): JSX.Element {
 
   const randomIndex = Math.floor(Math.random() * 1000);
   return (
@@ -11,7 +16,7 @@ export function FavoritesList() {
       <ul className="favorites__list">
 
         {
-          favoritesListMockData.map((item: IFavoriteCardList) => (
+          list.map((item: IFavoriteCardList) => (
             <li key={item.location + randomIndex} className="favorites__locations-items">
               <div className='favorites__locations locations locations--current'>
                 <div className="locations__item">
