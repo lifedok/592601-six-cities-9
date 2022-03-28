@@ -3,16 +3,14 @@ import Header from '../../components/layout/header/header';
 import { NearPlacesList } from './near-places-list/near-places-list';
 import React, { useEffect } from 'react';
 import { Reviews } from './reviews/reviews';
-import { getReviewList } from '../../mocks/reviews.data';
 import { MeetHostInfo } from './meet-host-info/meet-host-info';
 import { Facilities } from './facilities/facilities';
-import { getMeetHostInfo } from '../../mocks/meet-host-info.data';
-import { offersMockData } from '../../mocks/offers.data';
-import { nearPlacesMockData } from '../../mocks/near-places.data';
-import { placeList } from '../../mocks/places.data';
+import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
+import { nearPlacesMockData } from '../../mocks/near-places-mock.data';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
-
-const getRating = (rating: number) => (rating / 100 * 5).toFixed(1);
+import { reviewListData } from '../../mocks/reviews-mock.data';
+import { getRating } from '../../helpers/hepler';
+import { useGetLocationCity, useGetOffers } from '../../store/selector';
 
 type PropertyPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
@@ -20,12 +18,12 @@ type PropertyPageProps = {
 }
 
 export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
-  const isLogged = true;
-  const reviewList = getReviewList();
-  const meetHostInfo = getMeetHostInfo();
+  const offers = useGetOffers();
+  const locationCity = useGetLocationCity();
 
+  const isLogged = true;
   const params = useParams();
-  const selectedOffer = offersMockData.filter((offer) => (offer.id.toString() === params.id))[0];
+  const selectedOffer = offers.filter((offer) => (offer.id.toString() === params.id))[0];
   const {isMark, name, price, priceText, rating, type} = selectedOffer;
 
   const { pathname } = useLocation();
@@ -110,14 +108,14 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
 
               <Facilities/>
 
-              <MeetHostInfo {...meetHostInfo}/>
+              <MeetHostInfo {...meetHostInfoMockData}/>
 
-              <Reviews isLogged={isLogged} reviewList={reviewList} onPlaceCardHover={onPlaceCardHover}/>
+              <Reviews isLogged={isLogged} reviewList={reviewListData} onPlaceCardHover={onPlaceCardHover}/>
 
             </div>
           </div>
           <section className="property__map map">
-            {renderMap(placeList[3], offersMockData)}
+            {renderMap(locationCity, offers)}
           </section>
         </section>
 

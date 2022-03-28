@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../../components/layout/header/header';
 import Tabs from '../../components/layout/tabs/tabs';
 import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
-import { offersMockData } from '../../mocks/offers.data';
-import { useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
-import { placeList } from '../../mocks/places.data';
+import { changeLocationByLocationCity, changeLocationCity, changeOffersByLocationCity } from '../../store/action';
+import { useAppDispatch } from '../../hooks';
+import { ERoute } from '../../types/enums/route.enum';
+import { getCityList, useGetLocationCity, useGetOffers } from '../../store/selector';
+import { offersByLocationCityMockData } from '../../mocks/offers-by-location-city-mock.data';
 
 type MainPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
@@ -15,14 +18,19 @@ type MainPageProps = {
 }
 
 export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): JSX.Element {
-  const [selectedCity, setSelectedCity] = useState<IPlace>(placeList[3]);
+  const offers = useGetOffers();
+  const locationCity = useGetLocationCity();
+
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSelectedTabItem = (city: string) => {
-    const place = placeList.filter((item) => item.name === city)[0];
-    setSelectedCity(place);
+    dispatch(changeLocationCity({changedCity: city}));
+    dispatch(changeLocationByLocationCity({selectedLocationCity: city}));
+    dispatch(changeOffersByLocationCity({selectedLocationCity: city}));
+    navigate(`${ERoute.LOCATION}/${city}`);
   };
 
-  const {city} = useParams();
   const isCardPlace = true;
   return (
     <div className="page page--gray page--main">
@@ -31,7 +39,7 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
       <main className={`page__main page__main--index ${!isCardPlace && 'page__main--index-empty'}`}>
         <h1 className="visually-hidden">Cities</h1>
 
-        <Tabs placeList={placeList} onSelectedTabItem={onSelectedTabItem}/>
+        <Tabs placeList={getCityList(offersByLocationCityMockData)} onSelectedTabItem={onSelectedTabItem}/>
 
         <div className="cities">
 
@@ -41,17 +49,17 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
               <div className="cities__places-container container">
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">{offersMockData.length} place{offersMockData.length > 1 && 's'} to stay in {city}</b>
+                  <b className="places__found">{offers.length} place{offers.length > 1 && 's'} to stay in {locationCity.name}</b>
 
                   <SortingForm/>
 
-                  <PlacesList list={offersMockData} onPlaceCardHover={onPlaceCardHover}/>
+                  <PlacesList list={offers} onPlaceCardHover={onPlaceCardHover}/>
 
                 </section>
 
                 <div className="cities__right-section">
                   <section className="property__map map">
-                    {renderMap(selectedCity, offersMockData)}
+                    {renderMap(locationCity, offers)}
                   </section>
                 </div>
               </div>

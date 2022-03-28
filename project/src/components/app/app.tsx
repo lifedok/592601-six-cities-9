@@ -8,12 +8,12 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import PrivateRoute from '../private-route/private.route';
 import PropertyPage from '../../pages/property-page/property-page';
 import withMap from '../../hocs/with-map';
-import { offersMockData } from '../../mocks/offers.data';
-
-const PropertyPageWrapped = withMap(PropertyPage, offersMockData);
-const MainPageWrapped = withMap(MainPage, offersMockData);
+import { useGetOffers } from '../../store/selector';
 
 export default function App(): JSX.Element {
+  const PropertyPageWrapped = withMap(PropertyPage, useGetOffers());
+  const MainPageWrapped = withMap(MainPage, useGetOffers());
+
 
   const isLogged = AuthorizationStatus.AUTH;
   return (

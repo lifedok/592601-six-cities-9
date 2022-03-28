@@ -1,6 +1,6 @@
 import { IFavoriteCardList } from '../types/interfaces/favorites.interface';
 
-const favoritesList: IFavoriteCardList[] = [
+export const favoritesListMockData: IFavoriteCardList[] = [
   {
     location: 'Amsterdam',
     cards: [
@@ -40,7 +40,3 @@ const favoritesList: IFavoriteCardList[] = [
     ],
   },
 ];
-
-export function getFavorites(): IFavoriteCardList[] {
-  return favoritesList;
-}
