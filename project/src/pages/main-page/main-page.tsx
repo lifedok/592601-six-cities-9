@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../../components/layout/header/header';
 import Tabs from '../../components/layout/tabs/tabs';
 import SortingForm from '../../components/layout/sorting-form/sorting-form';
@@ -9,14 +9,12 @@ import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import {
   changeLocationByLocationCity,
   changeLocationCity,
-  changeOffersByLocationCity,
-  sortOffers
+  changeOffersByLocationCity
 } from '../../store/action';
 import { useAppDispatch } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
 import { getCityList, useGetLocationCity, useGetOffers } from '../../store/selector';
 import { offersByLocationCityMockData } from '../../mocks/offers-by-location-city-mock.data';
-import { getSortingOffers } from "../../store/get-sorting-offers";
 
 type MainPageProps = {
   renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
@@ -24,9 +22,7 @@ type MainPageProps = {
 }
 
 export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): JSX.Element {
-  const rawOffers = useGetOffers();
-  const [offers, setOffers] = useState([...rawOffers]);
-
+  const offers = useGetOffers();
   const locationCity = useGetLocationCity();
 
   const navigate = useNavigate();
@@ -37,10 +33,6 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
     dispatch(changeLocationByLocationCity({selectedLocationCity: city}));
     dispatch(changeOffersByLocationCity({selectedLocationCity: city}));
     navigate(`${ERoute.LOCATION}/${city}`);
-  };
-
-  const onSelectedSortType = (sortType: string) => {
-    setOffers(getSortingOffers(sortType, rawOffers));
   };
 
   const isCardPlace = true;
@@ -63,7 +55,7 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{offers.length} place{offers.length > 1 && 's'} to stay in {locationCity.name}</b>
 
-                  <SortingForm onSelectedSortType={onSelectedSortType}/>
+                  <SortingForm />
 
                   <PlacesList list={offers} onPlaceCardHover={onPlaceCardHover}/>
 

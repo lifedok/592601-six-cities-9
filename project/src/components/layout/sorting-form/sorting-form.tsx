@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import { ESorting } from '../../../types/enums/sort-option-list.enum';
+import { sortOffers } from '../../../store/action';
+import { useAppDispatch } from '../../../hooks';
 
-
-type SortingFormProps = {
-  onSelectedSortType: (placeCardName: string) => void;
-}
-
-export default function SortingForm({onSelectedSortType}: SortingFormProps): JSX.Element {
+export default function SortingForm(): JSX.Element {
   const [isOpen, setOpen] = useState(false);
-  const [isSelectSort, setSelectSort] = useState('Popular');
+  const [isSelectSort, setSelectSort] = useState(ESorting.POPULAR);
+  const dispatch = useAppDispatch();
 
   const selectedSortTypeHandler = (event: React.MouseEvent<HTMLElement>, sortType: string) => {
     event.preventDefault();
     setSelectSort(sortType);
     setOpen(false);
-
-    onSelectedSortType && onSelectedSortType(sortType);
+    dispatch(sortOffers({type: sortType}));
   };
-
 
   return (
     <form className="places__sorting" action="#" method="get">
@@ -32,18 +28,16 @@ export default function SortingForm({onSelectedSortType}: SortingFormProps): JSX
 
       <ul className={`places__options places__options--custom ${isOpen ? 'places__options--opened' : ''}`}>
         {
-          Object.values(ESorting).map((sortType) => {
-            return (
-              <li
-                onClick={(ev) => selectedSortTypeHandler(ev, sortType)}
-                className={`places__option ${sortType === isSelectSort ? 'places__option--active' : ''}`}
-                tabIndex={0}
-                key={sortType}
-              >
-                {sortType}
-              </li>
-            )
-          })
+          Object.values(ESorting).map((sortType) => (
+            <li
+              onClick={(ev) => selectedSortTypeHandler(ev, sortType)}
+              className={`places__option ${sortType === isSelectSort ? 'places__option--active' : ''}`}
+              tabIndex={0}
+              key={sortType}
+            >
+              {sortType}
+            </li>
+          ))
         }
       </ul>
 

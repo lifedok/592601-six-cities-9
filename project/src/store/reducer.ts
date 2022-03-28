@@ -2,7 +2,7 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeLocationByLocationCity,
   changeLocationCity,
-  changeOffersByLocationCity, sortOffers,
+  changeOffersByLocationCity, sortOffers
 } from './action';
 import { offersByLocationCityMockData } from '../mocks/offers-by-location-city-mock.data';
 import { getCityList } from './selector';
@@ -31,10 +31,8 @@ const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(sortOffers, (state, action) => {
       const {type} = action.payload;
-      const sortingOffers = getSortingOffers(type, [...state.offers]);
-      console.log('sortingOffers', sortingOffers);
-      state.offers = sortingOffers;
-    })
+      state.offers = getSortingOffers(type, [...state.offers]);
+    });
 });
 
 export { reducer };
