@@ -6,7 +6,11 @@ import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
 import { useNavigate } from 'react-router';
 import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
-import { changeLocationByLocationCity, changeLocationCity, changeOffersByLocationCity } from '../../store/action';
+import {
+  changeLocationByLocationCity,
+  changeLocationCity,
+  changeOffersByLocationCity
+} from '../../store/action';
 import { useAppDispatch } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
 import { getCityList, useGetLocationCity, useGetOffers } from '../../store/selector';
@@ -51,7 +55,7 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{offers.length} place{offers.length > 1 && 's'} to stay in {locationCity.name}</b>
 
-                  <SortingForm/>
+                  <SortingForm />
 
                   <PlacesList list={offers} onPlaceCardHover={onPlaceCardHover}/>
 
