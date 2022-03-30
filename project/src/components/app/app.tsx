@@ -9,6 +9,7 @@ import PrivateRoute from '../private-route/private.route';
 import PropertyPage from '../../pages/property-page/property-page';
 import withMap from '../../hocs/with-map';
 import { useGetOffers } from '../../store/selector';
+import LoadingScreen from "../loading-screen/loading-screen";
 
 export default function App(): JSX.Element {
   const PropertyPageWrapped = withMap(PropertyPage, useGetOffers());
@@ -16,6 +17,14 @@ export default function App(): JSX.Element {
 
 
   const isLogged = AuthorizationStatus.AUTH;
+
+
+  // if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+  //   return (
+  //     <LoadingScreen />
+  //   );
+  // }
+
   return (
     <BrowserRouter>
       <Routes>

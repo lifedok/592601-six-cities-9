@@ -2,15 +2,28 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeLocationByLocationCity,
   changeLocationCity,
-  changeOffersByLocationCity, sortOffers
+  changeOffersByLocationCity, loadOffers, requireAuthorization, sortOffers
 } from './action';
-import { offersByLocationCityMockData } from '../mocks/offers-by-location-city-mock.data';
+import {
+  IOfferByCity,
+  IOffersByLocationCity,
+  offersByLocationCityMockData
+} from '../mocks/offers-by-location-city-mock.data';
 import { getCityList } from './selector';
 import { getSortingOffers } from './get-sorting-offers';
+import { AuthorizationStatus } from '../types/enums/route.enum';
+import { IPlace } from "../types/interfaces/offer.interface";
 
-const initialState = {
+type IInitialState = {
+  locationCity: IPlace,
+  offers: IOfferByCity[],
+  authorizationStatus: AuthorizationStatus,
+}
+
+const initialState: IInitialState = {
   locationCity: offersByLocationCityMockData[3].city,
-  offers: offersByLocationCityMockData[3].offersByLocationCity,
+  offers: [],
+  authorizationStatus: AuthorizationStatus.UNKNOWN,
 };
 
 const reducer = createReducer(initialState, (builder) => {
@@ -32,6 +45,12 @@ const reducer = createReducer(initialState, (builder) => {
     .addCase(sortOffers, (state, action) => {
       const {type} = action.payload;
       state.offers = getSortingOffers(type, [...state.offers]);
+    })
+    .addCase(loadOffers, (state, action) => {
+      state.offers = action.payload;
+    })
+    .addCase(requireAuthorization, (state, action) => {
+      state.authorizationStatus = action.payload;
     });
 });
 
