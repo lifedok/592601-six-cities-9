@@ -6,6 +6,7 @@ import { IOfferByCity } from '../mocks/offers-by-location-city-mock.data';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData } from "../types/auth-data";
 import { UserData } from "../types/user-data";
+import { errorHandle } from "../services/error-handle";
 
 export const fetchOffersAction = createAsyncThunk(
   'data/fetchQuestions',
@@ -18,25 +19,39 @@ export const fetchOffersAction = createAsyncThunk(
 export const checkAuthAction = createAsyncThunk(
   'user/checkAuth',
   async () => {
-    await api.get(ApiRoute.LOGIN);
-    store.dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    try {
+      await api.get(ApiRoute.LOGIN);
+      store.dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    } catch (error) {
+      errorHandle(error);
+      store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    }
   },
 );
 
 export const loginAction = createAsyncThunk(
   'user/login',
   async ({login: email, password}: AuthData) => {
-    const {data: {token}} = await api.post<UserData>(ApiRoute.LOGIN, {email, password});
-    saveToken(token);
-    store.dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    try {
+      const {data: {token}} = await api.post<UserData>(ApiRoute.LOGIN, {email, password});
+      saveToken(token);
+      store.dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    } catch (error) {
+      errorHandle(error);
+      store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    }
   },
 );
 
 export const logoutAction = createAsyncThunk(
   'user/logout',
   async () => {
-    await api.delete(ApiRoute.LOGOUT);
-    dropToken();
-    store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    try {
+      await api.delete(ApiRoute.LOGOUT);
+      dropToken();
+      store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    } catch (error) {
+      errorHandle(error);
+    }
   },
 );
