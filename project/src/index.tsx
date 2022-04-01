@@ -5,9 +5,9 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { checkAuthAction, fetchOffersAction } from './store/api-actions';
+import { checkAuthAction, fetchHotelsAction } from './store/api-actions';
 
-store.dispatch(fetchOffersAction());
+store.dispatch(fetchHotelsAction());
 store.dispatch(checkAuthAction());
 
 ReactDOM.render(

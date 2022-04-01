@@ -10,8 +10,8 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, cit
     if (mapRef.current !== null && map === null) {
       const instance = new Map(mapRef.current, {
         center: {
-          lat: city.lat,
-          lng: city.lng,
+          lat: city.latitude,
+          lng: city.longitude,
         },
         zoom: 10,
       });
@@ -28,9 +28,9 @@ export default function useMap(mapRef: MutableRefObject<HTMLElement | null>, cit
 
       setMap(instance);
     } else {
-      map && map.setView({lat: city.lat, lng: city.lng}, 10);
+      map && map.setView({lat: city.latitude, lng: city.longitude}, 10);
     }
-  }, [mapRef, map, city.lat, city.lng]);
+  }, [mapRef, map, city.latitude, city.longitude]);
 
   return map;
 }

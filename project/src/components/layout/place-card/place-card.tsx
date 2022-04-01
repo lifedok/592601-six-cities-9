@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { ERoute } from '../../../types/enums/route.enum';
-import { IOffer } from '../../../types/interfaces/offer.interface';
+import { IHotel } from '../../../types/interfaces/hotel.interface';
 
 type PlaceCardProps = {
-  offer: IOffer;
+  hotel: IHotel;
   onPlaceCardHover?: (placeCardName: string) => void;
 };
 
-export default function PlaceCard({offer, onPlaceCardHover}: PlaceCardProps): JSX.Element {
-  const {id, isMark, name, previewImage, price, priceText, rating, type} = offer;
+export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JSX.Element {
+  const {id, isPremium, city, previewImage, price, rating, type} = hotel;
 
   const placeCardHoverHandler = (event: React.MouseEvent<HTMLElement>, key: number | string) => {
     event.preventDefault();
@@ -17,10 +17,10 @@ export default function PlaceCard({offer, onPlaceCardHover}: PlaceCardProps): JS
   };
 
   return (
-    <article className="cities__place-card place-card" onMouseEnter={(ev) => placeCardHoverHandler(ev, id+name)}>
+    <article className="cities__place-card place-card" onMouseEnter={(ev) => placeCardHoverHandler(ev, id+city.name)}>
 
       {
-        isMark &&
+        isPremium &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -41,7 +41,7 @@ export default function PlaceCard({offer, onPlaceCardHover}: PlaceCardProps): JS
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
-            <span className="place-card__price-text">&#47;&nbsp;{priceText}</span>
+            <span className="place-card__price-text">&#47;&nbsp;{type}</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -57,7 +57,7 @@ export default function PlaceCard({offer, onPlaceCardHover}: PlaceCardProps): JS
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${ERoute.ROOM}/${id}`}>{name}</Link>
+          <Link to={`${ERoute.ROOM}/${id}`}>{city.name}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

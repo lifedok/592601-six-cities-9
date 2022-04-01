@@ -1,34 +1,34 @@
-import { FavoritesCard } from './favorites-card/favorites-card';
-import { IFavoriteCardList } from '../../../types/interfaces/favorites.interface';
 import React from 'react';
+import { FavoritesCard } from './favorites-card/favorites-card';
+import { IHotel } from '../../../types/interfaces/hotel.interface';
+import { listHotelMockData } from '../../../mocks/list-hotel-mock.data';
 
 
 type FavoritesListProps = {
-  list: IFavoriteCardList[];
+  list: IHotel[];
 }
 
 export function FavoritesList({list}: FavoritesListProps): JSX.Element {
 
-  const randomIndex = Math.floor(Math.random() * 1000);
   return (
     <section className="favorites">
       <h1 className="favorites__title">Saved listing</h1>
       <ul className="favorites__list">
 
         {
-          list.map((item: IFavoriteCardList) => (
-            <li key={item.location + randomIndex} className="favorites__locations-items">
+          list.map((item: IHotel) => (
+            <li key={item.city.name + item.id} className="favorites__locations-items">
               <div className='favorites__locations locations locations--current'>
                 <div className="locations__item">
                   <a className="locations__item-link" href="link">
-                    <span>{item.location}</span>
+                    <span>{item.city.name}</span>
                   </a>
                 </div>
               </div>
 
               <div className="favorites__places">
                 {
-                  item.cards.map((card) => <FavoritesCard {...card} key={card.price}/>)
+                  listHotelMockData.map((hotel) => <FavoritesCard {...hotel} key={hotel.id}/>)
                 }
               </div>
             </li>

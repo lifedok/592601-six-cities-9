@@ -2,66 +2,60 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeLocationByLocationCity,
   changeLocationCity,
-  changeOffersByLocationCity, loadOffers, requireAuthorization, sortOffers
+  changeHotelsByLocationCity, loadHotels, requireAuthorization, sortHotels
 } from './action';
-import {
-  IOfferByCity, IOffersByLocationCity,
-  offersByLocationCityMockData
-} from '../mocks/offers-by-location-city-mock.data';
 import { getCityList } from './selector';
-import { getSortingOffers } from './get-sorting-offers';
+import { getSortingHotels } from './get-sorting-hotels';
 import { AuthorizationStatus } from '../types/enums/route.enum';
-import { IPlace } from "../types/interfaces/offer.interface";
 import { store } from "./index";
+import { IHotel, IPlace } from "../types/interfaces/hotel.interface";
 
 type IInitialState = {
-  locationCity: IPlace,
-  offers: IOfferByCity[],
+  city: IPlace,
+  hotels: IHotel[],
   authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 }
 
 const initialState: IInitialState = {
-  locationCity: {
+  city: {
     name: '',
     location: {
-      lat: 0,
-      lng: 0,
+      latitude: 0,
+      longitude: 0,
       zoom: 0
     }
   },
-  offers: [],
+  hotels: [],
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false
 };
 
 const reducer = createReducer(initialState, (builder) => {
-
-  // const offersByLocation = {
-  //   city: store.getState().offers.map((offer) => offer.ci)
-  // };
+  // const hotels = store?.getState()?.hotels;
 
   builder
     .addCase(changeLocationCity, (state, action) => {
       const {changedCity} = action.payload;
-      state.locationCity.name = changedCity;
+      state.city.name = changedCity;
     })
     .addCase(changeLocationByLocationCity, (state, action) => {
       const {selectedLocationCity} = action.payload;
-      const locationByCity = getCityList(offersByLocationCityMockData).filter((item) => item.name === selectedLocationCity)[0];
-      state.locationCity.location = locationByCity.location;
+      // const locationByCity = getCityList(hotels).filter((item) => item.name === selectedLocationCity)[0];
+      // state.city.location = locationByCity.location;
     })
-    .addCase(changeOffersByLocationCity, (state, action) => {
+    .addCase(changeHotelsByLocationCity, (state, action) => {
       const {selectedLocationCity} = action.payload;
-      const offerByLocationCity = offersByLocationCityMockData.filter((item) => item.city.name === selectedLocationCity)[0];
-      state.offers = offerByLocationCity.offersByLocationCity;
+      // const hotelsByLocationCity = hotels.filter((item) => item.city.name === selectedLocationCity)[0];
+      // console.log('hotelsByLocationCity', hotelsByLocationCity)
+      // state.hotels = hotelsByLocationCity;
     })
-    .addCase(sortOffers, (state, action) => {
+    .addCase(sortHotels, (state, action) => {
       const {type} = action.payload;
-      state.offers = getSortingOffers(type, [...state.offers]);
+      state.hotels = getSortingHotels(type, [...state.hotels]);
     })
-    .addCase(loadOffers, (state, action) => {
-      state.offers = action.payload;
+    .addCase(loadHotels, (state, action) => {
+      state.hotels = action.payload;
       state.isDataLoaded = true;
     })
     .addCase(requireAuthorization, (state, action) => {

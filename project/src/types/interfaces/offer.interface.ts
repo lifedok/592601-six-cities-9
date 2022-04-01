@@ -1,4 +1,5 @@
 import { ILocation } from './location.interface';
+import { IPlace } from "./hotel.interface";
 
 export interface IOffer {
   city?: IPlace,
@@ -12,8 +13,3 @@ export interface IOffer {
   isMark?: boolean,
   location?: ILocation
 }
-
-export type IPlace = {
-  name: string,
-  location: ILocation
-};

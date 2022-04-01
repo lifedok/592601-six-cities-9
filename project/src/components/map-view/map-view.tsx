@@ -2,13 +2,13 @@ import { useEffect, useRef } from 'react';
 import { Icon, Marker } from 'leaflet';
 import { URL_MARKER_CURRENT, URL_MARKER_DEFAULT } from '../../mocks/map.data';
 import useMap from '../../hooks/useMap';
-import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import 'leaflet/dist/leaflet.css';
+import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
 
 type TMapView = {
   city: IPlace,
-  offers: IOffer[],
-  hoveredOffer: IOffer | undefined;
+  hotels: IHotel[],
+  hoveredOffer: IHotel | undefined;
 }
 
 const defaultCustomIcon = new Icon({
@@ -24,24 +24,24 @@ const currentCustomIcon = new Icon({
 });
 
 export default function MapView(props: TMapView): JSX.Element {
-  const {city, offers, hoveredOffer} = props;
+  const {city, hotels, hoveredOffer} = props;
   const mapRef = useRef(null);
   const map = useMap(mapRef, city.location);
 
   useEffect(() => {
     if (map) {
-      offers.forEach((offer: IOffer) => {
+      hotels.forEach((hotel: IHotel) => {
         const marker = new Marker({
-          lat: offer.location?.lat || 0,
-          lng: offer.location?.lng || 0,
+          lat: hotel.location?.latitude || 0,
+          lng: hotel.location?.longitude || 0,
         });
 
         marker
-          .setIcon(hoveredOffer !== undefined && offer.id + offer.name === hoveredOffer.id + hoveredOffer.name ? currentCustomIcon : defaultCustomIcon)
+          .setIcon(hoveredOffer !== undefined && hotel.id + hotel.city.name === hoveredOffer.id + hoveredOffer.city.name ? currentCustomIcon : defaultCustomIcon)
           .addTo(map);
       });
     }
-  }, [map, offers, hoveredOffer, city.location]);
+  }, [map, hotels, hoveredOffer, city.location]);
 
   return (
     <div style={{height: '100%'}} ref={mapRef}/>

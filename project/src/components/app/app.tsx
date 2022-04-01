@@ -8,14 +8,14 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import PrivateRoute from '../private-route/private.route';
 import PropertyPage from '../../pages/property-page/property-page';
 import withMap from '../../hocs/with-map';
-import { isCheckedAuth, useGetOffers } from '../../store/selector';
+import { isCheckedAuth, useGetHotels } from '../../store/selector';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { store } from '../../store';
 import { useAppSelector } from '../../hooks';
 
 export default function App(): JSX.Element {
-  const PropertyPageWrapped = withMap(PropertyPage, useGetOffers());
-  const MainPageWrapped = withMap(MainPage, useGetOffers());
+  const PropertyPageWrapped = withMap(PropertyPage, useGetHotels());
+  const MainPageWrapped = withMap(MainPage, useGetHotels());
 
 
   const isLogged = AuthorizationStatus.AUTH;
@@ -27,7 +27,7 @@ export default function App(): JSX.Element {
     );
   }
 
-  console.log('store', store.getState().offers);
+  console.log('hotels', store.getState().hotels);
 
   return (
     <BrowserRouter>

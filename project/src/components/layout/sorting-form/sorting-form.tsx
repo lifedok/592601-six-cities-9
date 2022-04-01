@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ESorting } from '../../../types/enums/sort-option-list.enum';
-import { sortOffers } from '../../../store/action';
+import { sortHotels } from '../../../store/action';
 import { useAppDispatch } from '../../../hooks';
 
 export default function SortingForm(): JSX.Element {
@@ -12,7 +12,7 @@ export default function SortingForm(): JSX.Element {
     event.preventDefault();
     setSelectSort(sortType);
     setOpen(false);
-    dispatch(sortOffers({type: sortType}));
+    dispatch(sortHotels({type: sortType}));
   };
 
   return (

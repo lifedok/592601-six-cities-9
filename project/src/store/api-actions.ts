@@ -1,18 +1,18 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from './index';
-import { loadOffers, requireAuthorization } from './action';
+import { loadHotels, requireAuthorization } from './action';
 import { ApiRoute, AuthorizationStatus } from '../types/enums/route.enum';
-import { IOfferByCity } from '../mocks/offers-by-location-city-mock.data';
 import { dropToken, saveToken } from '../services/token';
-import { AuthData } from "../types/auth-data";
-import { UserData } from "../types/user-data";
-import { errorHandle } from "../services/error-handle";
+import { AuthData } from '../types/auth-data';
+import { UserData } from '../types/user-data';
+import { errorHandle } from '../services/error-handle';
+import { IHotel } from '../types/interfaces/hotel.interface';
 
-export const fetchOffersAction = createAsyncThunk(
-  'data/fetchQuestions',
+export const fetchHotelsAction = createAsyncThunk(
+  'data/fetchHotels',
   async () => {
-    const {data} = await api.get<IOfferByCity[]>(ApiRoute.HOTELS);
-    store.dispatch(loadOffers(data));
+    const {data} = await api.get<IHotel[]>(ApiRoute.HOTELS);
+    store.dispatch(loadHotels(data));
   },
 );
 

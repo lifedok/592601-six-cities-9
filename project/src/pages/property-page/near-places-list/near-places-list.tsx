@@ -1,8 +1,8 @@
 import PlaceCard from '../../../components/layout/place-card/place-card';
-import { IOffer } from '../../../types/interfaces/offer.interface';
+import { IHotel } from '../../../types/interfaces/hotel.interface';
 
 type NearPlacesListProps = {
-  nearData: IOffer[];
+  nearData: IHotel[];
   onPlaceCardHover: (placeCardName: string) => void;
 }
 
@@ -15,7 +15,7 @@ export function NearPlacesList({nearData, onPlaceCardHover}: NearPlacesListProps
 
         <div className="near-places__list places__list">
           {
-            nearData.map((place) => <PlaceCard key={place.id} offer={place} onPlaceCardHover={onPlaceCardHover}/>)
+            nearData.map((place) => <PlaceCard key={place.id} hotel={place} onPlaceCardHover={onPlaceCardHover}/>)
           }
         </div>
       </section>

@@ -1,21 +1,21 @@
 import MapView from '../components/map-view/map-view';
-import { IOffer, IPlace } from '../types/interfaces/offer.interface';
 import { ComponentType, useState } from 'react';
+import { IHotel, IPlace } from '../types/interfaces/hotel.interface';
 
 type ComponentProps<T> = Omit<T, keyof HOCProps>;
 
 type HOCProps = {
-  renderMap: (location: IPlace, offers: IOffer[]) => void;
-  onPlaceCardHover: (selectedOffer: IOffer) => void
+  renderMap: (location: IPlace, hotels: IHotel[]) => void;
+  onPlaceCardHover: (selectedOffer: IHotel) => void
 };
 
-export default function withMap<T>(Component: ComponentType<T>, offers: IOffer[]): ComponentType<Omit<T, keyof HOCProps>> {
+export default function withMap<T>(Component: ComponentType<T>, hotels: IHotel[]): ComponentType<Omit<T, keyof HOCProps>> {
 
   function WithMap(props: ComponentProps<T>): JSX.Element {
-    const [selectedPoint, setSelectedPoint] = useState<IOffer | undefined>(undefined);
+    const [selectedPoint, setSelectedPoint] = useState<IHotel | undefined>(undefined);
 
     const onPlaceCardHover = (placeCardName: string) => {
-      const currentPoint = offers.find((point) => (point.id+point.name).toString() === placeCardName);
+      const currentPoint = hotels.find((hotel) => (hotel.id+hotel.city.name).toString() === placeCardName);
       setSelectedPoint(currentPoint);
     };
 
@@ -25,7 +25,7 @@ export default function withMap<T>(Component: ComponentType<T>, offers: IOffer[]
         onPlaceCardHover={onPlaceCardHover}
         renderMap={(location: IPlace) => (
           <MapView
-            offers={offers}
+            hotels={hotels}
             city={location}
             hoveredOffer={selectedPoint}
           />
