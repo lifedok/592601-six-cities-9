@@ -5,7 +5,6 @@ export function FavoritesCard(props: IHotel) {
   const {isFavorite, city, previewImage, price, rating, type} = props;
   return (
     <article className="favorites__card place-card">
-
       {
         isFavorite &&
         <div className="place-card__mark">

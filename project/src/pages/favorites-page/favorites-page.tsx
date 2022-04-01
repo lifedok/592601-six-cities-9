@@ -2,11 +2,16 @@ import Header from '../../components/layout/header/header';
 import Footer from '../../components/layout/footer/footer';
 import { FavoritesList } from './favorites-list/favorites-list';
 import { FavoritesEmpty } from './favorites-empty';
-import { listHotelMockData } from '../../mocks/list-hotel-mock.data';
+import { useGetHotels } from '../../store/selector';
+import { IHotel } from '../../types/interfaces/hotel.interface';
 
 export default function FavoritesPage(): JSX.Element {
+  const hotels = useGetHotels();
+  const favoriteList: IHotel[] = [];
+  hotels.filter((item) => item.isFavorite && favoriteList.push(item));
 
-  const isListFavorites = true;
+
+  const isListFavorites = !!favoriteList.length;
   return (
     <div className={`page ${!isListFavorites && 'page--favorites-empty'}`}>
       <Header/>
@@ -15,12 +20,12 @@ export default function FavoritesPage(): JSX.Element {
         <div className="page__favorites-container container">
 
           {
-            isListFavorites ? <FavoritesList list={listHotelMockData}/> : <FavoritesEmpty/>
+            isListFavorites ? <FavoritesList list={hotels}/> : <FavoritesEmpty/>
           }
 
         </div>
       </main>
-
+т
       <Footer/>
     </div>
   );

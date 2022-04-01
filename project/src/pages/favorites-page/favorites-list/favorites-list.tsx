@@ -1,7 +1,6 @@
 import React from 'react';
 import { FavoritesCard } from './favorites-card/favorites-card';
 import { IHotel } from '../../../types/interfaces/hotel.interface';
-import { listHotelMockData } from '../../../mocks/list-hotel-mock.data';
 
 
 type FavoritesListProps = {
@@ -28,7 +27,7 @@ export function FavoritesList({list}: FavoritesListProps): JSX.Element {
 
               <div className="favorites__places">
                 {
-                  listHotelMockData.map((hotel) => <FavoritesCard {...hotel} key={hotel.id}/>)
+                  list.map((hotel) => <FavoritesCard {...hotel} key={hotel.id}/>)
                 }
               </div>
             </li>

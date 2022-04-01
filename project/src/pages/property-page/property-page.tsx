@@ -10,7 +10,7 @@ import { reviewListData } from '../../mocks/reviews-mock.data';
 import { getRatingFromFloatToPercentages } from '../../helpers/hepler';
 import { useGetLocationCity, useGetHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
-import { listHotelMockData } from '../../mocks/list-hotel-mock.data';
+
 
 type PropertyPageProps = {
   renderMap: (location: IPlace, offers: IHotel[]) => React.ReactNode;
@@ -19,6 +19,7 @@ type PropertyPageProps = {
 
 export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
   const hotels = useGetHotels();
+  const nearPlaces = hotels.slice(0, 3);
   const locationCity = useGetLocationCity();
 
   const isLogged = true;
@@ -103,7 +104,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
           </section>
         </section>
 
-        <NearPlacesList nearData={listHotelMockData} onPlaceCardHover={onPlaceCardHover}/>
+        <NearPlacesList nearData={nearPlaces} onPlaceCardHover={onPlaceCardHover}/>
 
       </main>
     </div>
