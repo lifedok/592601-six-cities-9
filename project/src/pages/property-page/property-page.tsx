@@ -6,25 +6,26 @@ import { Reviews } from './reviews/reviews';
 import { MeetHostInfo } from './meet-host-info/meet-host-info';
 import { Facilities } from './facilities/facilities';
 import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
-import { nearPlacesMockData } from '../../mocks/near-places-mock.data';
-import { IOffer, IPlace } from '../../types/interfaces/offer.interface';
 import { reviewListData } from '../../mocks/reviews-mock.data';
-import { getRating } from '../../helpers/hepler';
-import { useGetLocationCity, useGetOffers } from '../../store/selector';
+import { getRatingFromFloatToPercentages } from '../../helpers/hepler';
+import { useGetLocationCity, useGetHotels } from '../../store/selector';
+import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
+
 
 type PropertyPageProps = {
-  renderMap: (location: IPlace, offers: IOffer[]) => React.ReactNode;
+  renderMap: (location: IPlace, offers: IHotel[]) => React.ReactNode;
   onPlaceCardHover: (selectedOffer: string) => void
 }
 
 export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
-  const offers = useGetOffers();
+  const hotels = useGetHotels();
+  const nearPlaces = hotels.slice(0, 3);
   const locationCity = useGetLocationCity();
 
   const isLogged = true;
   const params = useParams();
-  const selectedOffer = offers.filter((offer) => (offer.id.toString() === params.id))[0];
-  const {isMark, name, price, priceText, rating, type} = selectedOffer;
+  const selectedHotel = hotels.filter((offer) => (offer.id.toString() === params.id))[0];
+  const {isPremium, city, price, bedrooms, rating, maxAdults, images, type} = selectedHotel;
 
   const { pathname } = useLocation();
   useEffect(() => {
@@ -42,31 +43,15 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/room.jpg" alt="room"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="apartment 01"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-02.jpg" alt="apartment 02"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-03.jpg" alt="apartment 03"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/studio-01.jpg" alt="apartment 01"/>
-              </div>
-              <div className="property__image-wrapper">
-                <img className="property__image" src="img/apartment-01.jpg" alt="apartment 01"/>
-              </div>
+              {
+                images.map((image) => <div className="property__image-wrapper" key={image}><img className="property__image" src={image} alt="room"/></div>)
+              }
             </div>
           </div>
           <div className="property__container container">
             <div className="property__wrapper">
-
               {
-                isMark &&
+                isPremium &&
                 <div className="property__mark">
                   <span>Premium</span>
                 </div>
@@ -74,7 +59,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
 
               <div className="property__name-wrapper">
                 <h1 className="property__name">
-                  {name}
+                  {city.name}
                 </h1>
                 <button className="property__bookmark-button button" type="button">
                   <svg className="property__bookmark-icon" width="31" height="33">
@@ -85,25 +70,25 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${rating.toString()}%`}}/>
+                  <span style={{width: `${getRatingFromFloatToPercentages(rating).toString()}%`}}/>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{getRating(rating)}</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
                   {type}
                 </li>
                 <li className="property__feature property__feature--bedrooms">
-                  3 Bedrooms
+                  {bedrooms} Bedroom{bedrooms === 0 ? '' : 's'}
                 </li>
                 <li className="property__feature property__feature--adults">
-                  Max 4 adults
+                  {maxAdults} 4 adult{maxAdults === 0 ? '' : 's'}
                 </li>
               </ul>
               <div className="property__price">
                 <b className="property__price-value">&euro;{price}</b>
-                <span className="property__price-text">&nbsp;{priceText}</span>
+                <span className="property__price-text">&nbsp;night</span>
               </div>
 
               <Facilities/>
@@ -115,11 +100,11 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
             </div>
           </div>
           <section className="property__map map">
-            {renderMap(locationCity, offers)}
+            {renderMap(locationCity, hotels)}
           </section>
         </section>
 
-        <NearPlacesList nearData={nearPlacesMockData} onPlaceCardHover={onPlaceCardHover}/>
+        <NearPlacesList nearData={nearPlaces} onPlaceCardHover={onPlaceCardHover}/>
 
       </main>
     </div>

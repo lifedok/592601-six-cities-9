@@ -1,14 +1,12 @@
-import { IFavoriteCard } from '../../../../types/interfaces/favorites.interface';
+import { IHotel } from '../../../../types/interfaces/hotel.interface';
 
 
-export function FavoritesCard(props: IFavoriteCard) {
-
-  const {isMark, name, previewImage, price, priceText, rating, type} = props;
+export function FavoritesCard(props: IHotel) {
+  const {isFavorite, city, previewImage, price, rating, type} = props;
   return (
     <article className="favorites__card place-card">
-
       {
-        isMark &&
+        isFavorite &&
         <div className="place-card__mark">
           <span>Premium</span>
         </div>
@@ -29,7 +27,7 @@ export function FavoritesCard(props: IFavoriteCard) {
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
-            <span className="place-card__price-text">&#47;&nbsp;{priceText}</span>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button place-card__bookmark-button--active button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -45,7 +43,7 @@ export function FavoritesCard(props: IFavoriteCard) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="place">{name}</a>
+          <a href="place">{city.name}</a>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

@@ -1,7 +1,15 @@
 import { useAppSelector } from '../hooks';
-import { IOffersByLocationCity } from '../mocks/offers-by-location-city-mock.data';
+import { AuthorizationStatus } from '../types/enums/route.enum';
+import { IHotel } from '../types/interfaces/hotel.interface';
 
-export const useGetOffers = () => useAppSelector((state) => state.offers);
-export const useGetLocationCity = () => useAppSelector((state) => state.locationCity);
+export const useGetHotels = () => useAppSelector((state) => state.hotels);
+export const useGetSelectedHotels = () => useAppSelector((state) => state.selectedHotels);
+export const useGetLocationCity = () => useAppSelector((state) => state.city);
 
-export const getCityList = (data: IOffersByLocationCity[]) => data.map(({city}) => city);
+export const getCityList = (data: IHotel[]) => removeDuplicates(data).map(({city}) => city);
+function removeDuplicates(array: IHotel[]) {
+  const uniq: any = {};
+  return array.filter((obj) => !uniq[obj.city.name] && (uniq[obj.city.name] = true));
+}
+
+export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean => authorizationStatus === AuthorizationStatus.UNKNOWN;
