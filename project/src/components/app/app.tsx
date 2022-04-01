@@ -8,8 +8,10 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import PrivateRoute from '../private-route/private.route';
 import PropertyPage from '../../pages/property-page/property-page';
 import withMap from '../../hocs/with-map';
-import { useGetOffers } from '../../store/selector';
-import LoadingScreen from "../loading-screen/loading-screen";
+import { isCheckedAuth, useGetOffers } from '../../store/selector';
+import LoadingScreen from '../loading-screen/loading-screen';
+import { store } from '../../store';
+import { useAppSelector } from '../../hooks';
 
 export default function App(): JSX.Element {
   const PropertyPageWrapped = withMap(PropertyPage, useGetOffers());
@@ -18,12 +20,14 @@ export default function App(): JSX.Element {
 
   const isLogged = AuthorizationStatus.AUTH;
 
+  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+    return (
+      <LoadingScreen />
+    );
+  }
 
-  // if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
-  //   return (
-  //     <LoadingScreen />
-  //   );
-  // }
+  console.log('store', store.getState().offers);
 
   return (
     <BrowserRouter>
