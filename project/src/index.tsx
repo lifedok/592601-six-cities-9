@@ -7,6 +7,7 @@ import { store } from './store';
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
+      <ToastContainer />
       <App/>
     </Provider>
   </React.StrictMode>,
