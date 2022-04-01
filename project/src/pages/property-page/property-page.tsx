@@ -7,7 +7,7 @@ import { MeetHostInfo } from './meet-host-info/meet-host-info';
 import { Facilities } from './facilities/facilities';
 import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
 import { reviewListData } from '../../mocks/reviews-mock.data';
-import { getRatingFromFloatToPercentages, getRatingFromPercentagesToStart } from '../../helpers/hepler';
+import { getRatingFromFloatToPercentages } from '../../helpers/hepler';
 import { useGetLocationCity, useGetHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
 import { listHotelMockData } from '../../mocks/list-hotel-mock.data';
@@ -43,11 +43,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
           <div className="property__gallery-container container">
             <div className="property__gallery">
               {
-                images.map((image) =>
-                  <div className="property__image-wrapper" key={image}>
-                    <img className="property__image" src={image} alt="room"/>
-                  </div>
-                )
+                images.map((image) => <div className="property__image-wrapper" key={image}><img className="property__image" src={image} alt="room"/></div>)
               }
             </div>
           </div>

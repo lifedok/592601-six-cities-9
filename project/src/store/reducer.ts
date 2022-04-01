@@ -23,13 +23,13 @@ const initialState: IInitialState = {
     location: {
       latitude: 0,
       longitude: 0,
-      zoom: 0
-    }
+      zoom: 0,
+    },
   },
   hotels: [],
   selectedHotels: [],
   authorizationStatus: AuthorizationStatus.UNKNOWN,
-  isDataLoaded: false
+  isDataLoaded: false,
 };
 
 const reducer = createReducer(initialState, (builder) => {

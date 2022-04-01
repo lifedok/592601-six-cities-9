@@ -1,6 +1,6 @@
 import React from 'react';
 import PlaceCard from '../place-card/place-card';
-import { IHotel } from "../../../types/interfaces/hotel.interface";
+import { IHotel } from '../../../types/interfaces/hotel.interface';
 
 
 type PlacesListProps = {

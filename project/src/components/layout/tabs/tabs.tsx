@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { IPlace } from "../../../types/interfaces/hotel.interface";
+import { IPlace } from '../../../types/interfaces/hotel.interface';
 
 type TabsProps = {
   placeList: IPlace[],
