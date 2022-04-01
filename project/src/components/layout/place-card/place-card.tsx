@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ERoute } from '../../../types/enums/route.enum';
 import { IHotel } from '../../../types/interfaces/hotel.interface';
+import { getRatingFromFloatToPercentages } from '../../../helpers/hepler';
 
 type PlaceCardProps = {
   hotel: IHotel;
@@ -41,7 +42,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
         <div className="place-card__price-wrapper">
           <div className="place-card__price">
             <b className="place-card__price-value">&euro;{price}</b>
-            <span className="place-card__price-text">&#47;&nbsp;{type}</span>
+            <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
           <button className="place-card__bookmark-button button" type="button">
             <svg className="place-card__bookmark-icon" width="18" height="19">
@@ -52,7 +53,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">
-            <span style={{width: `${rating.toString()}%`}}/>
+            <span style={{width: `${getRatingFromFloatToPercentages(rating).toString()}%`}}/>
             <span className="visually-hidden">Rating</span>
           </div>
         </div>

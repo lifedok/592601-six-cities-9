@@ -12,8 +12,8 @@ import {
 } from '../../store/action';
 import { useAppDispatch } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
-import { getCityList, useGetLocationCity, useGetHotels } from '../../store/selector';
-import { IHotel, IPlace } from "../../types/interfaces/hotel.interface";
+import { getCityList, useGetLocationCity, useGetHotels, useGetSelectedHotels } from '../../store/selector';
+import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
 
 type MainPageProps = {
   renderMap: (location: IPlace, hotels: IHotel[]) => React.ReactNode;
@@ -22,6 +22,7 @@ type MainPageProps = {
 
 export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): JSX.Element {
   const hotels = useGetHotels();
+  const selectedHotels = useGetSelectedHotels();
   const locationCity = useGetLocationCity();
 
   const navigate = useNavigate();
@@ -56,7 +57,7 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
 
                   <SortingForm />
 
-                  <PlacesList list={hotels} onPlaceCardHover={onPlaceCardHover}/>
+                  <PlacesList list={selectedHotels} onPlaceCardHover={onPlaceCardHover}/>
 
                 </section>
 

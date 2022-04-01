@@ -7,7 +7,7 @@ import { MeetHostInfo } from './meet-host-info/meet-host-info';
 import { Facilities } from './facilities/facilities';
 import { meetHostInfoMockData } from '../../mocks/meet-host-info-mock.data';
 import { reviewListData } from '../../mocks/reviews-mock.data';
-import { getRating } from '../../helpers/hepler';
+import { getRatingFromFloatToPercentages, getRatingFromPercentagesToStart } from '../../helpers/hepler';
 import { useGetLocationCity, useGetHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
 import { listHotelMockData } from '../../mocks/list-hotel-mock.data';
@@ -73,10 +73,10 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
               </div>
               <div className="property__rating rating">
                 <div className="property__stars rating__stars">
-                  <span style={{width: `${rating.toString()}%`}}/>
+                  <span style={{width: `${getRatingFromFloatToPercentages(rating).toString()}%`}}/>
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">{getRating(rating)}</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
@@ -91,7 +91,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
               </ul>
               <div className="property__price">
                 <b className="property__price-value">&euro;{price}</b>
-                <span className="property__price-text">&nbsp;{type}</span>
+                <span className="property__price-text">&nbsp;night</span>
               </div>
 
               <Facilities/>

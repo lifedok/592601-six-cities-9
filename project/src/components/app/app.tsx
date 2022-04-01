@@ -10,7 +10,6 @@ import PropertyPage from '../../pages/property-page/property-page';
 import withMap from '../../hocs/with-map';
 import { isCheckedAuth, useGetHotels } from '../../store/selector';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { store } from '../../store';
 import { useAppSelector } from '../../hooks';
 
 export default function App(): JSX.Element {
@@ -26,8 +25,6 @@ export default function App(): JSX.Element {
       <LoadingScreen />
     );
   }
-
-  console.log('hotels', store.getState().hotels);
 
   return (
     <BrowserRouter>
