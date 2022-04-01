@@ -6,7 +6,6 @@ import {
 } from './action';
 import {
   IOfferByCity,
-  IOffersByLocationCity,
   offersByLocationCityMockData
 } from '../mocks/offers-by-location-city-mock.data';
 import { getCityList } from './selector';
