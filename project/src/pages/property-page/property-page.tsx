@@ -39,7 +39,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
     <div className="page">
 
       {
-        <Header isLogged={isLogged}/>
+        <Header/>
       }
 
       <main className="page__main page__main--property">

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { ERoute } from '../../types/enums/route.enum';
 import { FormEvent, useRef } from 'react';
 import { useAppDispatch } from '../../hooks';
@@ -8,9 +8,7 @@ import { loginAction } from '../../store/api-actions';
 export default function LoginPage(): JSX.Element {
   const loginRef = useRef<HTMLInputElement | null>(null);
   const passwordRef = useRef<HTMLInputElement | null>(null);
-
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
 
   const onSubmit = (authData: AuthData) => {
     dispatch(loginAction(authData));

@@ -1,11 +1,21 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ERoute } from '../../../types/enums/route.enum';
+import { AuthorizationStatus, ERoute } from '../../../types/enums/route.enum';
+import { getLoginUserName } from '../../../services/login-user-name';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { logoutAction } from '../../../store/api-actions';
 
-type HeaderProps = {
-  isLogged?: boolean;
-}
+export default function Header(): JSX.Element {
+  const {authorizationStatus} = useAppSelector((state) => state);
+  const isLogged = authorizationStatus === AuthorizationStatus.AUTH;
+  const dispatch = useAppDispatch();
+  const loginUserName = getLoginUserName();
 
-export default function Header({isLogged = true}: HeaderProps): JSX.Element {
+  const signOutHandler = (event: React.MouseEvent<HTMLElement>) => {
+    event.preventDefault();
+    dispatch(logoutAction());
+  };
+
   return (
     <header className="header">
       <div className="container">
@@ -30,24 +40,24 @@ export default function Header({isLogged = true}: HeaderProps): JSX.Element {
                       <li className="header__nav-item user">
                         <a className="header__nav-link header__nav-link--profile" href='profile'>
                           <div className="header__avatar-wrapper user__avatar-wrapper"/>
-                          <span className="header__user-name user__name">Olivers.conner@gmail.com</span>
+                          <span className="header__user-name user__name">{loginUserName}</span>
                         </a>
                       </li>
                       <li className="header__nav-item">
-                        <Link className="header__nav-link" to={ERoute.LOGIN}>
+                        <div className="header__nav-link" onClick={(ev) => signOutHandler(ev)}>
                           <span className="header__signout">Sign out</span>
-                        </Link>
+                        </div>
                       </li>
                     </>
                   )
                   :
                   (
                     <li className="header__nav-item user">
-                      <a className="header__nav-link header__nav-link--profile" href='profile'>
+                      <Link className="header__nav-link header__nav-link--profile" to={ERoute.LOGIN}>
                         <div className="header__avatar-wrapper user__avatar-wrapper">
                         </div>
                         <span className="header__login">Sign in</span>
-                      </a>
+                      </Link>
                     </li>
                   )
               }
