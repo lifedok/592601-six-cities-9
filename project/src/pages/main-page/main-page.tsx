@@ -10,7 +10,7 @@ import {
   changeLocationCity,
   changeHotelsByLocationCity
 } from '../../store/action';
-import { useAppDispatch } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
 import { getCityList, useGetLocationCity, useGetHotels, useGetSelectedHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
@@ -35,7 +35,11 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
     navigate(`${ERoute.LOCATION}/${city}`);
   };
 
-  const isCardPlace = true;
+
+  const {isDataLoaded} = useAppSelector((state) => state);
+
+  const isCardPlace = isDataLoaded;
+  console.log('isDataLoaded', isDataLoaded);
   return (
     <div className="page page--gray page--main">
       <Header/>

@@ -10,6 +10,8 @@ import { reviewListData } from '../../mocks/reviews-mock.data';
 import { getRatingFromFloatToPercentages } from '../../helpers/hepler';
 import { useGetLocationCity, useGetHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
+import { useAppSelector } from "../../hooks";
+import { AuthorizationStatus } from '../../types/enums/route.enum';
 
 
 type PropertyPageProps = {
@@ -21,8 +23,9 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
   const hotels = useGetHotels();
   const nearPlaces = hotels.slice(0, 3);
   const locationCity = useGetLocationCity();
+  const { authorizationStatus } = useAppSelector((state) => state);
 
-  const isLogged = true;
+  const isLogged = authorizationStatus === AuthorizationStatus.AUTH;
   const params = useParams();
   const selectedHotel = hotels.filter((offer) => (offer.id.toString() === params.id))[0];
   const {isPremium, city, price, bedrooms, rating, maxAdults, images, type} = selectedHotel;
