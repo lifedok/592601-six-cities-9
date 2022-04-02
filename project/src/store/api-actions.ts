@@ -1,6 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from './index';
-import { loadHotels, redirectToRoute, requireAuthorization } from './action';
+import {
+  changeHotelsByLocationCity, changeLocationByLocationCity,
+  changeLocationCity,
+  loadHotels,
+  redirectToRoute,
+  requireAuthorization
+} from './action';
 import { ApiRoute, AuthorizationStatus, ERoute } from '../types/enums/route.enum';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData } from '../types/auth-data';
@@ -14,6 +20,10 @@ export const fetchHotelsAction = createAsyncThunk(
   async () => {
     const {data} = await api.get<IHotel[]>(ApiRoute.HOTELS);
     store.dispatch(loadHotels(data));
+    const defaultChangedCity = 'Amsterdam';
+    store.dispatch(changeLocationCity({changedCity: defaultChangedCity}));
+    store.dispatch(changeLocationByLocationCity({selectedLocationCity: defaultChangedCity}));
+    store.dispatch(changeHotelsByLocationCity({selectedLocationCity: defaultChangedCity}));
   },
 );
 
