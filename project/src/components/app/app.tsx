@@ -11,8 +11,8 @@ import withMap from '../../hocs/with-map';
 import { isCheckedAuth, useGetHotels } from '../../store/selector';
 import LoadingScreen from '../loading-screen/loading-screen';
 import { useAppSelector } from '../../hooks';
-import browserHistory from "../../browser-history";
-import HistoryRouter from "../history-route/history-route";
+import browserHistory from '../../browser-history';
+import HistoryRouter from '../history-route/history-route';
 
 export default function App(): JSX.Element {
   const PropertyPageWrapped = withMap(PropertyPage, useGetHotels());

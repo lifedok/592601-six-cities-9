@@ -10,7 +10,7 @@ import { reviewListData } from '../../mocks/reviews-mock.data';
 import { getRatingFromFloatToPercentages } from '../../helpers/hepler';
 import { useGetLocationCity, useGetHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
-import { useAppSelector } from "../../hooks";
+import { useAppSelector } from '../../hooks';
 import { AuthorizationStatus } from '../../types/enums/route.enum';
 
 
