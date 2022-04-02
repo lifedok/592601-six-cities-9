@@ -2,17 +2,28 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   changeLocationByLocationCity,
   changeLocationCity,
-  changeHotelsByLocationCity, loadHotels, requireAuthorization, sortHotels
+  changeHotelsByLocationCity,
+  loadHotels,
+  requireAuthorization,
+  sortHotels,
+  loadFavoriteHotels,
+  loadCommentsHotel,
+  loadNearbyHotels, loadOfferHotel
 } from './action';
 import { getCityList } from './selector';
 import { getSortingHotels } from './get-sorting-hotels';
 import { AuthorizationStatus } from '../types/enums/route.enum';
 import { IHotel, IPlace } from '../types/interfaces/hotel.interface';
+import { IComment } from "../types/interfaces/comments.interface";
 
 type IInitialState = {
   city: IPlace,
   hotels: IHotel[],
-  selectedHotels: IHotel[],
+  selectedTabHotels: IHotel[],
+  selectedOfferHotel: any,
+  favoriteHotels: IHotel[],
+  nearbyHotels: IHotel[],
+  comments: IComment[],
   authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 }
@@ -27,7 +38,11 @@ const initialState: IInitialState = {
     },
   },
   hotels: [],
-  selectedHotels: [],
+  selectedTabHotels: [],
+  selectedOfferHotel: null,
+  favoriteHotels: [],
+  nearbyHotels: [],
+  comments: [],
   authorizationStatus: AuthorizationStatus.UNKNOWN,
   isDataLoaded: false,
 };
@@ -46,7 +61,7 @@ export const reducer = createReducer(initialState, (builder) => {
     })
     .addCase(changeHotelsByLocationCity, (state, action) => {
       const {selectedLocationCity} = action.payload;
-      state.selectedHotels = state.hotels.filter((item) => item.city.name === selectedLocationCity);
+      state.selectedTabHotels = state.hotels.filter((item) => item.city.name === selectedLocationCity);
     })
     .addCase(sortHotels, (state, action) => {
       const {type} = action.payload;
@@ -55,6 +70,18 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadHotels, (state, action) => {
       state.hotels = action.payload;
       state.isDataLoaded = true;
+    })
+    .addCase(loadOfferHotel, (state, action) => {
+      state.selectedOfferHotel = action.payload;
+    })
+    .addCase(loadFavoriteHotels, (state, action) => {
+      state.favoriteHotels = action.payload;
+    })
+    .addCase(loadCommentsHotel, (state, action) => {
+      state.comments = action.payload;
+    })
+    .addCase(loadNearbyHotels, (state, action) => {
+      state.nearbyHotels = action.payload;
     })
     .addCase(requireAuthorization, (state, action) => {
       state.authorizationStatus = action.payload;

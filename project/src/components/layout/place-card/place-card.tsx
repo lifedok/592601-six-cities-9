@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom';
 import { ERoute } from '../../../types/enums/route.enum';
 import { IHotel } from '../../../types/interfaces/hotel.interface';
 import { getRatingFromFloatToPercentages } from '../../../helpers/hepler';
+import { useAppDispatch } from "../../../hooks";
+import { fetchCommentsAction, fetchNearbyHotelsAction, fetchOfferHotelAction } from "../../../store/api-actions";
+import { store } from "../../../store";
+import { redirectToRoute } from "../../../store/action";
 
 type PlaceCardProps = {
   hotel: IHotel;
@@ -17,8 +21,22 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
     onPlaceCardHover && onPlaceCardHover(key.toString());
   };
 
+
+  const dispatch = useAppDispatch();
+  const placeCardClickHandler = (ev: React.BaseSyntheticEvent, id: number) => {
+    ev.preventDefault();
+    dispatch(fetchCommentsAction({hotelId: id}));
+    dispatch(fetchNearbyHotelsAction({hotelId: id}));
+    dispatch(fetchOfferHotelAction({hotelId: id}));
+    store.dispatch(redirectToRoute(`${ERoute.ROOM}/${id}`));
+  };
+
   return (
-    <article className="cities__place-card place-card" onMouseEnter={(ev) => placeCardHoverHandler(ev, id+city.name)}>
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={(ev) => placeCardHoverHandler(ev, id+city.name)}
+      onClick={(ev) => placeCardClickHandler(ev, id)}
+    >
 
       {
         isPremium &&
@@ -28,7 +46,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
       }
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${ERoute.ROOM}/${id}`}>
+        <div>
           <img
             className="place-card__image"
             src={previewImage}
@@ -36,7 +54,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
             height="200"
             alt={previewImage}
           />
-        </Link>
+        </div>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">

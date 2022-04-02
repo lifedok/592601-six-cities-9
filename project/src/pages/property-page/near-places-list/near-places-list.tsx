@@ -15,7 +15,7 @@ export function NearPlacesList({nearData, onPlaceCardHover}: NearPlacesListProps
 
         <div className="near-places__list places__list">
           {
-            nearData.map((place) => <PlaceCard key={place.id} hotel={place} onPlaceCardHover={onPlaceCardHover}/>)
+            nearData?.map((place) => <PlaceCard key={place.id} hotel={place} onPlaceCardHover={onPlaceCardHover}/>)
           }
         </div>
       </section>

@@ -23,10 +23,15 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
   const hotels = useGetHotels();
   const nearPlaces = hotels.slice(0, 3);
   const locationCity = useGetLocationCity();
-  const { authorizationStatus } = useAppSelector((state) => state);
+  const { authorizationStatus, comments, selectedOfferHotel, nearbyHotels } = useAppSelector((state) => state);
 
   const isLogged = authorizationStatus === AuthorizationStatus.AUTH;
   const params = useParams();
+
+
+  // const selectedOfferHotel: IHotel = useAppSelector((state) => state.selectedOfferHotel);
+
+  console.log('selectedOfferHotel', selectedOfferHotel);
   const selectedHotel = hotels.filter((offer) => (offer.id.toString() === params.id))[0];
   const {isPremium, city, price, bedrooms, rating, maxAdults, images, type} = selectedHotel;
 
@@ -34,6 +39,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
 
   return (
     <div className="page">
@@ -47,7 +53,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
           <div className="property__gallery-container container">
             <div className="property__gallery">
               {
-                images.map((image) => <div className="property__image-wrapper" key={image}><img className="property__image" src={image} alt="room"/></div>)
+                selectedOfferHotel?.images.map((image: string) => <div className="property__image-wrapper" key={image}><img className="property__image" src={image} alt="room"/></div>)
               }
             </div>
           </div>
@@ -98,7 +104,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
 
               <MeetHostInfo {...meetHostInfoMockData}/>
 
-              <Reviews isLogged={isLogged} reviewList={reviewListData} onPlaceCardHover={onPlaceCardHover}/>
+              <Reviews isLogged={isLogged} reviewList={comments} onPlaceCardHover={onPlaceCardHover}/>
 
             </div>
           </div>
@@ -107,7 +113,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
           </section>
         </section>
 
-        <NearPlacesList nearData={nearPlaces} onPlaceCardHover={onPlaceCardHover}/>
+        <NearPlacesList nearData={nearbyHotels} onPlaceCardHover={onPlaceCardHover}/>
 
       </main>
     </div>

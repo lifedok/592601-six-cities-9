@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from './index';
 import {
   changeHotelsByLocationCity, changeLocationByLocationCity,
-  changeLocationCity,
-  loadHotels,
+  changeLocationCity, loadCommentsHotel, loadFavoriteHotels,
+  loadHotels, loadNearbyHotels, loadOfferHotel,
   redirectToRoute,
   requireAuthorization
 } from './action';
@@ -24,6 +24,55 @@ export const fetchHotelsAction = createAsyncThunk(
     store.dispatch(changeLocationCity({changedCity: defaultChangedCity}));
     store.dispatch(changeLocationByLocationCity({selectedLocationCity: defaultChangedCity}));
     store.dispatch(changeHotelsByLocationCity({selectedLocationCity: defaultChangedCity}));
+  },
+);
+
+export const fetchOfferHotelAction = createAsyncThunk(
+  'data/fetchOfferHotel',
+  async ({hotelId: id}: {hotelId: number}) => {
+    try {
+      const {data} = await api.get(`${ApiRoute.HOTELS}/${id}`) ;
+      console.log('loadOfferHotel', data);
+      store.dispatch(loadOfferHotel(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchCommentsAction = createAsyncThunk(
+  'data/fetchInfoSelectedHotel',
+  async ({hotelId: id}: {hotelId: number}) => {
+    try {
+      const {data} = await api.get(`${ApiRoute.COMMENTS}/${id}`);
+      console.log('COMMENTS', data);
+
+      store.dispatch(loadCommentsHotel(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchNearbyHotelsAction = createAsyncThunk(
+  'data/fetchNearbyHotels',
+  async ({hotelId: id}: {hotelId: number}) => {
+    try {
+      const {data} = await api.get(`${ApiRoute.HOTELS}/${id}/nearby`) ;
+      console.log('loadNearbyHotels', data);
+      store.dispatch(loadNearbyHotels(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchFavoriteHotelsAction = createAsyncThunk(
+  'data/fetchFavoriteHotelsAction',
+  async () => {
+    const {data} = await api.get<IHotel[]>(ApiRoute.FAVORITES);
+    store.dispatch(loadFavoriteHotels(data));
+    store.dispatch(redirectToRoute(ERoute.FAVORITES));
   },
 );
 
