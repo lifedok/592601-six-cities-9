@@ -3,7 +3,7 @@ import { api, store } from './index';
 import {
   changeHotelsByLocationCity, changeLocationByLocationCity,
   changeLocationCity, loadCommentsHotel, loadFavoriteHotels,
-  loadHotels, loadNearbyHotels, loadOfferHotel,
+  loadHotels, loadNearbyHotels,
   redirectToRoute,
   requireAuthorization
 } from './action';
@@ -24,21 +24,6 @@ export const fetchHotelsAction = createAsyncThunk(
     store.dispatch(changeLocationCity({changedCity: defaultChangedCity}));
     store.dispatch(changeLocationByLocationCity({selectedLocationCity: defaultChangedCity}));
     store.dispatch(changeHotelsByLocationCity({selectedLocationCity: defaultChangedCity}));
-  },
-);
-
-export const fetchOfferHotelAction = createAsyncThunk(
-  'data/fetchOfferHotel',
-  async ({hotelId: id}: {hotelId: number}) => {
-    try {
-      const {data} = await api.get(`${ApiRoute.HOTELS}/${id}`) ;
-      store.dispatch(loadOfferHotel(data));
-      store.dispatch(fetchCommentsAction({hotelId: id}));
-      store.dispatch(fetchNearbyHotelsAction({hotelId: id}));
-      store.dispatch(redirectToRoute(`${ERoute.ROOM}/${id}`));
-    } catch (error) {
-      errorHandle(error);
-    }
   },
 );
 

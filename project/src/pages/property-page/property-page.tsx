@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/layout/header/header';
 import { NearPlacesList } from './near-places-list/near-places-list';
 import React, { useEffect } from 'react';
@@ -20,7 +20,10 @@ type PropertyPageProps = {
 export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
   const hotels = useGetHotels();
   const {authorizationStatus, comments, selectedOfferHotel, nearbyHotels} = useAppSelector((state) => state);
-  const {isPremium, city, price, bedrooms, rating, maxAdults, images, type, host, description, goods} = selectedOfferHotel;
+
+  const params = useParams();
+  const selectedHotel = hotels.filter((offer) => (offer.id.toString() === params.id))[0];
+  const {isPremium, city, price, bedrooms, rating, maxAdults, images, type, host, description, goods} = selectedHotel;
 
   const {pathname} = useLocation();
   useEffect(() => {

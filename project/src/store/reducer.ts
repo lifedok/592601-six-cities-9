@@ -8,7 +8,7 @@ import {
   sortHotels,
   loadFavoriteHotels,
   loadCommentsHotel,
-  loadNearbyHotels, loadOfferHotel
+  loadNearbyHotels
 } from './action';
 import { getCityList } from './selector';
 import { getSortingHotels } from './get-sorting-hotels';
@@ -70,9 +70,6 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(loadHotels, (state, action) => {
       state.hotels = action.payload;
       state.isDataLoaded = true;
-    })
-    .addCase(loadOfferHotel, (state, action) => {
-      state.selectedOfferHotel = action.payload;
     })
     .addCase(loadFavoriteHotels, (state, action) => {
       state.favoriteHotels = action.payload;
