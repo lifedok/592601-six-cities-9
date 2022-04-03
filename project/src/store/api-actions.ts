@@ -32,8 +32,10 @@ export const fetchOfferHotelAction = createAsyncThunk(
   async ({hotelId: id}: {hotelId: number}) => {
     try {
       const {data} = await api.get(`${ApiRoute.HOTELS}/${id}`) ;
-      console.log('loadOfferHotel', data);
       store.dispatch(loadOfferHotel(data));
+      store.dispatch(fetchCommentsAction({hotelId: id}));
+      store.dispatch(fetchNearbyHotelsAction({hotelId: id}));
+      store.dispatch(redirectToRoute(`${ERoute.ROOM}/${id}`));
     } catch (error) {
       errorHandle(error);
     }
@@ -45,8 +47,6 @@ export const fetchCommentsAction = createAsyncThunk(
   async ({hotelId: id}: {hotelId: number}) => {
     try {
       const {data} = await api.get(`${ApiRoute.COMMENTS}/${id}`);
-      console.log('COMMENTS', data);
-
       store.dispatch(loadCommentsHotel(data));
     } catch (error) {
       errorHandle(error);
@@ -59,7 +59,6 @@ export const fetchNearbyHotelsAction = createAsyncThunk(
   async ({hotelId: id}: {hotelId: number}) => {
     try {
       const {data} = await api.get(`${ApiRoute.HOTELS}/${id}/nearby`) ;
-      console.log('loadNearbyHotels', data);
       store.dispatch(loadNearbyHotels(data));
     } catch (error) {
       errorHandle(error);

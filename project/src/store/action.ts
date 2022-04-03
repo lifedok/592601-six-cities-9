@@ -1,14 +1,13 @@
 import {createAction} from '@reduxjs/toolkit';
 import { AuthorizationStatus } from '../types/enums/route.enum';
 import { IHotel } from '../types/interfaces/hotel.interface';
-import { IComment } from "../types/interfaces/comments.interface";
+import { IComment } from '../types/interfaces/comments.interface';
 
 export const loadHotels = createAction<IHotel[]>('data/loadHotels');
 export const loadOfferHotel = createAction<IHotel[]>('data/loadOfferHotel');
 export const loadFavoriteHotels = createAction<IHotel[]>('data/fetchFavoriteHotels');
 export const loadCommentsHotel = createAction<IComment[]>('data/fetchCommentsHotel');
 export const loadNearbyHotels = createAction<IHotel[]>('data/loadNearbyHotels');
-export const loadInfoSelectedHotel = createAction<IHotel[]>('data/fetchInfoSelectedHotel');
 
 
 export const requireAuthorization = createAction<AuthorizationStatus>('user/requireAuthorization');

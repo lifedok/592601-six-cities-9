@@ -1,7 +1,7 @@
 import React from 'react';
 import ReviewsForm from '../reviews-form/reviews-form';
-import { IComment } from "../../../types/interfaces/comments.interface";
-import { getRatingFromFloatToPercentages } from "../../../helpers/hepler";
+import { IComment } from '../../../types/interfaces/comments.interface';
+import { getRatingFromFloatToPercentages } from '../../../helpers/hepler';
 
 export interface ReviewsProps {
   isLogged: boolean,

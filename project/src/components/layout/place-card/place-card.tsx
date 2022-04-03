@@ -1,11 +1,7 @@
-import { Link } from 'react-router-dom';
-import { ERoute } from '../../../types/enums/route.enum';
 import { IHotel } from '../../../types/interfaces/hotel.interface';
 import { getRatingFromFloatToPercentages } from '../../../helpers/hepler';
-import { useAppDispatch } from "../../../hooks";
-import { fetchCommentsAction, fetchNearbyHotelsAction, fetchOfferHotelAction } from "../../../store/api-actions";
-import { store } from "../../../store";
-import { redirectToRoute } from "../../../store/action";
+import { useAppDispatch } from '../../../hooks';
+import { fetchOfferHotelAction } from '../../../store/api-actions';
 
 type PlaceCardProps = {
   hotel: IHotel;
@@ -23,12 +19,9 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
 
 
   const dispatch = useAppDispatch();
-  const placeCardClickHandler = (ev: React.BaseSyntheticEvent, id: number) => {
+  const placeCardClickHandler = (ev: React.BaseSyntheticEvent, hotelId: number) => {
     ev.preventDefault();
-    dispatch(fetchCommentsAction({hotelId: id}));
-    dispatch(fetchNearbyHotelsAction({hotelId: id}));
-    dispatch(fetchOfferHotelAction({hotelId: id}));
-    store.dispatch(redirectToRoute(`${ERoute.ROOM}/${id}`));
+    dispatch(fetchOfferHotelAction({hotelId: hotelId}));
   };
 
   return (
@@ -76,7 +69,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${ERoute.ROOM}/${id}`}>{city.name}</Link>
+          <div>{city.name}</div>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

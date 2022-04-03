@@ -14,7 +14,7 @@ import { getCityList } from './selector';
 import { getSortingHotels } from './get-sorting-hotels';
 import { AuthorizationStatus } from '../types/enums/route.enum';
 import { IHotel, IPlace } from '../types/interfaces/hotel.interface';
-import { IComment } from "../types/interfaces/comments.interface";
+import { IComment } from '../types/interfaces/comments.interface';
 
 type IInitialState = {
   city: IPlace,
