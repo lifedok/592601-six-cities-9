@@ -34,7 +34,7 @@ export function NotFound() {
 
   return (
     <>
-      <Header isLogged={false}/>
+      <Header/>
 
       <div style={NotFoundContent}>
         <div style={BlockWrapperStyle}>

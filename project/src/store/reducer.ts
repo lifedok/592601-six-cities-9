@@ -32,7 +32,7 @@ const initialState: IInitialState = {
   isDataLoaded: false,
 };
 
-const reducer = createReducer(initialState, (builder) => {
+export const reducer = createReducer(initialState, (builder) => {
 
   builder
     .addCase(changeLocationCity, (state, action) => {
@@ -60,5 +60,3 @@ const reducer = createReducer(initialState, (builder) => {
       state.authorizationStatus = action.payload;
     });
 });
-
-export { reducer };

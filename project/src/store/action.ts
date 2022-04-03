@@ -11,3 +11,4 @@ export const changeHotelsByLocationCity = createAction<{selectedLocationCity: st
 
 export const sortHotels = createAction<{type: string}>('sort/sortHotels');
 
+export const redirectToRoute = createAction<string>('route/redirectToRoute');
