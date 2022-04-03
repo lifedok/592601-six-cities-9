@@ -5,17 +5,11 @@ import { getRatingFromFloatToPercentages } from '../../../helpers/hepler';
 
 export interface ReviewsProps {
   isLogged: boolean,
+  hotelId: number,
   reviewList: IComment[],
-  onPlaceCardHover: (placeCardName: string) => void;
 }
 
-export function Reviews({isLogged, reviewList, onPlaceCardHover}: ReviewsProps): JSX.Element {
-
-  const placeCardHoverHandler = (event: React.MouseEvent<HTMLElement>, key: number | string) => {
-    event.preventDefault();
-
-    onPlaceCardHover && onPlaceCardHover(key.toString());
-  };
+export function Reviews({hotelId, isLogged, reviewList}: ReviewsProps): JSX.Element {
 
   return (
     <section className="property__reviews reviews">
@@ -29,7 +23,9 @@ export function Reviews({isLogged, reviewList, onPlaceCardHover}: ReviewsProps):
 
             {
               reviewList.map((review) => (
-                <li className="reviews__item" key={review.id} onMouseEnter={(ev) => placeCardHoverHandler(ev, review.user.name)}>
+                <li className="reviews__item" key={review.id}>
+
+
                   <div className="reviews__user user">
                     <div className="reviews__avatar-wrapper user__avatar-wrapper">
                       <img
@@ -59,7 +55,7 @@ export function Reviews({isLogged, reviewList, onPlaceCardHover}: ReviewsProps):
         </>
       }
       {
-        isLogged && <ReviewsForm/>
+        isLogged && <ReviewsForm hotelId={hotelId}/>
       }
     </section>
   );

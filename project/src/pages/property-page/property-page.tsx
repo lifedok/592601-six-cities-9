@@ -23,10 +23,10 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
   const {authorizationStatus, comments, nearbyHotels} = useAppSelector((state) => state);
   const params = useParams();
 
-  const hotelId = new Set(hotels.map((hotel) => hotel.id));
+  const hotelIds = new Set(hotels.map((hotel) => hotel.id));
   const paramId = parseInt(params.id ? params.id : '');
   const dispatch = useAppDispatch();
-  if(!hotelId.has(paramId)) {
+  if(!hotelIds.has(paramId)) {
     dispatch(redirectToRoute(ERoute.MAIN));
     dispatch(redirectToRoute(`/404`));
   }
@@ -37,7 +37,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
   }, [pathname]);
 
   const selectedHotel = hotels.filter((offer) => (offer.id.toString() === params.id))[0];
-  const {isPremium, city, price, bedrooms, rating, maxAdults, images, type, host, description, goods} = selectedHotel;
+  const {isPremium, city, price, bedrooms, rating, maxAdults, images, type, host, description, goods, id} = selectedHotel;
 
   return (
     <div className="page">
@@ -111,11 +111,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
 
               <MeetHostInfo host={host} description={description}/>
 
-              <Reviews
-                isLogged={authorizationStatus === AuthorizationStatus.AUTH}
-                reviewList={comments}
-                onPlaceCardHover={onPlaceCardHover}
-              />
+              <Reviews isLogged={authorizationStatus === AuthorizationStatus.AUTH} reviewList={comments} hotelId={id}/>
 
             </div>
           </div>

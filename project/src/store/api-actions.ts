@@ -14,6 +14,8 @@ import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handle';
 import { IHotel } from '../types/interfaces/hotel.interface';
 import { removeLoginUserName, saveLoginUserName } from '../services/login-user-name';
+import { NewCommentData } from "../types/new-comment-data";
+import { IComment } from "../types/interfaces/comments.interface";
 
 export const fetchHotelsAction = createAsyncThunk(
   'data/fetchHotels',
@@ -85,6 +87,18 @@ export const loginAction = createAsyncThunk(
     } catch (error) {
       errorHandle(error);
       store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    }
+  },
+);
+
+export const addCommentAction = createAsyncThunk(
+  'user/addComment',
+  async ({hotelId, comment, rating}: NewCommentData) => {
+    try {
+      const {data} = await api.post(`${ApiRoute.COMMENTS}/${hotelId}`, {comment, rating});
+      store.dispatch(loadCommentsHotel(data));
+    } catch (error) {
+      errorHandle(error);
     }
   },
 );
