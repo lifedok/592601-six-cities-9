@@ -10,7 +10,7 @@ import { useGetHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AuthorizationStatus, ERoute } from '../../types/enums/route.enum';
-import { redirectToRoute } from "../../store/action";
+import { redirectToRoute } from '../../store/action';
 
 
 type PropertyPageProps = {
@@ -24,11 +24,11 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
   const params = useParams();
 
   const hotelIds = new Set(hotels.map((hotel) => hotel.id));
-  const paramId = parseInt(params.id ? params.id : '');
+  const paramId = parseInt(params.id ? params.id : '', 2);
   const dispatch = useAppDispatch();
   if(!hotelIds.has(paramId)) {
     dispatch(redirectToRoute(ERoute.MAIN));
-    dispatch(redirectToRoute(`/404`));
+    dispatch(redirectToRoute('/404'));
   }
 
   const {pathname} = useLocation();

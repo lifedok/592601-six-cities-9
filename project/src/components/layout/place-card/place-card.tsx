@@ -2,8 +2,8 @@ import { IHotel } from '../../../types/interfaces/hotel.interface';
 import { getRatingFromFloatToPercentages } from '../../../helpers/hepler';
 import { useAppDispatch } from '../../../hooks';
 import { fetchCommentsAction, fetchNearbyHotelsAction } from '../../../store/api-actions';
-import { redirectToRoute } from "../../../store/action";
-import { ERoute } from "../../../types/enums/route.enum";
+import { redirectToRoute } from '../../../store/action';
+import { ERoute } from '../../../types/enums/route.enum';
 
 type PlaceCardProps = {
   hotel: IHotel;

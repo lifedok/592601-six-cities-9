@@ -1,5 +1,5 @@
 import React, { FormEvent } from 'react';
-import { addCommentAction } from "../../../store/api-actions";
+import { addCommentAction } from '../../../store/api-actions';
 import { useAppDispatch } from '../../../hooks';
 
 type ReviewsFormProps = {
@@ -19,16 +19,15 @@ export default function ReviewsForm({hotelId}: ReviewsFormProps): JSX.Element {
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     if (!isFormFilled) {
-      return
+      return;
     }
     dispatch(addCommentAction({
       hotelId: hotelId,
       comment: formData.comment,
-      rating: parseInt(formData.rating)
+      rating: parseInt(formData.rating, 2),
     }));
   };
 
-  console.log('isFormFilled', isFormFilled);
   return (
     <form className="reviews__form form" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>

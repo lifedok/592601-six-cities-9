@@ -14,8 +14,7 @@ import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handle';
 import { IHotel } from '../types/interfaces/hotel.interface';
 import { removeLoginUserName, saveLoginUserName } from '../services/login-user-name';
-import { NewCommentData } from "../types/new-comment-data";
-import { IComment } from "../types/interfaces/comments.interface";
+import { NewCommentData } from '../types/new-comment-data';
 
 export const fetchHotelsAction = createAsyncThunk(
   'data/fetchHotels',
