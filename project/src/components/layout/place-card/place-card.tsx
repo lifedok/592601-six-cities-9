@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
-import { ERoute } from '../../../types/enums/route.enum';
 import { IHotel } from '../../../types/interfaces/hotel.interface';
 import { getRatingFromFloatToPercentages } from '../../../helpers/hepler';
+import { useAppDispatch } from '../../../hooks';
+import { fetchCommentsAction, fetchNearbyHotelsAction } from '../../../store/api-actions';
+import { redirectToRoute } from '../../../store/action';
+import { ERoute } from '../../../types/enums/route.enum';
 
 type PlaceCardProps = {
   hotel: IHotel;
@@ -17,8 +19,21 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
     onPlaceCardHover && onPlaceCardHover(key.toString());
   };
 
+
+  const dispatch = useAppDispatch();
+  const placeCardClickHandler = (ev: React.BaseSyntheticEvent, hotelId: number) => {
+    ev.preventDefault();
+    dispatch(fetchCommentsAction({hotelId: hotelId}));
+    dispatch(fetchNearbyHotelsAction({hotelId: hotelId}));
+    dispatch(redirectToRoute(`${ERoute.ROOM}/${hotelId}`));
+  };
+
   return (
-    <article className="cities__place-card place-card" onMouseEnter={(ev) => placeCardHoverHandler(ev, id+city.name)}>
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={(ev) => placeCardHoverHandler(ev, id+city.name)}
+      onClick={(ev) => placeCardClickHandler(ev, id)}
+    >
 
       {
         isPremium &&
@@ -28,7 +43,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
       }
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${ERoute.ROOM}/${id}`}>
+        <div>
           <img
             className="place-card__image"
             src={previewImage}
@@ -36,7 +51,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
             height="200"
             alt={previewImage}
           />
-        </Link>
+        </div>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -58,7 +73,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`${ERoute.ROOM}/${id}`}>{city.name}</Link>
+          <div>{city.name}</div>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>
