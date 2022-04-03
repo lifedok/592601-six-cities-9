@@ -1,7 +1,6 @@
 import React from 'react';
 import PlaceCard from '../place-card/place-card';
 import { IHotel } from '../../../types/interfaces/hotel.interface';
-import { gerRandomNumber } from '../../../helpers/hepler';
 
 
 type PlacesListProps = {
@@ -14,7 +13,7 @@ export default function PlacesList(props: PlacesListProps): JSX.Element {
   return (
     <div className="cities__places-list places__list tabs__content">
       {
-        props.list.map((card) => <PlaceCard key={card.city.name+gerRandomNumber()} hotel={card} onPlaceCardHover={props.onPlaceCardHover}/>)
+        props.list.map((card) => <PlaceCard key={card.id} hotel={card} onPlaceCardHover={props.onPlaceCardHover}/>)
       }
     </div>
   );
