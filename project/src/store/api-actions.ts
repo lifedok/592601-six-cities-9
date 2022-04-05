@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from './index';
 import {
   changeHotelsByLocationCity, changeLocationByLocationCity,
-  changeLocationCity,
-  loadHotels,
+  changeLocationCity, loadCommentsHotel, loadFavoriteHotels,
+  loadHotels, loadNearbyHotels,
   redirectToRoute,
   requireAuthorization
 } from './action';
@@ -14,6 +14,7 @@ import { UserData } from '../types/user-data';
 import { errorHandle } from '../services/error-handle';
 import { IHotel } from '../types/interfaces/hotel.interface';
 import { removeLoginUserName, saveLoginUserName } from '../services/login-user-name';
+import { NewCommentData } from '../types/new-comment-data';
 
 export const fetchHotelsAction = createAsyncThunk(
   'data/fetchHotels',
@@ -24,6 +25,39 @@ export const fetchHotelsAction = createAsyncThunk(
     store.dispatch(changeLocationCity({changedCity: defaultChangedCity}));
     store.dispatch(changeLocationByLocationCity({selectedLocationCity: defaultChangedCity}));
     store.dispatch(changeHotelsByLocationCity({selectedLocationCity: defaultChangedCity}));
+  },
+);
+
+export const fetchCommentsAction = createAsyncThunk(
+  'data/fetchInfoSelectedHotel',
+  async ({hotelId: id}: {hotelId: number}) => {
+    try {
+      const {data} = await api.get(`${ApiRoute.COMMENTS}/${id}`);
+      store.dispatch(loadCommentsHotel(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchNearbyHotelsAction = createAsyncThunk(
+  'data/fetchNearbyHotels',
+  async ({hotelId: id}: {hotelId: number}) => {
+    try {
+      const {data} = await api.get(`${ApiRoute.HOTELS}/${id}/nearby`) ;
+      store.dispatch(loadNearbyHotels(data));
+    } catch (error) {
+      errorHandle(error);
+    }
+  },
+);
+
+export const fetchFavoriteHotelsAction = createAsyncThunk(
+  'data/fetchFavoriteHotelsAction',
+  async () => {
+    const {data} = await api.get<IHotel[]>(ApiRoute.FAVORITES);
+    store.dispatch(loadFavoriteHotels(data));
+    store.dispatch(redirectToRoute(ERoute.FAVORITES));
   },
 );
 
@@ -52,6 +86,18 @@ export const loginAction = createAsyncThunk(
     } catch (error) {
       errorHandle(error);
       store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    }
+  },
+);
+
+export const addCommentAction = createAsyncThunk(
+  'user/addComment',
+  async ({hotelId, comment, rating}: NewCommentData) => {
+    try {
+      const {data} = await api.post(`${ApiRoute.COMMENTS}/${hotelId}`, {comment, rating});
+      store.dispatch(loadCommentsHotel(data));
+    } catch (error) {
+      errorHandle(error);
     }
   },
 );

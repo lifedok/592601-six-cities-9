@@ -1,26 +1,35 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
+import { addCommentAction } from '../../../store/api-actions';
+import { useAppDispatch } from '../../../hooks';
 
-export default function ReviewsForm(): JSX.Element {
+type ReviewsFormProps = {
+  hotelId: number
+}
+export default function ReviewsForm({hotelId}: ReviewsFormProps): JSX.Element {
+  const dispatch = useAppDispatch();
 
-  const onClickSubmit = () => {
-    setFormData({
-      rating: formData.review,
-      review: formData.rating,
-    });
-  };
-
-  const [formData, setFormData] = React.useState({
-    rating: '',
-    review: '',
-  });
+  const [formData, setFormData] = React.useState({comment: '', rating: ''});
   const onChangeForm = (evt: React.FormEvent<EventTarget>) => {
     const {name, value} = evt.target as HTMLInputElement;
     setFormData({...formData, [name]: value});
   };
 
-  const isFormFilled = () => !!formData.rating && !!formData.review;
+  const isFormFilled = () => !!formData.rating && !!formData.comment;
+
+  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    if (!isFormFilled) {
+      return;
+    }
+    dispatch(addCommentAction({
+      hotelId: hotelId,
+      comment: formData.comment,
+      rating: parseInt(formData.rating, 2),
+    }));
+  };
+
   return (
-    <form className="reviews__form form" action="#" method="post">
+    <form className="reviews__form form" onSubmit={handleSubmit}>
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
 
       <div className="reviews__rating-form form__rating">
@@ -97,10 +106,10 @@ export default function ReviewsForm(): JSX.Element {
 
       <textarea
         className="reviews__textarea form__textarea"
-        id="review"
-        name="review"
+        id="comment"
+        name="comment"
         placeholder="Tell how was your stay, what you like and what can be improved"
-        value={formData.review}
+        value={formData.comment}
         onChange={onChangeForm}
       />
       <div className="reviews__button-wrapper">
@@ -108,7 +117,7 @@ export default function ReviewsForm(): JSX.Element {
           To submit review please make sure to set <span className="reviews__star">rating</span> and
           describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
         </p>
-        <button className="reviews__submit form__submit button" type="submit" disabled={!isFormFilled()} onClick={onClickSubmit}>Submit</button>
+        <button className="reviews__submit form__submit button" type="submit" disabled={!isFormFilled()}>Submit</button>
       </div>
     </form>
   );

@@ -3,7 +3,7 @@ import { AuthorizationStatus } from '../types/enums/route.enum';
 import { IHotel } from '../types/interfaces/hotel.interface';
 
 export const useGetHotels = () => useAppSelector((state) => state.hotels);
-export const useGetSelectedHotels = () => useAppSelector((state) => state.selectedHotels);
+export const useGetSelectedHotels = () => useAppSelector((state) => state.selectedTabHotels);
 export const useGetLocationCity = () => useAppSelector((state) => state.city);
 
 export const getCityList = (data: IHotel[]) => removeDuplicates(data).map(({city}) => city);

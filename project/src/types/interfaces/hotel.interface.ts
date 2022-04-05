@@ -1,4 +1,5 @@
 import { ILocation } from './location.interface';
+import { IHost } from './host.interface';
 
 export interface IHotel {
   id: number,
@@ -7,12 +8,7 @@ export interface IHotel {
   bedrooms: number
   description: string
   goods: [string]
-  host: {
-    avatarUrl: string
-    id: number
-    isPro: boolean
-    name: string
-  }
+  host: IHost,
   images: [string]
   isFavorite: boolean
   isPremium: boolean
