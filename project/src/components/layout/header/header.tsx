@@ -6,7 +6,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { logoutAction } from '../../../store/api-actions';
 
 export default function Header(): JSX.Element {
-  const {authorizationStatus} = useAppSelector((state) => state);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
   const isLogged = authorizationStatus === AuthorizationStatus.AUTH;
   const dispatch = useAppDispatch();
   const loginUserName = getLoginUserName();

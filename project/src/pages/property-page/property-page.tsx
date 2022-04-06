@@ -20,7 +20,8 @@ type PropertyPageProps = {
 
 export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
   const hotels = useGetHotels();
-  const {authorizationStatus, comments, nearbyHotels} = useAppSelector((state) => state);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const {comments, nearbyHotels} = useAppSelector(({DATA}) => DATA);
   const params = useParams();
 
   const hotelIds = new Set(hotels.map((hotel) => hotel.id));

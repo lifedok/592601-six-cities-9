@@ -1,12 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { api, store } from './index';
-import {
-  changeHotelsByLocationCity, changeLocationByLocationCity,
-  changeLocationCity, loadCommentsHotel, loadFavoriteHotels,
-  loadHotels, loadNearbyHotels,
-  redirectToRoute,
-  requireAuthorization
-} from './action';
+import { redirectToRoute } from './action';
 import { ApiRoute, AuthorizationStatus, ERoute } from '../types/enums/route.enum';
 import { dropToken, saveToken } from '../services/token';
 import { AuthData } from '../types/auth-data';
@@ -15,6 +9,9 @@ import { errorHandle } from '../services/error-handle';
 import { IHotel } from '../types/interfaces/hotel.interface';
 import { removeLoginUserName, saveLoginUserName } from '../services/login-user-name';
 import { NewCommentData } from '../types/new-comment-data';
+import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity } from './reducer/hotels-tab';
+import { loadCommentsHotel, loadFavoriteHotels, loadHotels, loadNearbyHotels } from './reducer/hotels-data';
+import { requireAuthorization } from './reducer/user-process';
 
 export const fetchHotelsAction = createAsyncThunk(
   'data/fetchHotels',

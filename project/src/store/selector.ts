@@ -2,9 +2,9 @@ import { useAppSelector } from '../hooks';
 import { AuthorizationStatus } from '../types/enums/route.enum';
 import { IHotel } from '../types/interfaces/hotel.interface';
 
-export const useGetHotels = () => useAppSelector((state) => state.hotels);
-export const useGetSelectedHotels = () => useAppSelector((state) => state.selectedTabHotels);
-export const useGetLocationCity = () => useAppSelector((state) => state.city);
+export const useGetHotels = () => useAppSelector(({DATA}) => DATA.hotels);
+export const useGetSelectedHotels = () => useAppSelector(({SORT}) => SORT.selectedTabHotels);
+export const useGetLocationCity = () => useAppSelector(({SORT}) => SORT.city);
 
 export const getCityList = (data: IHotel[]) => removeDuplicates(data).map(({city}) => city);
 function removeDuplicates(array: IHotel[]) {

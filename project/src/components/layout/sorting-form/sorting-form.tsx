@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ESorting } from '../../../types/enums/sort-option-list.enum';
-import { sortHotels } from '../../../store/action';
 import { useAppDispatch } from '../../../hooks';
+import { sortHotels } from '../../../store/reducer/hotels-sort';
 
 export default function SortingForm(): JSX.Element {
   const [isOpen, setOpen] = useState(false);

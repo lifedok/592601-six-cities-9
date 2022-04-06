@@ -19,10 +19,11 @@ export default function App(): JSX.Element {
   const MainPageWrapped = withMap(MainPage, useGetHotels());
 
 
-  const {authorizationStatus, isDataLoaded} = useAppSelector((state) => state);
+  const {isDataLoaded} = useAppSelector(({DATA}) => DATA);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
   if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
     return (
-      <LoadingScreen />
+      <LoadingScreen/>
     );
   }
 
@@ -31,7 +32,7 @@ export default function App(): JSX.Element {
       <Routes>
         <Route path={ERoute.MAIN} element={<MainPageWrapped/>}/>
         <Route path={ERoute.LOGIN} element={<LoginPage/>}/>
-        <Route path={`${ERoute.ROOM}/:id`} element={<PropertyPageWrapped />}/>
+        <Route path={`${ERoute.ROOM}/:id`} element={<PropertyPageWrapped/>}/>
         <Route path={`${ERoute.LOCATION}/:city`} element={<MainPageWrapped/>}/>
 
         <Route
