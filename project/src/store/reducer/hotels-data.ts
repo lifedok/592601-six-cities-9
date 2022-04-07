@@ -1,14 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import { EReducerNameSpace } from '../../types/const';
-import { HotelsData } from '../../types/state';
-
-const initialState: HotelsData = {
-  hotels: [],
-  favoriteHotels: [],
-  nearbyHotels: [],
-  comments: [],
-  isDataLoaded:false,
-};
+import { initialState } from '../../types/state';
 
 export const hotelsData = createSlice({
   name: EReducerNameSpace.DATA,

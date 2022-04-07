@@ -25,10 +25,11 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
+
   const onSelectedTabItem = (city: string) => {
     dispatch(changeLocationCity({changedCity: city}));
-    dispatch(changeLocationByLocationCity({selectedLocationCity: city}));
-    dispatch(changeHotelsByLocationCity({selectedLocationCity: city}));
+    dispatch(changeLocationByLocationCity({data: hotels, selectedLocationCity: city}));
+    dispatch(changeHotelsByLocationCity({data: hotels, selectedLocationCity: city}));
     navigate(`${ERoute.LOCATION}/${city}`);
   };
 

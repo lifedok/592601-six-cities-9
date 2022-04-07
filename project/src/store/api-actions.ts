@@ -19,9 +19,11 @@ export const fetchHotelsAction = createAsyncThunk(
     const {data} = await api.get<IHotel[]>(ApiRoute.HOTELS);
     store.dispatch(loadHotels(data));
     const defaultChangedCity = 'Amsterdam';
-    store.dispatch(changeLocationCity({changedCity: defaultChangedCity}));
-    store.dispatch(changeLocationByLocationCity({selectedLocationCity: defaultChangedCity}));
-    store.dispatch(changeHotelsByLocationCity({selectedLocationCity: defaultChangedCity}));
+    if(!!data) {
+      store.dispatch(changeLocationCity({changedCity: defaultChangedCity}));
+      store.dispatch(changeLocationByLocationCity({data: data, selectedLocationCity: defaultChangedCity}));
+      store.dispatch(changeHotelsByLocationCity({data: data, selectedLocationCity: defaultChangedCity}));
+    }
   },
 );
 
