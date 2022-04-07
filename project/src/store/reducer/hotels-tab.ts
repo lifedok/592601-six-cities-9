@@ -20,7 +20,6 @@ export const hotelsTab = createSlice({
     changeHotelsByLocationCity: (state, action) => {
       const {data, selectedLocationCity} = action.payload;
       state.selectedTabHotels = data.filter((item: IHotel) => item.city.name === selectedLocationCity);
-      console.log('state.selectedTabHotels', state.selectedTabHotels);
     },
   },
 });
