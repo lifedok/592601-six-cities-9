@@ -9,8 +9,7 @@ import { errorHandle } from '../services/error-handle';
 import { IHotel } from '../types/interfaces/hotel.interface';
 import { removeLoginUserName, saveLoginUserName } from '../services/login-user-name';
 import { NewCommentData } from '../types/new-comment-data';
-import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity } from './reducer/hotels-tab';
-import { loadCommentsHotel, loadFavoriteHotels, loadHotels, loadNearbyHotels } from './reducer/hotels-data';
+import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity, loadCommentsHotel, loadFavoriteHotels, loadHotels, loadNearbyHotels } from './reducer/hotels-data';
 import { requireAuthorization } from './reducer/user-process';
 
 export const fetchHotelsAction = createAsyncThunk(
@@ -19,10 +18,10 @@ export const fetchHotelsAction = createAsyncThunk(
     const {data} = await api.get<IHotel[]>(ApiRoute.HOTELS);
     store.dispatch(loadHotels(data));
     const defaultChangedCity = 'Amsterdam';
-    if(!!data) {
+    if(data) {
       store.dispatch(changeLocationCity({changedCity: defaultChangedCity}));
-      store.dispatch(changeLocationByLocationCity({data: data, selectedLocationCity: defaultChangedCity}));
-      store.dispatch(changeHotelsByLocationCity({data: data, selectedLocationCity: defaultChangedCity}));
+      store.dispatch(changeLocationByLocationCity({selectedLocationCity: defaultChangedCity}));
+      store.dispatch(changeHotelsByLocationCity({selectedLocationCity: defaultChangedCity}));
     }
   },
 );

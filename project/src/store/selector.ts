@@ -3,8 +3,8 @@ import { AuthorizationStatus } from '../types/enums/route.enum';
 import { IHotel } from '../types/interfaces/hotel.interface';
 
 export const useGetHotels = () => useAppSelector(({DATA}) => DATA.hotels);
-export const useGetSelectedHotels = () => useAppSelector(({TAB}) => TAB.selectedTabHotels);
-export const useGetLocationCity = () => useAppSelector(({TAB}) => TAB.city);
+export const useGetSelectedHotels = () => useAppSelector(({DATA}) => DATA.selectedTabHotels);
+export const useGetLocationCity = () => useAppSelector(({DATA}) => DATA.city);
 
 export const getCityList = (data: IHotel[]) => removeDuplicates(data).map(({city}) => city);
 function removeDuplicates(array: IHotel[]) {

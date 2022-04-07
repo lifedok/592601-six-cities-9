@@ -7,7 +7,12 @@ export type State = ReturnType<typeof store.getState>;
 
 export type AppDispatch = typeof store.dispatch;
 
-export type IInitialGlobalState = {
+export type UserProcess = {
+  authorizationStatus: AuthorizationStatus
+};
+
+
+export type HotelsData = {
   hotels: IHotel[],
   city: IPlace,
   selectedTabHotels: IHotel[],
@@ -15,25 +20,5 @@ export type IInitialGlobalState = {
   favoriteHotels: IHotel[],
   nearbyHotels: IHotel[],
   comments: IComment[],
-  authorizationStatus: AuthorizationStatus,
   isDataLoaded: boolean,
 }
-
-export const initialState: IInitialGlobalState = {
-  city: {
-    name: '',
-    location: {
-      latitude: 0,
-      longitude: 0,
-      zoom: 0,
-    },
-  },
-  hotels: [],
-  selectedTabHotels: [],
-  selectedOfferHotel: null,
-  favoriteHotels: [],
-  nearbyHotels: [],
-  comments: [],
-  authorizationStatus: AuthorizationStatus.UNKNOWN,
-  isDataLoaded: false,
-};

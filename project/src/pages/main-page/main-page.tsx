@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
 import { getCityList, useGetLocationCity, useGetHotels, useGetSelectedHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
-import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity } from '../../store/reducer/hotels-tab';
+import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity } from '../../store/reducer/hotels-data';
 
 type MainPageProps = {
   renderMap: (location: IPlace, hotels: IHotel[]) => React.ReactNode;
@@ -28,8 +28,8 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
 
   const onSelectedTabItem = (city: string) => {
     dispatch(changeLocationCity({changedCity: city}));
-    dispatch(changeLocationByLocationCity({data: hotels, selectedLocationCity: city}));
-    dispatch(changeHotelsByLocationCity({data: hotels, selectedLocationCity: city}));
+    dispatch(changeLocationByLocationCity({selectedLocationCity: city}));
+    dispatch(changeHotelsByLocationCity({selectedLocationCity: city}));
     navigate(`${ERoute.LOCATION}/${city}`);
   };
 
