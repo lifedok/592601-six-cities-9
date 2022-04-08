@@ -5,15 +5,11 @@ import SortingForm from '../../components/layout/sorting-form/sorting-form';
 import PlacesList from '../../components/layout/places-list/places-list';
 import PlacesEmpty from '../../components/places-empty/places-empty';
 import { useNavigate } from 'react-router';
-import {
-  changeLocationByLocationCity,
-  changeLocationCity,
-  changeHotelsByLocationCity
-} from '../../store/action';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
 import { getCityList, useGetLocationCity, useGetHotels, useGetSelectedHotels } from '../../store/selector';
 import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
+import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity } from '../../store/reducer/hotels-data';
 
 type MainPageProps = {
   renderMap: (location: IPlace, hotels: IHotel[]) => React.ReactNode;
@@ -24,10 +20,11 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
   const hotels = useGetHotels();
   const selectedHotels = useGetSelectedHotels();
   const locationCity = useGetLocationCity();
-  const {isDataLoaded} = useAppSelector((state) => state);
+  const {isDataLoaded } = useAppSelector(({DATA}) => DATA);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
 
   const onSelectedTabItem = (city: string) => {
     dispatch(changeLocationCity({changedCity: city}));

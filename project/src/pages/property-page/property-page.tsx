@@ -20,13 +20,15 @@ type PropertyPageProps = {
 
 export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
   const hotels = useGetHotels();
-  const {authorizationStatus, comments, nearbyHotels} = useAppSelector((state) => state);
+  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const {comments, nearbyHotels} = useAppSelector(({DATA}) => DATA);
   const params = useParams();
 
-  const hotelIds = new Set(hotels.map((hotel) => hotel.id));
-  const paramId = parseInt(params.id ? params.id : '', 2);
+  const hotelIds = hotels.map((hotel) => hotel.id);
   const dispatch = useAppDispatch();
-  if(!hotelIds.has(paramId)) {
+
+  const isHasId = hotelIds.includes(Number(params.id));
+  if (!isHasId) {
     dispatch(redirectToRoute(ERoute.MAIN));
     dispatch(redirectToRoute('/404'));
   }
