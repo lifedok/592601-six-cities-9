@@ -53,7 +53,7 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
           <div className="property__gallery-container container">
             <div className="property__gallery">
               {
-                images.map((image: string) =>
+                images && images.map((image: string) =>
                   (
                     <div
                       className="property__image-wrapper"
@@ -111,7 +111,9 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
 
               <Facilities facilities={goods}/>
 
-              <MeetHostInfo host={host} description={description}/>
+              {
+                host && <MeetHostInfo host={host} description={description}/>
+              }
 
               <Reviews isLogged={authorizationStatus === AuthorizationStatus.AUTH} reviewList={comments} hotelId={id}/>
 
