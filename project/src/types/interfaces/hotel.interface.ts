@@ -7,12 +7,12 @@ export interface IHotel {
   city: IPlace,
   bedrooms: number
   description: string
-  goods: [string]
-  host: IHost,
-  images: [string]
-  isFavorite: boolean
-  isPremium: boolean
-  maxAdults: number
+  goods: string[]
+  host?: IHost,
+  images?: string[]
+  isFavorite?: boolean
+  isPremium?: boolean
+  maxAdults?: number
   previewImage: string
   price: number
   rating: number
