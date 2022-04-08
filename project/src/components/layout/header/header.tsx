@@ -2,11 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AuthorizationStatus, ERoute } from '../../../types/enums/route.enum';
 import { getLoginUserName } from '../../../services/login-user-name';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { useAppDispatch } from '../../../hooks';
 import { logoutAction } from '../../../store/api-actions';
+import { useAuthStatus } from '../../../store/selector';
 
 export default function Header(): JSX.Element {
-  const {authorizationStatus} = useAppSelector(({USER}) => USER);
+  const authorizationStatus = useAuthStatus();
+
+
   const isLogged = authorizationStatus === AuthorizationStatus.AUTH;
   const dispatch = useAppDispatch();
   const loginUserName = getLoginUserName();

@@ -12,4 +12,6 @@ function removeDuplicates(array: IHotel[]) {
   return array.filter((obj) => !uniq[obj.city.name] && (uniq[obj.city.name] = true));
 }
 
+export const useAuthStatus = () => useAppSelector(({USER}) => USER.authorizationStatus);
+export const useIsDataLoaded = () => useAppSelector(({DATA}) => DATA.isDataLoaded);
 export const isCheckedAuth = (authorizationStatus: AuthorizationStatus): boolean => authorizationStatus === AuthorizationStatus.UNKNOWN;

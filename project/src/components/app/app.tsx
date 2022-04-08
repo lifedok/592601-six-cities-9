@@ -8,20 +8,19 @@ import FavoritesPage from '../../pages/favorites-page/favorites-page';
 import PrivateRoute from '../private-route/private.route';
 import PropertyPage from '../../pages/property-page/property-page';
 import withMap from '../../hocs/with-map';
-import { isCheckedAuth, useGetHotels } from '../../store/selector';
+import { useAuthStatus, isCheckedAuth, useIsDataLoaded, useGetHotels } from '../../store/selector';
 import LoadingScreen from '../loading-screen/loading-screen';
-import { useAppSelector } from '../../hooks';
 import browserHistory from '../../browser-history';
 import HistoryRouter from '../history-route/history-route';
 
 export default function App(): JSX.Element {
   const PropertyPageWrapped = withMap(PropertyPage, useGetHotels());
   const MainPageWrapped = withMap(MainPage, useGetHotels());
+  const authorizationStatus = useAuthStatus();
+  const isData = useIsDataLoaded();
 
 
-  const {isDataLoaded} = useAppSelector(({DATA}) => DATA);
-  const {authorizationStatus} = useAppSelector(({USER}) => USER);
-  if (isCheckedAuth(authorizationStatus) || !isDataLoaded) {
+  if (isCheckedAuth(authorizationStatus) || !isData) {
     return (
       <LoadingScreen/>
     );
