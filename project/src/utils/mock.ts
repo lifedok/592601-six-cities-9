@@ -1,7 +1,11 @@
-import { music, system, datatype, internet, address, lorem, helpers, name } from 'faker';
-import { HotelsData } from "../types/state";
-import { IHotel } from "../types/interfaces/hotel.interface";
-import { gerRandomNumber } from "../helpers/hepler";
+import { system, datatype, address, lorem, helpers, name } from 'faker';
+import { HotelsData } from '../types/state';
+import { IHotel } from '../types/interfaces/hotel.interface';
+import { gerRandomNumber } from '../helpers/hepler';
+import { initialState } from '../store/reducer/hotels-data';
+
+
+export const makeFakeInitialState: HotelsData = initialState;
 
 export const makeFakeHotelArray = (array: number = 15) => new Array(array).fill(null).map(() => (hotelInitial));
 const hotelInitial: IHotel = {
