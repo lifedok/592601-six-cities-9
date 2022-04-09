@@ -129,7 +129,7 @@ export const addCommentAction = createAsyncThunk<void, NewCommentData, {
   extra: AxiosInstance
 }>(
   'user/addComment',
-  async ({hotelId: hotelId, comment: comment, rating: rating}, {dispatch, extra: api}) => {
+  async ({hotelId: hotelId, comment, rating} , {dispatch, extra: api}) => {
     try {
       const {data} = await api.post(`${ApiRoute.COMMENTS}/${hotelId}`, {comment, rating});
       dispatch(loadCommentsHotel(data));

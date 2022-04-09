@@ -1,9 +1,9 @@
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {AnyAction} from 'redux';
 import {redirect} from './redirect';
-import { State } from "../types/state";
-import { redirectToRoute } from "../store/action";
-import { ERoute } from "../types/enums/route.enum";
+import { State } from '../types/state';
+import { redirectToRoute } from '../store/action';
+import { ERoute } from '../types/enums/route.enum';
 
 const fakeHistory = {
   location: {pathname: ''},

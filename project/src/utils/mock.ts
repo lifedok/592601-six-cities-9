@@ -25,7 +25,7 @@ export const makeFakeHotelsMockData = (): HotelsData => ({
   isDataLoaded: false,
 });
 
-export const makeFakeHotelArray = (array: number = 15) => new Array(array).fill(null).map(() => (hotelInitial));
+export const makeFakeHotelArray = (array = 15) => new Array(array).fill(null).map(() => (hotelInitial));
 
 export const hotelInitial: IHotel = {
   id: datatype.number(),
@@ -49,6 +49,6 @@ export const hotelInitial: IHotel = {
   price: gerRandomNumber(),
   rating: gerRandomNumber(5),
   title: name.title(),
-  type: 'Apartment'
+  type: 'Apartment',
 };
 
