@@ -3,13 +3,20 @@ import thunk, {ThunkDispatch} from 'redux-thunk';
 import MockAdapter from 'axios-mock-adapter';
 import {configureMockStore} from '@jedmao/redux-mock-store';
 import {createAPI} from '../services/api';
-import { checkAuthAction, fetchHotelsAction, loginAction, logoutAction } from './api-actions';
+import {
+  checkAuthAction,
+  fetchCommentsAction,
+  fetchHotelsAction,
+  fetchNearbyHotelsAction,
+  loginAction,
+  logoutAction
+} from './api-actions';
 import {State} from '../types/state';
 import { ApiRoute } from '../types/enums/route.enum';
 import { requireAuthorization } from './reducer/user-process';
-import { AuthData } from "../types/auth-data";
-import { makeFakeHotelsMockData } from "../utils/mock";
-import { loadHotels } from "./reducer/hotels-data";
+import { AuthData } from '../types/auth-data';
+import { makeFakeHotelsMockData } from '../utils/mock';
+import { loadCommentsHotel, loadHotels, loadNearbyHotels } from './reducer/hotels-data';
 
 describe('Async actions', () => {
   const api = createAPI();
@@ -60,6 +67,30 @@ describe('Async actions', () => {
     await store.dispatch(fetchHotelsAction());
     const actions = store.getActions().map(({type}) => type);
     expect(actions).toContain(loadHotels.toString());
+  });
+
+  it('should dispatch Load_nearby hotels when GET /hotels/id/nearby', async () => {
+    const mockHotels = [makeFakeHotelsMockData()];
+    const fakeHotelId = 36;
+    mockAPI
+      .onGet(`${ApiRoute.HOTELS}/${fakeHotelId}/nearby`)
+      .reply(200, mockHotels);
+    const store = mockStore();
+    await store.dispatch(fetchNearbyHotelsAction({hotelId: fakeHotelId}));
+    const actions = store.getActions().map(({type}) => type);
+    expect(actions).toContain(loadNearbyHotels.toString());
+  });
+
+  it('should dispatch Load_comments hotels when GET /comments/id', async () => {
+    const mockHotels = [makeFakeHotelsMockData()];
+    const fakeHotelId = 36;
+    mockAPI
+      .onGet(`${ApiRoute.COMMENTS}/${fakeHotelId}`)
+      .reply(200, mockHotels);
+    const store = mockStore();
+    await store.dispatch(fetchCommentsAction({hotelId: fakeHotelId}));
+    const actions = store.getActions().map(({type}) => type);
+    expect(actions).toContain(loadCommentsHotel.toString());
   });
 
   it('should dispatch Logout when Delete /logout', async () => {
