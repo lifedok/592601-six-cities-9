@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../../components/layout/header/header';
 import Footer from '../../components/layout/footer/footer';
 
-export function NotFound() {
+export function NotFound(): JSX.Element {
 
   const NotFoundContent = {
     display: 'flex',
