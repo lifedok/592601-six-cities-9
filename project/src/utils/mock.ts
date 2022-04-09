@@ -7,8 +7,27 @@ import { initialState } from '../store/reducer/hotels-data';
 
 export const makeFakeInitialState: HotelsData = initialState;
 
+export const makeFakeHotelsMockData = (): HotelsData => ({
+  city: {
+    name: address.cityName(),
+    location: {
+      latitude: Number(address.latitude()),
+      longitude: Number(address.longitude()),
+      zoom: 10,
+    },
+  },
+  hotels: makeFakeHotelArray(),
+  selectedTabHotels: [],
+  selectedOfferHotel: null,
+  favoriteHotels: [],
+  nearbyHotels: [],
+  comments: [],
+  isDataLoaded: false,
+});
+
 export const makeFakeHotelArray = (array: number = 15) => new Array(array).fill(null).map(() => (hotelInitial));
-const hotelInitial: IHotel = {
+
+export const hotelInitial: IHotel = {
   id: datatype.number(),
   location: {
     latitude: Number(address.latitude()),
@@ -33,28 +52,3 @@ const hotelInitial: IHotel = {
   type: 'Apartment'
 };
 
-export const makeFakeHotelsMockData = (): HotelsData => ({
-  city: {
-    name: address.cityName(),
-    location: {
-      latitude: Number(address.latitude()),
-      longitude: Number(address.longitude()),
-      zoom: 10,
-    },
-  },
-  hotels: makeFakeHotelArray(),
-  selectedTabHotels: [],
-  selectedOfferHotel: null,
-  favoriteHotels: [],
-  nearbyHotels: [],
-  comments: [],
-  isDataLoaded: false,
-});
-
-// export const makeFakeGenreQuestion = (): QuestionGenre => ({
-//   // type: IHotel,
-//   genre: music.genre(),
-//   answers: new Array(4).fill(null).map(() => (
-//     {src: system.filePath(), genre: music.genre()}),
-//   ),
-// });

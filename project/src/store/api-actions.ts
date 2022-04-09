@@ -47,9 +47,9 @@ export const fetchCommentsAction = createAsyncThunk<void, { hotelId: number }, {
   extra: AxiosInstance
 }>(
   'data/fetchInfoSelectedHotel',
-  async (hotelId, {dispatch, extra: api}) => {
+  async ({hotelId: id}, {dispatch, extra: api}) => {
     try {
-      const {data} = await api.get(`${ApiRoute.COMMENTS}/${hotelId}`);
+      const {data} = await api.get(`${ApiRoute.COMMENTS}/${id}`);
       dispatch(loadCommentsHotel(data));
     } catch (error) {
       errorHandle(error);
@@ -65,9 +65,7 @@ export const fetchNearbyHotelsAction = createAsyncThunk<void, { hotelId: number 
   'data/fetchNearbyHotels',
   async ({hotelId: id}, {dispatch, extra: api}) => {
     try {
-      console.log('hotelId', id);
       const {data} = await api.get(`${ApiRoute.HOTELS}/${id}/nearby`);
-      console.log('data', data);
       dispatch(loadNearbyHotels(data));
     } catch (error) {
       errorHandle(error);
