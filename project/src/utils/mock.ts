@@ -1,4 +1,4 @@
-import { system, datatype, address, lorem, helpers, name } from 'faker';
+import { system, address, lorem, helpers, name } from 'faker';
 import { HotelsData } from '../types/state';
 import { IHotel } from '../types/interfaces/hotel.interface';
 import { gerRandomNumber } from '../helpers/hepler';
@@ -28,7 +28,7 @@ export const makeFakeHotelsMockData = (): HotelsData => ({
 export const makeFakeHotelArray = (array = 15) => new Array(array).fill(null).map(() => (hotelInitial));
 
 export const hotelInitial: IHotel = {
-  id: datatype.number(),
+  id: gerRandomNumber(),
   location: {
     latitude: Number(address.latitude()),
     longitude: Number(address.longitude()),
