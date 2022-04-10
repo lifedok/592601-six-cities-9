@@ -5,7 +5,7 @@ import { getSortingHotels } from '../get-sorting-hotels';
 import { getCityList } from '../selector';
 import { IHotel } from '../../types/interfaces/hotel.interface';
 
-const initialState: HotelsData = {
+export const initialState: HotelsData = {
   city: {
     name: '',
     location: {

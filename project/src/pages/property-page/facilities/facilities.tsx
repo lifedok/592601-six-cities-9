@@ -2,7 +2,7 @@ import React from 'react';
 
 
 type FacilitiesProps = {
-  facilities: [string]
+  facilities: string[]
 }
 
 export function Facilities({facilities}: FacilitiesProps) {
