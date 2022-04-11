@@ -1,6 +1,6 @@
 import { userProcess } from './user-process';
 import { requireAuthorization } from './user-process';
-import { AuthorizationStatus } from '../../types/enums/route.enum';
+import { AuthorizationStatus } from '../../../types/enums/route.enum';
 
 describe('Reducer: user', () => {
   it('without additional parameters should return initial state', () => {

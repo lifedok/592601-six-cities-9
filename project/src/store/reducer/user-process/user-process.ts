@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { EReducerNameSpace } from '../../types/const';
-import { UserProcess } from '../../types/state';
-import { AuthorizationStatus } from '../../types/enums/route.enum';
+import { EReducerNameSpace } from '../../../types/const';
+import { UserProcess } from '../../../types/state';
+import { AuthorizationStatus } from '../../../types/enums/route.enum';
 
 const initialState: UserProcess = {
   authorizationStatus: AuthorizationStatus.UNKNOWN,

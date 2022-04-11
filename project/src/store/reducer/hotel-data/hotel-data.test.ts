@@ -1,6 +1,6 @@
 import { changeLocationCity, hotelsData, loadHotels } from './hotels-data';
-import { HotelsData } from '../../types/state';
-import { makeFakeHotelArray, makeFakeInitialState } from '../../utils/mock';
+import { HotelsData } from '../../../types/state';
+import { makeFakeHotelArray, makeFakeInitialState } from '../../../utils/mock';
 
 const state: HotelsData = makeFakeInitialState;
 

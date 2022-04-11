@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { EReducerNameSpace } from '../../types/const';
-import { HotelsData } from '../../types/state';
-import { getSortingHotels } from '../get-sorting-hotels';
-import { getCityList } from '../selector';
-import { IHotel } from '../../types/interfaces/hotel.interface';
+import { EReducerNameSpace } from '../../../types/const';
+import { HotelsData } from '../../../types/state';
+import { getSortingHotels } from '../../get-sorting-hotels';
+import { getCityList } from '../../selector';
+import { IHotel } from '../../../types/interfaces/hotel.interface';
 
 export const initialState: HotelsData = {
   city: {
