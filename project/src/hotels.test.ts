@@ -1,4 +1,4 @@
-import { userProcess } from './store/reducer/user-process';
+import { userProcess } from './store/reducer/user-process/user-process';
 import { AuthorizationStatus } from './types/enums/route.enum';
 
 describe('-> Check userProcess:', () => {

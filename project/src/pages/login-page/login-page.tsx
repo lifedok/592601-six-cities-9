@@ -59,6 +59,7 @@ export default function LoginPage(): JSX.Element {
                   name="email"
                   placeholder="Email"
                   required
+                  data-testid="E-mail"
                 />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
@@ -70,6 +71,7 @@ export default function LoginPage(): JSX.Element {
                   name="password"
                   placeholder="Password"
                   required
+                  data-testid="Password"
                 />
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>

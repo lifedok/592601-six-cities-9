@@ -44,6 +44,6 @@ export default function MapView(props: TMapView): JSX.Element {
   }, [map, hotels, hoveredOffer, city.location]);
 
   return (
-    <div style={{height: '100%'}} ref={mapRef}/>
+    <div style={{height: '100%'}} ref={mapRef} data-testid="map-view"/>
   );
 }

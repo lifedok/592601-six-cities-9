@@ -13,10 +13,10 @@ import {
 } from './api-actions';
 import {State} from '../types/state';
 import { ApiRoute } from '../types/enums/route.enum';
-import { requireAuthorization } from './reducer/user-process';
+import { requireAuthorization } from './reducer/user-process/user-process';
 import { AuthData } from '../types/auth-data';
 import { makeFakeHotelsMockData } from '../utils/mock';
-import { loadCommentsHotel, loadHotels, loadNearbyHotels } from './reducer/hotels-data';
+import { loadCommentsHotel, loadHotels, loadNearbyHotels } from './reducer/hotel-data/hotels-data';
 
 describe('Async actions', () => {
   const api = createAPI();

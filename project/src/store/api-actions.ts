@@ -16,8 +16,8 @@ import {
   loadFavoriteHotels,
   loadHotels,
   loadNearbyHotels
-} from './reducer/hotels-data';
-import { requireAuthorization } from './reducer/user-process';
+} from './reducer/hotel-data/hotels-data';
+import { requireAuthorization } from './reducer/user-process/user-process';
 import { AxiosInstance } from 'axios';
 import { AppDispatch, State } from '../types/state';
 
