@@ -12,7 +12,7 @@ const mockStore = configureMockStore();
 const history = createMemoryHistory();
 
 describe('Component: PlacesList', () => {
-  const list: IHotel[] = makeFakeHotelArray(5);
+  const list: IHotel[] = makeFakeHotelArray(1);
 
   beforeEach(() => {
     history.push('/');
