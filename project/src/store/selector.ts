@@ -3,6 +3,7 @@ import { AuthorizationStatus } from '../types/enums/route.enum';
 import { IHotel } from '../types/interfaces/hotel.interface';
 
 export const useGetHotels = () => useAppSelector(({DATA}) => DATA.hotels);
+export const useGetSortingHotels = () => useAppSelector(({DATA}) => DATA.sortingHotels);
 export const useGetSelectedHotels = () => useAppSelector(({DATA}) => DATA.selectedTabHotels);
 export const useGetLocationCity = () => useAppSelector(({DATA}) => DATA.city);
 

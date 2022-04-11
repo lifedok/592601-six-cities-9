@@ -5,7 +5,7 @@ export function getSortingHotels(sortType: string, hotels: IHotel[]) {
 
   const getHotelsByLowToHigh = () => hotels.sort((a, b) => a.price - b.price);
   const getHotelsByHighToLow = () => hotels.sort((a, b) => b.price - a.price);
-  const getHotelsByTopRatedFirst = () => hotels.sort((a, b) => a.rating - b.rating);
+  const getHotelsByTopRatedFirst = () => hotels.sort((a, b) => b.rating - a.rating);
 
   switch (sortType) {
     case ESorting.POPULAR:

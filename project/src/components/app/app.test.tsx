@@ -18,6 +18,7 @@ const initialEmptyState: HotelsData = {
     },
   },
   hotels: [],
+  sortingHotels: [],
   selectedTabHotels: [],
   selectedOfferHotel: null,
   favoriteHotels: [],

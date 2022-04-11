@@ -1,24 +1,20 @@
 import { useLocation, useParams } from 'react-router-dom';
 import Header from '../../components/layout/header/header';
 import { NearPlacesList } from './near-places-list/near-places-list';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Reviews } from './reviews/reviews';
 import { MeetHostInfo } from './meet-host-info/meet-host-info';
 import { Facilities } from './facilities/facilities';
 import { getRatingFromFloatToPercentages } from '../../helpers/hepler';
-import { useGetHotels } from '../../store/selector';
-import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
+import { useGetHotels, useGetLocationCity } from '../../store/selector';
+import { IHotel } from '../../types/interfaces/hotel.interface';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { AuthorizationStatus, ERoute } from '../../types/enums/route.enum';
 import { redirectToRoute } from '../../store/action';
+import MapView from '../../components/map-view/map-view';
 
-
-type PropertyPageProps = {
-  renderMap: (location: IPlace, offers: IHotel[]) => React.ReactNode;
-  onPlaceCardHover: (selectedOffer: string) => void
-}
-
-export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPageProps): JSX.Element {
+export default function PropertyPage(): JSX.Element {
+  const [selectedPoint, setSelectedPoint] = useState<IHotel | undefined>(undefined);
   const hotels = useGetHotels();
   const {authorizationStatus} = useAppSelector(({USER}) => USER);
   const {comments, nearbyHotels} = useAppSelector(({DATA}) => DATA);
@@ -41,6 +37,12 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
   const selectedHotel = hotels.filter((offer) => (offer.id.toString() === params.id))[0];
   const {isPremium, city, price, bedrooms, rating, maxAdults, images, type, host, description, goods, id} = selectedHotel;
 
+  const locationCity = useGetLocationCity();
+
+  const onPlaceCardHover = (placeCardName: string) => {
+    const currentPoint = hotels.find((hotel) => (hotel.id+hotel.city.name).toString() === placeCardName);
+    setSelectedPoint(currentPoint);
+  };
   return (
     <div className="page">
 
@@ -120,7 +122,13 @@ export default function PropertyPage({renderMap, onPlaceCardHover}: PropertyPage
             </div>
           </div>
           <section className="property__map map">
-            {renderMap(city, hotels)}
+            {/*{renderMap(city, hotels)}*/}
+
+            <MapView
+              hotels={hotels}
+              city={locationCity}
+              hoveredOffer={selectedPoint}
+            />
           </section>
         </section>
 

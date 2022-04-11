@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { EReducerNameSpace } from '../../../types/const';
 import { HotelsData } from '../../../types/state';
-import { getSortingHotels } from '../../get-sorting-hotels';
 import { getCityList } from '../../selector';
 import { IHotel } from '../../../types/interfaces/hotel.interface';
 
@@ -15,6 +14,7 @@ export const initialState: HotelsData = {
     },
   },
   hotels: [],
+  sortingHotels: [],
   selectedTabHotels: [],
   selectedOfferHotel: null,
   favoriteHotels: [],
@@ -30,6 +30,7 @@ export const hotelsData = createSlice({
   reducers: {
     loadHotels: (state, action) => {
       state.hotels = action.payload;
+      state.sortingHotels = action.payload;
       state.isDataLoaded = true;
     },
     loadFavoriteHotels: (state, action) => {
@@ -40,11 +41,6 @@ export const hotelsData = createSlice({
     },
     loadNearbyHotels: (state, action) => {
       state.nearbyHotels = action.payload;
-    },
-    sortHotels: (state, action) => {
-      const {type} = action.payload;
-      const {hotels} = state;
-      state.hotels = getSortingHotels(type, [...hotels]);
     },
     changeLocationCity: (state, action) => {
       const {changedCity} = action.payload;
@@ -67,7 +63,6 @@ export const {
   loadCommentsHotel,
   loadFavoriteHotels,
   loadNearbyHotels,
-  sortHotels,
   changeLocationCity,
   changeLocationByLocationCity,
   changeHotelsByLocationCity,

@@ -14,6 +14,7 @@ export type UserProcess = {
 
 export type HotelsData = {
   hotels: IHotel[],
+  sortingHotels: IHotel[],
   city: IPlace,
   selectedTabHotels: IHotel[],
   selectedOfferHotel: any,
