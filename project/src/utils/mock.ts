@@ -1,6 +1,6 @@
 import { system, address, lorem, helpers, name } from 'faker';
 import { HotelsData } from '../types/state';
-import { IHotel } from '../types/interfaces/hotel.interface';
+import { IHotel, IPlace } from '../types/interfaces/hotel.interface';
 import { gerRandomNumber } from '../helpers/hepler';
 import { initialState } from '../store/reducer/hotel-data/hotels-data';
 
@@ -51,4 +51,3 @@ export const hotelInitial: IHotel = {
   title: name.title(),
   type: 'Apartment',
 };
-
