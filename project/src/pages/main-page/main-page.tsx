@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../../components/layout/header/header';
 import Tabs from '../../components/layout/tabs/tabs';
 import SortingForm from '../../components/layout/sorting-form/sorting-form';
@@ -7,17 +7,20 @@ import PlacesEmpty from '../../components/places-empty/places-empty';
 import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
-import { getCityList, useGetLocationCity, useGetHotels, useGetSelectedHotels } from '../../store/selector';
-import { IHotel, IPlace } from '../../types/interfaces/hotel.interface';
+import {
+  getCityList,
+  useGetLocationCity,
+  useGetSelectedHotels,
+  useGetSortingHotels
+} from '../../store/selector';
+import { IHotel } from '../../types/interfaces/hotel.interface';
 import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity } from '../../store/reducer/hotel-data/hotels-data';
+import MapView from '../../components/map-view/map-view';
 
-type MainPageProps = {
-  renderMap: (location: IPlace, hotels: IHotel[]) => React.ReactNode;
-  onPlaceCardHover: (selectedHotel: string) => void
-}
 
-export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): JSX.Element {
-  const hotels = useGetHotels();
+export default function MainPage(): JSX.Element {
+  const [selectedPoint, setSelectedPoint] = useState<IHotel | undefined>(undefined);
+  const hotels = useGetSortingHotels();
   const selectedHotels = useGetSelectedHotels();
   const locationCity = useGetLocationCity();
   const {isDataLoaded } = useAppSelector(({DATA}) => DATA);
@@ -33,7 +36,12 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
     navigate(`${ERoute.LOCATION}/${city}`);
   };
 
+  const onPlaceCardHover = (placeCardName: string) => {
+    const currentPoint = hotels.find((hotel) => (hotel.id+hotel.city.name).toString() === placeCardName);
+    setSelectedPoint(currentPoint);
+  };
   const isShowContent = isDataLoaded && !!selectedHotels.length;
+
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -61,7 +69,13 @@ export default function MainPage({renderMap, onPlaceCardHover}: MainPageProps): 
 
                 <div className="cities__right-section">
                   <section className="property__map map">
-                    {renderMap(locationCity, selectedHotels)}
+                    {/*{renderMap(locationCity, selectedHotels)}*/}
+
+                    <MapView
+                      hotels={hotels}
+                      city={locationCity}
+                      hoveredOffer={selectedPoint}
+                    />
                   </section>
                 </div>
               </div>

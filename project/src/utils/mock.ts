@@ -17,6 +17,7 @@ export const makeFakeHotelsMockData = (): HotelsData => ({
     },
   },
   hotels: makeFakeHotelArray(),
+  sortingHotels: makeFakeHotelArray(),
   selectedTabHotels: [],
   selectedOfferHotel: null,
   favoriteHotels: [],

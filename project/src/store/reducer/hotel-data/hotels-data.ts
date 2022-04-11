@@ -15,6 +15,7 @@ export const initialState: HotelsData = {
     },
   },
   hotels: [],
+  sortingHotels: [],
   selectedTabHotels: [],
   selectedOfferHotel: null,
   favoriteHotels: [],
@@ -30,6 +31,7 @@ export const hotelsData = createSlice({
   reducers: {
     loadHotels: (state, action) => {
       state.hotels = action.payload;
+      state.sortingHotels = action.payload;
       state.isDataLoaded = true;
     },
     loadFavoriteHotels: (state, action) => {
@@ -43,8 +45,10 @@ export const hotelsData = createSlice({
     },
     sortHotels: (state, action) => {
       const {type} = action.payload;
-      const {hotels} = state;
-      state.hotels = getSortingHotels(type, [...hotels]);
+      const hotels = state.hotels;
+      const sortHotels = getSortingHotels(type, [...hotels]);
+      console.log({hotels, sortHotels});
+      state.sortingHotels = sortHotels;
     },
     changeLocationCity: (state, action) => {
       const {changedCity} = action.payload;
