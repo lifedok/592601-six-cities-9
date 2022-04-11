@@ -33,6 +33,7 @@ export default function PlaceCard({hotel, onPlaceCardHover}: PlaceCardProps): JS
       className="cities__place-card place-card"
       onMouseEnter={(ev) => placeCardHoverHandler(ev, id+city.name)}
       onClick={(ev) => placeCardClickHandler(ev, id)}
+      data-testid="place-card"
     >
 
       {
