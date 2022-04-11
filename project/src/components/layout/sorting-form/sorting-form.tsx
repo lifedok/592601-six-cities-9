@@ -1,17 +1,17 @@
 import React, { memo, useState } from 'react';
 import { ESorting } from '../../../types/enums/sort-option-list.enum';
-import { useAppDispatch } from '../../../hooks';
-import { sortHotels } from '../../../store/reducer/hotel-data/hotels-data';
 
-function SortingForm(): JSX.Element {
+type SortingFormType = {
+  onClick: (sortType: string) => void;
+}
+function SortingForm({onClick}: SortingFormType): JSX.Element {
   const [isOpen, setOpen] = useState(false);
   const [isSelectSort, setSelectSort] = useState(ESorting.POPULAR);
-  const dispatch = useAppDispatch();
 
   const selectedSortTypeHandler = (sortType: string) => {
     setSelectSort(sortType);
     setOpen(false);
-    dispatch(sortHotels({type: sortType}));
+    onClick(sortType);
   };
 
   const toggleSort = () => {

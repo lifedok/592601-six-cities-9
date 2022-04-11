@@ -19,7 +19,7 @@ describe('Component: SortingForm', () => {
     render(
       <Provider store={store}>
         <HistoryRouter history={history}>
-          <SortingForm/>
+          <SortingForm onClick={jest.fn()}/>
         </HistoryRouter>
       </Provider>);
 

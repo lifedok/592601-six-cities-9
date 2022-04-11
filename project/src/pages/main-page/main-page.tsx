@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { ERoute } from '../../types/enums/route.enum';
 import {
-  getCityList,
+  getCityList, useGetHotels,
   useGetLocationCity,
   useGetSelectedHotels,
   useGetSortingHotels
@@ -16,11 +16,13 @@ import {
 import { IHotel } from '../../types/interfaces/hotel.interface';
 import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity } from '../../store/reducer/hotel-data/hotels-data';
 import MapView from '../../components/map-view/map-view';
+import { getSortingHotels } from "../../store/get-sorting-hotels";
 
 
 export default function MainPage(): JSX.Element {
   const [selectedPoint, setSelectedPoint] = useState<IHotel | undefined>(undefined);
-  const hotels = useGetSortingHotels();
+  const hotels = useGetHotels();
+  const sortingHotels = useGetSortingHotels();
   const selectedHotels = useGetSelectedHotels();
   const locationCity = useGetLocationCity();
   const {isDataLoaded } = useAppSelector(({DATA}) => DATA);
@@ -42,6 +44,8 @@ export default function MainPage(): JSX.Element {
   };
   const isShowContent = isDataLoaded && !!selectedHotels.length;
 
+  const [sortHotels, setSortHotels] = useState<any>(selectedHotels);
+
   return (
     <div className="page page--gray page--main">
       <Header/>
@@ -61,18 +65,19 @@ export default function MainPage(): JSX.Element {
                   <h2 className="visually-hidden">Places</h2>
                   <b className="places__found">{selectedHotels.length} place{selectedHotels.length > 1 && 's'} to stay in {locationCity.name}</b>
 
-                  <SortingForm />
+                  <SortingForm onClick={(sortType) => {
+                    const selectedSortHotels = getSortingHotels(sortType, [...selectedHotels]);
+                    setSortHotels(selectedSortHotels);
+                  }}/>
 
-                  <PlacesList list={selectedHotels} onPlaceCardHover={onPlaceCardHover}/>
+                  <PlacesList list={sortHotels} onPlaceCardHover={onPlaceCardHover}/>
 
                 </section>
 
                 <div className="cities__right-section">
                   <section className="property__map map">
-                    {/*{renderMap(locationCity, selectedHotels)}*/}
-
                     <MapView
-                      hotels={hotels}
+                      hotels={sortingHotels}
                       city={locationCity}
                       hoveredOffer={selectedPoint}
                     />
