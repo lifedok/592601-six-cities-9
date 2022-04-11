@@ -25,7 +25,7 @@ export default function Tabs({placeList, onSelectedTabItem}: TabsProps): JSX.Ele
               const isActiveCity = param.city ? place.name === param.city : place.name === 'Amsterdam';
               const isActiveClass = isActiveCity ? 'tabs__item--active' : '';
               return (
-                <li onClick={(ev) => selectedTabItemHandler(ev)} key={place.name}>
+                <li onClick={(ev) => selectedTabItemHandler(ev)} key={place.name} style={{cursor: isActiveCity ? 'default' : 'pointer'}}>
                   <div className={`locations__item-link tabs__item ${isActiveClass}`}>
                     <span>{place.name}</span>
                   </div>

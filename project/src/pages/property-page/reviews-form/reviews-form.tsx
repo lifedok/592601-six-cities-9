@@ -7,14 +7,18 @@ type ReviewsFormProps = {
 }
 export default function ReviewsForm({hotelId}: ReviewsFormProps): JSX.Element {
   const dispatch = useAppDispatch();
+  const MIN_CHART = 50;
+  const MAX_CHART = 300;
 
   const [formData, setFormData] = React.useState({comment: '', rating: ''});
+
   const onChangeForm = (evt: React.FormEvent<EventTarget>) => {
     const {name, value} = evt.target as HTMLInputElement;
     setFormData({...formData, [name]: value});
   };
 
-  const isFormFilled = () => !!formData.rating && !!formData.comment;
+  const isValidLengthComment = formData.comment.length >= MIN_CHART && formData.comment.length <= MAX_CHART;
+  const isFormFilled = () => !!formData.rating && !!formData.comment && isValidLengthComment;
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
@@ -24,8 +28,10 @@ export default function ReviewsForm({hotelId}: ReviewsFormProps): JSX.Element {
     dispatch(addCommentAction({
       hotelId: hotelId,
       comment: formData.comment,
-      rating: parseInt(formData.rating, 2),
-    }));
+      rating: Number(formData.rating),
+    })).then(() => {
+      setFormData({comment: '', rating: ''});
+    });
   };
 
   return (
@@ -116,6 +122,7 @@ export default function ReviewsForm({hotelId}: ReviewsFormProps): JSX.Element {
         <p className="reviews__help">
           To submit review please make sure to set <span className="reviews__star">rating</span> and
           describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
+          &nbsp;&nbsp;{formData.comment.length}/300
         </p>
         <button className="reviews__submit form__submit button" type="submit" disabled={!isFormFilled()}>Submit</button>
       </div>
