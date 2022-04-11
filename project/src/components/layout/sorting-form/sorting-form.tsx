@@ -18,7 +18,6 @@ function SortingForm({onClick}: SortingFormType): JSX.Element {
     setOpen(!isOpen);
   };
 
-  console.log({isOpen});
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by&nbsp;</span>

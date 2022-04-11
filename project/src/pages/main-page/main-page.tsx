@@ -14,9 +14,13 @@ import {
   useGetSortingHotels
 } from '../../store/selector';
 import { IHotel } from '../../types/interfaces/hotel.interface';
-import { changeHotelsByLocationCity, changeLocationByLocationCity, changeLocationCity } from '../../store/reducer/hotel-data/hotels-data';
+import {
+  changeHotelsByLocationCity,
+  changeLocationByLocationCity,
+  changeLocationCity
+} from '../../store/reducer/hotel-data/hotels-data';
 import MapView from '../../components/map-view/map-view';
-import { getSortingHotels } from "../../store/get-sorting-hotels";
+import { getSortingHotels } from '../../store/get-sorting-hotels';
 
 
 export default function MainPage(): JSX.Element {
@@ -25,7 +29,7 @@ export default function MainPage(): JSX.Element {
   const sortingHotels = useGetSortingHotels();
   const selectedHotels = useGetSelectedHotels();
   const locationCity = useGetLocationCity();
-  const {isDataLoaded } = useAppSelector(({DATA}) => DATA);
+  const {isDataLoaded} = useAppSelector(({DATA}) => DATA);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -39,7 +43,7 @@ export default function MainPage(): JSX.Element {
   };
 
   const onPlaceCardHover = (placeCardName: string) => {
-    const currentPoint = hotels.find((hotel) => (hotel.id+hotel.city.name).toString() === placeCardName);
+    const currentPoint = hotels.find((hotel) => (hotel.id + hotel.city.name).toString() === placeCardName);
     setSelectedPoint(currentPoint);
   };
   const isShowContent = isDataLoaded && !!selectedHotels.length;
@@ -63,12 +67,11 @@ export default function MainPage(): JSX.Element {
               <div className="cities__places-container container">
                 <section className="cities__places places">
                   <h2 className="visually-hidden">Places</h2>
-                  <b className="places__found">{selectedHotels.length} place{selectedHotels.length > 1 && 's'} to stay in {locationCity.name}</b>
+                  <b className="places__found">{selectedHotels.length} place{selectedHotels.length > 1 && 's'} to stay
+                    in {locationCity.name}
+                  </b>
 
-                  <SortingForm onClick={(sortType) => {
-                    const selectedSortHotels = getSortingHotels(sortType, [...selectedHotels]);
-                    setSortHotels(selectedSortHotels);
-                  }}/>
+                  <SortingForm onClick={(sortType) => {const selectedSortHotels = getSortingHotels(sortType, [...selectedHotels]); setSortHotels(selectedSortHotels);}}/>
 
                   <PlacesList list={sortHotels} onPlaceCardHover={onPlaceCardHover}/>
 
