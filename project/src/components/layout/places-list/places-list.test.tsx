@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import PlacesList from "./places-list";
-import { makeFakeHotelArray } from "../../../utils/mock";
-import { IHotel } from "../../../types/interfaces/hotel.interface";
-import { Provider } from "react-redux";
-import HistoryRouter from "../../history-route/history-route";
-import { configureMockStore } from "@jedmao/redux-mock-store";
-import { createMemoryHistory } from "history";
+import PlacesList from './places-list';
+import { makeFakeHotelArray } from '../../../utils/mock';
+import { IHotel } from '../../../types/interfaces/hotel.interface';
+import { Provider } from 'react-redux';
+import HistoryRouter from '../../history-route/history-route';
+import { configureMockStore } from '@jedmao/redux-mock-store';
+import { createMemoryHistory } from 'history';
 
 
 const mockStore = configureMockStore();
@@ -26,8 +26,7 @@ describe('Component: PlacesList', () => {
         <HistoryRouter history={history}>
           <PlacesList list={list}/>
         </HistoryRouter>
-      </Provider>
-    );
+      </Provider>);
 
     expect(screen.getByTestId('places-list')).toBeInTheDocument();
   });

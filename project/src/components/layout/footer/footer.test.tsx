@@ -19,11 +19,8 @@ describe('Component: Footer', () => {
         <HistoryRouter history={history}>
           <Footer/>
         </HistoryRouter>
-      </Provider>
-    );
+      </Provider>);
 
     expect(screen.getByTestId('footer')).toBeInTheDocument();
   });
 });
-
-

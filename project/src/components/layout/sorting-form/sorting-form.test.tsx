@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import SortingForm from "./sorting-form";
-import { Provider } from "react-redux";
-import HistoryRouter from "../../history-route/history-route";
-import { createMemoryHistory } from "history";
-import { configureMockStore } from "@jedmao/redux-mock-store";
+import SortingForm from './sorting-form';
+import { Provider } from 'react-redux';
+import HistoryRouter from '../../history-route/history-route';
+import { createMemoryHistory } from 'history';
+import { configureMockStore } from '@jedmao/redux-mock-store';
 
 const mockStore = configureMockStore();
 const history = createMemoryHistory();
@@ -21,8 +21,7 @@ describe('Component: SortingForm', () => {
         <HistoryRouter history={history}>
           <SortingForm/>
         </HistoryRouter>
-      </Provider>
-    );
+      </Provider>);
 
     expect(screen.getByText('Sort by')).toBeInTheDocument();
   });

@@ -27,8 +27,7 @@ describe('Component: PlaceCard', () => {
         <HistoryRouter history={history}>
           <PlaceCard hotel={hotel}/>
         </HistoryRouter>
-      </Provider>
-    );
+      </Provider>);
 
     expect(screen.getByTestId('place-card')).toBeInTheDocument();
     expect(screen.getByText(`${cityName}`)).toBeInTheDocument();

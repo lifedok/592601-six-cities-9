@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import PlacesEmpty from "./places-empty";
+import PlacesEmpty from './places-empty';
 
 describe('Component: PlacesEmpty', () => {
   it('should render correctly', () => {

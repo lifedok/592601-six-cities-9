@@ -1,7 +1,7 @@
 import {render, screen} from '@testing-library/react';
 import Tabs from './tabs';
-import { IPlace } from "../../../types/interfaces/hotel.interface";
-import { address } from "faker";
+import { IPlace } from '../../../types/interfaces/hotel.interface';
+import { address } from 'faker';
 
 const makeFakePlaceList: IPlace[] = [
   {
@@ -27,7 +27,7 @@ const makeFakePlaceList: IPlace[] = [
       longitude: Number(address.longitude()),
       zoom: 10,
     },
-  }
+  },
 ];
 
 describe('Component: Tabs', () => {
